@@ -1,8 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-	bBox: null,
-	queryParams: {
+  bBox: null,
+  queryParams: {
     bBox: {
       replace: true
     }
@@ -10,23 +10,23 @@ export default Ember.Component.extend({
   activeRoute: 'index',
   test: false,
   activeIndexRoute: function(){
-  	if (this.test === true){
-  		return true;
-  	}
+    if (this.test === true){
+      return true;
+    }
   },
   activeOperatorsRoute: function(){
-  	if (this.activeRoute === 'operators'){
-  		return true;
-  	}
+    if (this.activeRoute === 'operators'){
+      return true;
+    }
   },
   activeRoutesRoute: function(){
-  	if(this.activeRoute === 'routes'){
-  		return true;
-  	}
+    if(this.activeRoute === 'routes'){
+      return true;
+    }
   },
   activeStopsRoute: function(){
-  	if(this.activeRoute === 'stops'){
-  		return true;
-  	}
+    if(this.activeRoute === 'stops'){
+      return true;
+    }
   }
 });

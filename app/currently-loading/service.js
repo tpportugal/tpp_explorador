@@ -1,5 +1,5 @@
 import Ember from 'ember';
 
 export default Ember.Service.extend({
-	isLoading: false
+  isLoading: false
 });

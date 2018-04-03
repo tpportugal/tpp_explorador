@@ -1,21 +1,21 @@
 {{#if onestop_id}}
-	Operator details:<br>
-	{{#if operator}}
-		{{#if operator.name}}<strong>Name:</strong> {{operator.name}}<br>{{/if}}
-		{{#if operator.short_name}}<strong>Short name:</strong> {{operator.short_name}}<br>{{/if}}
-		{{#if operator.onestop_id}}<div><strong>Onestop ID:</strong> {{operator.onestop_id}}&nbsp;<div class="fa fa-question-circle"></div><br>{{#popover-on-element class="tooltip-on-sidebar" event="click"}}<a href="https://transit.land/documentation/onestop-id-scheme/">Onestop IDs </a>are globally unique identifiers for transit feeds, operators, routes, and stops. Use them to query the Transitland API or use them in your own apps and analyses.{{/popover-on-element}}</div>{{/if}}
-		{{#if operator.website}}<strong>URL:&nbsp;</strong> <a target="_blank" href="{{operator.website}}">{{operator.website}}</a><br>{{/if}}
-	{{else}}
-		{{#each operators as |operator|}}
-			{{#if operator.name}}<strong>Name:</strong> {{operator.name}}<br>{{/if}}
-			{{#if operator.short_name}}<strong>Short name:</strong> {{operator.short_name}}<br>{{/if}}
-			{{#if operator.onestop_id}}<div><strong>Onestop ID:</strong> {{operator.onestop_id}}&nbsp;<div class="fa fa-question-circle"></div><br>{{#popover-on-element class="tooltip-on-sidebar" event="click"}}<a href="https://transit.land/documentation/onestop-id-scheme/">Onestop IDs </a>are globally unique identifiers for transit feeds, operators, routes, and stops. Use them to query the Transitland API or use them in your own apps and analyses.{{/popover-on-element}}</div>{{/if}}
-			{{#if operator.website}}<strong>URL:&nbsp;</strong> <a target="_blank" href="{{operator.website}}">{{operator.website}}</a><br>{{/if}}
-		{{/each}}
-	{{/if}}
+  Operator details:<br>
+  {{#if operator}}
+    {{#if operator.name}}<strong>Name:</strong> {{operator.name}}<br>{{/if}}
+    {{#if operator.short_name}}<strong>Short name:</strong> {{operator.short_name}}<br>{{/if}}
+    {{#if operator.onestop_id}}<div><strong>Onestop ID:</strong> {{operator.onestop_id}}&nbsp;<div class="fa fa-question-circle"></div><br>{{#popover-on-element class="tooltip-on-sidebar" event="click"}}<a href="https://tppgeo.cf/documentation/onestop-id-scheme/">Onestop IDs </a>are globally unique identifiers for transit feeds, operators, routes, and stops. Use them to query the TPP API or use them in your own apps and analyses.{{/popover-on-element}}</div>{{/if}}
+    {{#if operator.website}}<strong>URL:&nbsp;</strong> <a target="_blank" href="{{operator.website}}">{{operator.website}}</a><br>{{/if}}
+  {{else}}
+    {{#each operators as |operator|}}
+      {{#if operator.name}}<strong>Name:</strong> {{operator.name}}<br>{{/if}}
+      {{#if operator.short_name}}<strong>Short name:</strong> {{operator.short_name}}<br>{{/if}}
+      {{#if operator.onestop_id}}<div><strong>Onestop ID:</strong> {{operator.onestop_id}}&nbsp;<div class="fa fa-question-circle"></div><br>{{#popover-on-element class="tooltip-on-sidebar" event="click"}}<a href="https://tppgeo.cf/documentation/onestop-id-scheme/">Onestop IDs </a>are globally unique identifiers for transit feeds, operators, routes, and stops. Use them to query the TPP API or use them in your own apps and analyses.{{/popover-on-element}}</div>{{/if}}
+      {{#if operator.website}}<strong>URL:&nbsp;</strong> <a target="_blank" href="{{operator.website}}">{{operator.website}}</a><br>{{/if}}
+    {{/each}}
+  {{/if}}
 {{else}}
-	{{#each operators as |operator|}}
-		{{#link-to 'operators' (query-params bbox=bbox onestop_id=operator.onestop_id)}}{{operator.name}}{{/link-to}}<br>
-	{{/each}}
+  {{#each operators as |operator|}}
+    {{#link-to 'operators' (query-params bbox=bbox onestop_id=operator.onestop_id)}}{{operator.name}}{{/link-to}}<br>
+  {{/each}}
 {{/if}}
 <br>

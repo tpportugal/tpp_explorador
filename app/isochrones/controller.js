@@ -1,9 +1,9 @@
 /* global moment */
 
 import Ember from 'ember';
-import mapBboxController from 'mobility-playground/mixins/map-bbox-controller';
-import setTextboxClosed from 'mobility-playground/mixins/set-textbox-closed';
-import sharedActions from 'mobility-playground/mixins/shared-actions';
+import mapBboxController from 'mobility-explorer/mixins/map-bbox-controller';
+import setTextboxClosed from 'mobility-explorer/mixins/set-textbox-closed';
+import sharedActions from 'mobility-explorer/mixins/shared-actions';
 
 
 export default Ember.Controller.extend(mapBboxController, setTextboxClosed, sharedActions, {
@@ -19,35 +19,35 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
   include_routes: [],
   exclude_routes: [],
   stop: null,
-  
-  // this iterates through the arrays for the included and excluded query params, and sets the included or excluded 
+
+  // this iterates through the arrays for the included and excluded query params, and sets the included or excluded
   // model attributes for the entities with listed onestopIDs
   markIncludedExcluded: Ember.computed('include_operators', function(){
     if (this.get('exclude_operators').length > 0) {
       for (var i = 0; i < this.get('exclude_operators').length; i++){
         var excludeOperator = this.get('exclude_operators')[i];
-        this.store.peekRecord('data/transitland/operator', excludeOperator).set('exclude', true);
+        this.store.peekRecord('data/tpp/operator', excludeOperator).set('exclude', true);
       }
     }
 
     if (this.get('include_operators').length > 0) {
       for (var j = 0; j < this.get('include_operators').length; j++){
         var includeOperator = this.get('include_operators')[j];
-        this.store.peekRecord('data/transitland/operator', includeOperator).set('include', true);
+        this.store.peekRecord('data/tpp/operator', includeOperator).set('include', true);
       }
     }
 
     if (this.get('exclude_routes').length > 0) {
       for (var k = 0; k < this.get('exclude_routes').length; k++){
         var excludeRoute = this.get('exclude_routes')[k];
-        this.store.peekRecord('data/transitland/route', excludeRoute).set('exclude', true);
+        this.store.peekRecord('data/tpp/route', excludeRoute).set('exclude', true);
       }
     }
 
     if (this.get('include_routes').length > 0) {
       for (var l = 0; l < this.get('include_routes').length; l++){
         var includeRoute = this.get('include_routes')[l];
-        this.store.peekRecord('data/transitland/route', includeRoute).set('include', true);
+        this.store.peekRecord('data/tpp/route', includeRoute).set('include', true);
       }
     }
     return true;
@@ -102,28 +102,28 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
       var minute = timeArray[1];
       var month = {
         'Jan' : '01',
-        'Feb' : '02',
+        'Fev' : '02',
         'Mar' : '03',
-        'Apr' : '04',
-        'May' : '05',
+        'Abr' : '04',
+        'Mai' : '05',
         'Jun' : '06',
         'Jul' : '07',
-        'Aug' : '08',
-        'Sep' : '09',
-        'Oct' : '10',
+        'Ago' : '08',
+        'Set' : '09',
+        'Out' : '10',
         'Nov' : '11',
-        'Dec' : '12'
+        'Dez' : '12'
       };
       var newDepartureTime = year + "-" + month[monthString] + "-" + day + "T" + hour + ":" + minute;
 
-      // This is the local date and time at the location.  
+      // This is the local date and time at the location.
       // value:
-      // the date and time is specified in ISO 8601 format (YYYY-MM-DDThh:mm) in 
+      // the date and time is specified in ISO 8601 format (YYYY-MM-DDThh:mm) in
       // the local time zone of departure or arrival. For example "2016-07-03T08:06"
-      // ISO 8601 uses the 24-hour clock system. 
-      // A single point in time can be represented by concatenating a complete date expression, 
+      // ISO 8601 uses the 24-hour clock system.
+      // A single point in time can be represented by concatenating a complete date expression,
       // the letter T as a delimiter, and a valid time expression. For example, "2007-04-05T14:30".
-      
+
       this.set('departure_time', newDepartureTime);
     },
     resetDepartureTime: function(){
@@ -133,26 +133,26 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
     includeOperator: function(operator){
       if (this.get('include_operators').includes(operator.id)){
         this.get('include_operators').removeObject(operator.id);
-        this.store.peekRecord('data/transitland/operator', operator.id).set('include', false);
+        this.store.peekRecord('data/tpp/operator', operator.id).set('include', false);
       } else {
         this.get('include_operators').pushObject(operator.id);
-        this.store.peekRecord('data/transitland/operator', operator.id).set('include', true);
+        this.store.peekRecord('data/tpp/operator', operator.id).set('include', true);
         if (this.get('exclude_operators').includes(operator.id)){
           this.get('exclude_operators').removeObject(operator.id);
-          this.store.peekRecord('data/transitland/operator', operator.id).set('exclude', false);
+          this.store.peekRecord('data/tpp/operator', operator.id).set('exclude', false);
         }
       }
       this.get('exclude_operators').clear();
     },
     excludeOperator: function(operator){
       if (this.get('exclude_operators').includes(operator.id)){
-        this.store.peekRecord('data/transitland/operator', operator.id).set('exclude', false);
+        this.store.peekRecord('data/tpp/operator', operator.id).set('exclude', false);
         this.get('exclude_operators').removeObject(operator.id);
       } else {
-        this.store.peekRecord('data/transitland/operator', operator.id).set('exclude', true);
+        this.store.peekRecord('data/tpp/operator', operator.id).set('exclude', true);
         this.get('exclude_operators').pushObject(operator.id);
         if (this.get('include_operators').includes(operator.id)){
-          this.store.peekRecord('data/transitland/operator', operator.id).set('include', false);
+          this.store.peekRecord('data/tpp/operator', operator.id).set('include', false);
           this.get('include_operators').removeObject(operator.id);
         }
       }
@@ -160,13 +160,13 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
     },
     includeRoute: function(route){
       if (this.get('include_routes').includes(route.id)){
-        this.store.peekRecord('data/transitland/route', route.id).set('include', false);
+        this.store.peekRecord('data/tpp/route', route.id).set('include', false);
         this.get('include_routes').removeObject(route.id);
       } else {
-        this.store.peekRecord('data/transitland/route', route.id).set('include', true);
+        this.store.peekRecord('data/tpp/route', route.id).set('include', true);
         this.get('include_routes').pushObject(route.id);
         if (this.get('exclude_routes').includes(route.id)){
-          this.store.peekRecord('data/transitland/route', route.id).set('exclude', false);
+          this.store.peekRecord('data/tpp/route', route.id).set('exclude', false);
           this.get('exclude_routes').removeObject(route.id);
         }
       }
@@ -175,13 +175,13 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
     excludeRoute: function(route){
       if (this.get('exclude_routes').includes(route.id)){
         this.get('exclude_routes').removeObject(route.id);
-        this.store.peekRecord('data/transitland/route', route.id).set('exclude', false);
+        this.store.peekRecord('data/tpp/route', route.id).set('exclude', false);
       } else {
         this.get('exclude_routes').pushObject(route.id);
-        this.store.peekRecord('data/transitland/route', route.id).set('exclude', true);
+        this.store.peekRecord('data/tpp/route', route.id).set('exclude', true);
         if (this.get('include_routes').includes(route.id)){
           this.get('include_routes').removeObject(route.id);
-          this.store.peekRecord('data/transitland/route', route.id).set('include', false);
+          this.store.peekRecord('data/tpp/route', route.id).set('include', false);
         }
       }
       this.get('include_routes').clear();

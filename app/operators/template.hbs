@@ -7,7 +7,7 @@
       {{text-box route="index" action="setTextBoxClosed"}}
     {{/unless}}
   {{/if}}
-  {{sidebar-title-transitland}}
+  {{sidebar-title-tpp}}
   <div class="btn-group-vertical" role="group" >
   {{#link-to 'routes' (query-params bbox=leafletBbox onestop_id=null served_by=null operated_by=null serves=null style_routes_by=null)}}<button class="btn btn-transparent-alt">Show Routes</button>{{/link-to}}
   {{#link-to 'stops' (query-params bbox=leafletBbox onestop_id=null served_by=null operated_by=null serves=null isochrone_mode=null)}}<button class="btn btn-transparent-alt">Show Stops</button>{{/link-to}}
@@ -46,7 +46,7 @@
         {{/if}}
       {{/if}}
     </div>
-    {{url-builder entity="operators" server="Transitland" query="results" queryParams=queryParams bbox=bbox onestop_id=onestop_id}}
+    {{url-builder entity="operators" server="TPP" query="results" queryParams=queryParams bbox=bbox onestop_id=onestop_id}}
     </div>
       <hr class="sidebar-hr">
       {{sidebar-title-mobility}}
@@ -59,7 +59,7 @@
   <div class="row">
     {{#if media.isMobile}}
       <button type="button" class="collapsed collapse-tab" data-toggle="collapse" data-target="#sidebar">&#8597;</button>
-    {{/if}} 
+    {{/if}}
     {{#if currentlyLoading.isLoading}}<div class="loading-spinner-03"></div>{{/if}}
     <div id={{if currentlyLoading.isLoading 'map-loading' 'map'}}>
       <div class="location-search">
@@ -79,7 +79,7 @@
             onclose=(action "clearPlace")
             as |repo|
           }}
-            {{repo.properties.label}}
+            {{repo.display_name}}
           {{/power-select}}
         </div>
       </div>
@@ -95,7 +95,7 @@
         {{#if webGL}}
           {{tangram-refill-basemap-layer}}
         {{else}}
-          {{tile-layer url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png" attribution=attribution}}
+          {{tile-layer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png" attribution=attribution}}
         {{/if}}
         {{#each model as |operator|}}
           {{#polygon-layer locations=operator.location color=operator.operator_color weight=operator.operator_path_weight opacity=operator.operator_path_opacity onMouseover=(action "selectOperator" operator) onMouseout=(action "unselectOperator" operator) icon=icon draggable=false onClick=(action "setOnestopId" operator)}}

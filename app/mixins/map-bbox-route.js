@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Mixin.create({
-	queryParams: {
+  queryParams: {
     bbox: {
       replace: true,
       refreshModel: true

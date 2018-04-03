@@ -2,22 +2,25 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'mobility-playground',
+    modulePrefix: 'mobility-explorer',
     environment: environment,
     baseURL: '/',
     location: '#',
-    transitlandDatastoreHost: 'https://transit.land',
+    tppDatastoreHost: 'https://tppgeo.cf',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
       }
     },
+    moment: {
+      includeLocales: ['pt']
+    },
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
-    valhallaServicesEnabled: false
+    valhallaServicesEnabled: true
   };
 
   if (environment === 'development') {
@@ -26,7 +29,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    // ENV.transitlandDatastoreHost = 'https://transit.land';
+    // ENV.tppDatastoreHost = 'https://tppgeo.cf';
   }
 
   if (environment === 'test') {
@@ -40,12 +43,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.googleAnalytics = {
-      webPropertyId: 'UA-113349190-2'
-    
-    };
-    ENV.baseURL = '/';
-    ENV.valhallaServicesEnabled = false;
+    ENV.baseURL = '/playground';
+    ENV.valhallaServicesEnabled = true;
   }
 
   return ENV;

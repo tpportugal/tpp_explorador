@@ -13,8 +13,8 @@ export default Ember.Mixin.create({
     iconAnchor: [10, 24],
   }),
   leafletBbox: null,
-  leafletBounds: [[43.053900124340984, -89.46407318115234],[43.10875337930414, -89.32708740234375]],
-  mapCenter: [43.072963279523,-89.39234018325806],
+  leafletBounds: [[36.94111143010769, -13.24951171875],[42.25291778330197, -3.087158203125]],
+  mapCenter: [39.64799732373418, -8.158996514976025],
   pin: null,
   pinLocation: Ember.computed('pin', function(){
     if (typeof(this.get('pin'))==="string"){
@@ -36,7 +36,7 @@ export default Ember.Mixin.create({
     if (this.media.isMobile){
       return "Find a place"
     } else {
-      return "Find a place using geocode.earth";
+      return "Find a place using TPP geocode";
     }
   }),
   valhallaServicesEnabled: Ember.computed.alias('ENV.valhallaServicesEnabled'),
@@ -49,7 +49,7 @@ export default Ember.Mixin.create({
       return false;
     }
   }),
-  
+
   actions: {
     dropPin: function(e){
       var lat = e.latlng.lat;
@@ -70,13 +70,16 @@ export default Ember.Mixin.create({
     },
     searchRepo: function(term) {
       if (Ember.isBlank(term)) { return []; }
-      const url = `https://api.geocode.earth/v1/autocomplete?api_key=ge-594964b44b60bf3a&text=${term}`;      
-      return Ember.$.ajax({ url }).then(json => json.features);
+      // const url = `https://api.geocode.earth/v1/autocomplete?api_key=ge-594964b44b60bf3a&text=${term}`;
+      const url = `https://search.tpp.pt/search.php?format=json&q=${term}`;
+      return Ember.$.ajax({ url }).then(json => json);
     },
     setPlace: function(selected){
       this.set('pin', null);
-      var lng = selected.geometry.coordinates[0];
-      var lat = selected.geometry.coordinates[1];
+      //var lng = selected.geometry.coordinates[0];
+      //var lat = selected.geometry.coordinates[1];
+      var lng = selected.lon;
+      var lat = selected.lat;
       var coordinates = [];
       coordinates.push(lat);
       coordinates.push(lng);

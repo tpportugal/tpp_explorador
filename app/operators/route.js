@@ -1,6 +1,6 @@
 import Ember from 'ember';
-import mapBboxRoute from 'mobility-playground/mixins/map-bbox-route';
-import setLoading from 'mobility-playground/mixins/set-loading';
+import mapBboxRoute from 'mobility-explorer/mixins/map-bbox-route';
+import setLoading from 'mobility-explorer/mixins/set-loading';
 
 export default Ember.Route.extend(mapBboxRoute, setLoading, {
   queryParams: {
@@ -40,16 +40,16 @@ export default Ember.Route.extend(mapBboxRoute, setLoading, {
     this._super(controller, model);
   },
   model: function(params){
-    this.store.unloadAll('data/transitland/operator');
-    this.store.unloadAll('data/transitland/stop');
-    this.store.unloadAll('data/transitland/route');  
-    this.store.unloadAll('data/transitland/route_stop_pattern'); 
+    this.store.unloadAll('data/tpp/operator');
+    this.store.unloadAll('data/tpp/stop');
+    this.store.unloadAll('data/tpp/route');
+    this.store.unloadAll('data/tpp/route_stop_pattern');
     params.total=true;
     params.pin=null;
-    
-    return this.store.query('data/transitland/operator', params);
+
+    return this.store.query('data/tpp/operator', params);
   },
   actions:{
-    
+
   }
 });

@@ -44,7 +44,7 @@ h2 {
 }
 
 h2:hover {
-	color: $explorer-bluegreen;
+  color: $explorer-bluegreen;
 }
 
 h4 {
@@ -69,7 +69,7 @@ button {
   background-color: $light-grey;
   border: none;
   color: $white;
-  padding: 10px; 
+  padding: 10px;
 }
 
 
@@ -267,7 +267,7 @@ button {
 
   svg {
     vertical-align: middle;
-	}
+  }
 }
 
 .svg-wrapper-legend-route {
@@ -279,7 +279,7 @@ button {
 
   svg {
     vertical-align: middle;
-	}
+  }
 }
 
 .svg-wrapper-legend-route-only {
@@ -299,7 +299,7 @@ button {
     top: 0;
     width: 9px;
     z-index: 1;
-	}
+  }
 }
 
 input, button, select, textarea {
@@ -367,7 +367,7 @@ input, button, select, textarea {
     font-size: 10px;
     display: inline-block;
     text-align: center;
-    margin-right: 5vw;
+    margin-right: 3.3vw;
     @media (max-width:1089px){
       width: 100vw;
     }
@@ -571,7 +571,7 @@ input, button, select, textarea {
 }
 
 .datetime-picker .form-control {
-	margin-top: 0;
+  margin-top: 0;
 }
 
 .bootstrap-datetimepicker-widget {
@@ -589,11 +589,11 @@ td.day.active.today:hover {
 }
 
 .timepicker-hour {
-	color:$mapzen-red;
+  color:$mapzen-red;
 }
 
 .timepicker-minute {
-	color:$mapzen-red;
+  color:$mapzen-red;
 }
 
 .bootstrap-datetimepicker-widget {

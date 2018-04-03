@@ -1,12 +1,12 @@
 import DS from 'ember-data';
 
-import ENV from 'mobility-playground/config/environment';
+import ENV from 'mobility-explorer/config/environment';
 
 export default DS.RESTAdapter.extend({
-	host: ENV.transitlandDatastoreHost,
-	namespace: 'api/v1',
-	coalesceFindRequests: true,
-	ajaxOptions: function(url, type, options) {
+  host: ENV.tppDatastoreHost,
+  namespace: 'api/v1',
+  coalesceFindRequests: true,
+  ajaxOptions: function(url, type, options) {
     var hash = this._super(url, type, options);
     if (type === 'GET') {
       let data = {};
@@ -21,5 +21,5 @@ export default DS.RESTAdapter.extend({
       hash.data = data;
     }
     return hash;
-	}
+  }
 });

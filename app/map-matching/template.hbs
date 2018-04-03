@@ -7,7 +7,7 @@
       {{text-box route="index" action="setTextBoxClosed"}}
     {{/unless}}
   {{/if}}
-  {{sidebar-title-transitland}}
+  {{sidebar-title-tpp}}
   <div class="btn-group-vertical" role="group" >
     {{#link-to 'routes' (query-params bbox=bbox onestop_id=null operated_by=null pin=pin style_routes_by=null pin=pin serves=null trace=null)}}<button class="btn btn-transparent-alt">Show Routes</button>{{/link-to}}
     {{#link-to 'stops' (query-params bbox=bbox onestop_id=null isochrone_mode=null pin=pin trace=null)}}<button class="btn btn-transparent-alt">Show Stops</button>{{/link-to}}
@@ -20,7 +20,7 @@
       {{#link-to 'map-matching' (query-params bbox=bbox pin=pin trace=null)}}<button class="btn btn-mapzen-alt">Try Map Matching</button>{{/link-to}}
     <div class="expanded-selection">
       {{#unless trace}}
-        <div>Match GPS locations to a known route and see detailed attributes about the line.<br><br>Read more about <a href="https://github.com/transitland/mobility-explorer/blob/master/docs/map-matching.md" target="_blank">map matching</a>, or get started by choosing a sample GPX trace or using your own file.</div>
+        <div>Match GPS locations to a known route and see detailed attributes about the line.<br><br>Read more about <a href="https://github.com/Rui-Santos/tpp-mobility-explorer/blob/master/docs/map-matching.md" target="_blank">map matching</a>, or get started by choosing a sample GPX trace or using your own file.</div>
       {{/unless}}
       <h5>Choose a GPX file for matching</h5>
       {{#power-select
@@ -117,7 +117,7 @@
           {{#if showTraceAttribute}}
             <div class="upload-options">
               <h5>Style route segments by:&nbsp;<div class="fa fa-question-circle"></div><br>{{#popover-on-element class="tooltip-on-sidebar" event="click"}}Display each matched line segment by either its slope or speed limit.<br><br>
-                The <a href="https://github.com/transitland/mobility-explorer/blob/master/docs/map-matching.md#view-the-attributes-of-the-matched-route" target="_blank">weighted grade</a> measure provides an idea of the average grade for each segment, calculated from elevation data.<br><br>
+                The <a href="https://github.com/Rui-Santos/tpp-mobility-explorer/blob/master/docs/map-matching.md#view-the-attributes-of-the-matched-route" target="_blank">weighted grade</a> measure provides an idea of the average grade for each segment, calculated from elevation data.<br><br>
                 If no speed limit information exists, a default speed based on road classification is used.{{/popover-on-element}}<br></h5>
               {{#if (eq selectedAttribute null)}}
                 <input type="radio" id="none" name="options" checked {{action "styleByAttribute" null}}>
@@ -185,9 +185,9 @@
           {{/if}}
           {{#if selectedSegment}}
             <div class="gpx-upload">
-              <h5>Attributes for the selected segment&nbsp;<div class="fa fa-question-circle"></div><br>{{#popover-on-element class="tooltip-on-sidebar" event="click"}}View attribute information for the segment you clicked on the map.<br>Values are from OpenStreetMap source data and Valhalla routing calculations.<br>Read more about segment attributes in the <a href="https://github.com/transitland/mobility-explorer/blob/master/docs/map-matching.md#outputs-of-trace_attributes" target="_blank">Map Matching documentation</a>.{{/popover-on-element}}</h5>
+              <h5>Attributes for the selected segment&nbsp;<div class="fa fa-question-circle"></div><br>{{#popover-on-element class="tooltip-on-sidebar" event="click"}}View attribute information for the segment you clicked on the map.<br>Values are from OpenStreetMap source data and TPP routing calculations.<br>Read more about segment attributes in the <a href="https://github.com/Rui-Santos/tpp-mobility-explorer/blob/master/docs/map-matching.md#outputs-of-trace_attributes" target="_blank">Map Matching documentation</a>.{{/popover-on-element}}</h5>
               <table class="table">
-                {{#each segmentAttributes as | segment |}}
+                {{#each segmentAttributes as |segment|}}
                   {{#unless (eq segment.attribute "skip")}}
                     <tr>
                       <th>{{segment.attribute}}</th><td>{{segment.value}}</td>
@@ -215,7 +215,7 @@
                     Total distance: {{this.model.mapMatchRequests.traceRouteRequest.value.trip.summary.length}} {{this.model.mapMatchRequests.traceRouteRequest.value.trip.units}}
                   </th>
                   <th></th>
-                  {{#each routeManeuvers as | maneuver |}}
+                  {{#each routeManeuvers as |maneuver|}}
                     <tr>
                       <td>
                         {{#maneuver-icon maneuver=maneuver}}{{/maneuver-icon}}
@@ -241,7 +241,7 @@
               <div class="unmatched-segment">
                 <h5>Unmatched Segments</h5>
                   <hr>
-                  {{#each model.mapMatchRequests.discontinuities.value as | discontinuity | }}
+                  {{#each model.mapMatchRequests.discontinuities.value as |discontinuity|}}
                       {{#if (eq selectedDiscontinuity discontinuity)}}
                         <div class="row selected">
                           <div class="col-xs-5" {{action 'hideSelectedDiscontinuity' on="click"}}>segment {{discontinuity.number}}</div>
@@ -254,7 +254,7 @@
                               {{/unless}}
                             </div>
                             <div class="col-xs-3">
-                                <a href="http://www.openstreetmap.org/?box=yes&maxlat={{discontinuity.maxLat}}&maxlon={{discontinuity.maxLon}}&minlat={{discontinuity.minLat}}&minlon={{discontinuity.minLon}}" target="_blank">Data <i class="fa fa-external-link" aria-hidden="true"></i>
+                                <a href="https://www.openstreetmap.org/?box=yes&maxlat={{discontinuity.maxLat}}&maxlon={{discontinuity.maxLon}}&minlat={{discontinuity.minLat}}&minlon={{discontinuity.minLon}}" target="_blank">Data <i class="fa fa-external-link" aria-hidden="true"></i>
                                 </a>
                             </div>
                           </div>
@@ -267,7 +267,7 @@
                       {{/if}}
                   {{/each}}
                 </div>
-            {{/unless}}      
+            {{/unless}}
           {{/if}}
         {{/if}}
       </form>
@@ -298,7 +298,7 @@
           onclose=(action "clearPlace")
           as |repo|
         }}
-          {{repo.properties.label}}
+          {{repo.display_name}}
         {{/power-select}}
         </div>
       </div>
@@ -315,7 +315,7 @@
             {{#if webGL}}
               {{tangram-refill-basemap-layer}}
             {{else}}
-              {{tile-layer url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png" attribution=attribution}}
+              {{tile-layer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png" attribution=attribution}}
             {{/if}}
             {{#if pin}}
               {{#marker-layer location=pinLocation icon=icon draggable=true riseOnHover=true riseOffset=1000}}
@@ -334,7 +334,7 @@
               {{/polyline-layer}}
               {{#if showTraceAttribute}}
                 {{#unless selectedAttribute}}
-                  {{#each model.mapMatchRequests.discontinuities.value as | traceDiscontinuity |}}
+                  {{#each model.mapMatchRequests.discontinuities.value as |traceDiscontinuity|}}
                     {{#polyline-layer locations=traceDiscontinuity.edgeCoordinates color="#444444" weight=7 opacity=0.8 dashArray="3, 10" onClick=(action "showSelectedDiscontinuity" traceDiscontinuity)}}
                     {{/polyline-layer}}
                   {{/each}}
@@ -350,7 +350,7 @@
               {{/if}}
             {{/if}}
             {{#if selectedAttribute}}
-              {{#each model.mapMatchRequests.discontinuities.value as | traceDiscontinuity |}}
+              {{#each model.mapMatchRequests.discontinuities.value as |traceDiscontinuity|}}
                 {{#polyline-layer locations=traceDiscontinuity.edgeCoordinates color="#444444" weight=7 opacity=0.8 dashArray="3, 10"}}
                 {{/polyline-layer}}
               {{/each}}
@@ -378,7 +378,7 @@
             {{#if webGL}}
               {{tangram-refill-basemap-layer}}
             {{else}}
-              {{tile-layer url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png" attribution=attribution}}
+              {{tile-layer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png" attribution=attribution}}
             {{/if}}
           {{/leaflet-map}}
         {{/unless}}
@@ -387,7 +387,7 @@
           {{#if webGL}}
             {{tangram-refill-basemap-layer}}
           {{else}}
-            {{tile-layer url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png" attribution=attribution}}
+            {{tile-layer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png" attribution=attribution}}
           {{/if}}
         {{/leaflet-map}}
       {{/if}}

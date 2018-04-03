@@ -1,11 +1,11 @@
 import Ember from 'ember';
-import mapBboxRoute from 'mobility-playground/mixins/map-bbox-route';
-import setLoading from 'mobility-playground/mixins/set-loading';
+import mapBboxRoute from 'mobility-explorer/mixins/map-bbox-route';
+import setLoading from 'mobility-explorer/mixins/set-loading';
 
 export default Ember.Route.extend(mapBboxRoute, setLoading, {
   queryParams: {
     traversed_by: {
-    	refreshModel: true
+      refreshModel: true
     },
     pin: {
       replace: true,
@@ -35,14 +35,14 @@ export default Ember.Route.extend(mapBboxRoute, setLoading, {
     this._super(controller, model);
   },
   model: function(params){
-    this.store.unloadAll('data/transitland/operator');
-    this.store.unloadAll('data/transitland/stop');
-    this.store.unloadAll('data/transitland/route');
-    this.store.unloadAll('data/transitland/route_stop_pattern');
-    
-    var route_stop_patterns = this.store.query('data/transitland/route_stop_pattern', params);
-    var traversedByRoute = this.store.query('data/transitland/route', {onestop_id: params.traversed_by});
-    var stopsServedByRoute = this.store.query('data/transitland/stop', {served_by: params.traversed_by});
+    this.store.unloadAll('data/tpp/operator');
+    this.store.unloadAll('data/tpp/stop');
+    this.store.unloadAll('data/tpp/route');
+    this.store.unloadAll('data/tpp/route_stop_pattern');
+
+    var route_stop_patterns = this.store.query('data/tpp/route_stop_pattern', params);
+    var traversedByRoute = this.store.query('data/tpp/route', {onestop_id: params.traversed_by});
+    var stopsServedByRoute = this.store.query('data/tpp/stop', {served_by: params.traversed_by});
 
     return Ember.RSVP.hash({
       route_stop_patterns: route_stop_patterns,
@@ -51,6 +51,6 @@ export default Ember.Route.extend(mapBboxRoute, setLoading, {
     });
   },
   actions:{
-    
+
   }
 });

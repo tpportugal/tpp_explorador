@@ -1,7 +1,7 @@
 /* global L */
 
 import Ember from 'ember';
-import setLoading from 'mobility-playground/mixins/set-loading';
+import setLoading from 'mobility-explorer/mixins/set-loading';
 import xml2js from 'npm:xml2js';
 import polylineEncoded from 'npm:polyline-encoded';
 
@@ -133,10 +133,10 @@ export default Ember.Route.extend(setLoading, {
         this.transitionTo('map-matching',  {queryParams: {trace: null, costing: null}});
       }
     }
-    this.store.unloadAll('data/transitland/operator');
-    this.store.unloadAll('data/transitland/stop');
-    this.store.unloadAll('data/transitland/route');
-    this.store.unloadAll('data/transitland/route_stop_pattern');
+    this.store.unloadAll('data/tpp/operator');
+    this.store.unloadAll('data/tpp/stop');
+    this.store.unloadAll('data/tpp/route');
+    this.store.unloadAll('data/tpp/route_stop_pattern');
     // Get the gpxTrace fixture
     var fixtures = this.fixtures();
     var gpxTrace;
@@ -226,7 +226,7 @@ export default Ember.Route.extend(setLoading, {
         // trace_attributes request
         return Ember.$.ajax({
           type:"POST",
-          url:'https://valhalla.mapzen.com/trace_attributes?api_key=mapzen-jLrDBSP&',
+          url:'https://routing.tpp.pt/trace_attributes?',
           data:JSON.stringify(attributesJson)
         });
       })
@@ -291,8 +291,8 @@ export default Ember.Route.extend(setLoading, {
           var pointsSlice = points.slice(begin, end+1);
           edgeCoordinates.push(pointsSlice)
         }
-        
-        // // Build the trace_route request 
+
+        // // Build the trace_route request
         var routeJson = {};
         if (gpxTrace.costing === "bicycle" || params.costing === "bicycle"){
           routeJson = {
@@ -322,7 +322,7 @@ export default Ember.Route.extend(setLoading, {
 
         var traceRouteRequest = Ember.$.ajax({
           type: "POST",
-          url:'https://valhalla.mapzen.com/trace_route?api_key=mapzen-jLrDBSP&',
+          url:'https://routing.tpp.pt/trace_route?',
           data: JSON.stringify(routeJson)
         });
 
@@ -339,13 +339,13 @@ export default Ember.Route.extend(setLoading, {
         return {"error": error.responseJSON.error};
       });
     }
-  
+
     // Issue promise with both gpxTrace model and trace_route request
     return Ember.RSVP.hash({
       gpxTraces: fixtures,
       gpxTrace: gpxTrace,
       mapMatchRequests: mapMatchRequests,
-      // traceRouteRequest: traceRouteRequest
+      traceRouteRequest: traceRouteRequest
     });
   },
 

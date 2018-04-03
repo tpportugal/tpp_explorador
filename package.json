@@ -1,7 +1,7 @@
 {
-  "name": "mobility-playground",
+  "name": "mobility-explorer",
   "version": "0.0.0",
-  "description": "Small description for mobility-playground goes here",
+  "description": "Mobility explorer for TPP transit data",
   "private": true,
   "directories": {
     "doc": "doc",

@@ -1,6 +1,6 @@
 import Ember from 'ember';
-import mapBboxRoute from 'mobility-playground/mixins/map-bbox-route';
-import setLoading from 'mobility-playground/mixins/set-loading';
+import mapBboxRoute from 'mobility-explorer/mixins/map-bbox-route';
+import setLoading from 'mobility-explorer/mixins/set-loading';
 
 export default Ember.Route.extend(mapBboxRoute, setLoading, {
   queryParams: {
@@ -50,17 +50,18 @@ export default Ember.Route.extend(mapBboxRoute, setLoading, {
     this._super(controller, model);
   },
   model: function(params){
-    this.store.unloadAll('data/transitland/operator');
-    this.store.unloadAll('data/transitland/stop');
-    this.store.unloadAll('data/transitland/route');
-    this.store.unloadAll('data/transitland/route_stop_pattern');
-    return this.store.query('data/transitland/stop', params).then(function(stops) {
+    this.store.unloadAll('data/tpp/operator');
+    this.store.unloadAll('data/tpp/stop');
+    this.store.unloadAll('data/tpp/route');
+    this.store.unloadAll('data/tpp/route_stop_pattern');
+    return this.store.query('data/tpp/stop', params).then(function(stops) {
       var onlyStop, stopLocation, mode, url;
       if (stops.get('query.isochrone_mode')){
         onlyStop = stops.get('firstObject');
         stopLocation = onlyStop.get('geometry.coordinates');
-        url = 'https://matrix.mapzen.com/isochrone?api_key=mapzen-jLrDBSP&json=';
-        var linkUrl = 'https://matrix.mapzen.com/isochrone?json=';
+        //url = 'https://matrix.mapzen.com/isochrone?api_key=mapzen-jLrDBSP&json=';
+        url = 'https://routing.tpp.pt/isochrone?json=';
+        var linkUrl = 'https://routing.tpp.pt/isochrone?json=';
 
         mode = stops.get('query.isochrone_mode');
         var json = {
@@ -99,7 +100,7 @@ export default Ember.Route.extend(mapBboxRoute, setLoading, {
         var servedBy = stops.get('query.served_by');
         if (servedBy!== null){
           if (servedBy.indexOf('r') === 0) {
-            url = 'https://transit.land/api/v1/routes.geojson?per_page=false&onestop_id=';
+            url = 'https://tppgeo.cf/api/v1/routes.geojson?per_page=false&onestop_id=';
             url += servedBy;
             return Ember.RSVP.hash({
               stops: stops,
@@ -124,5 +125,4 @@ export default Ember.Route.extend(mapBboxRoute, setLoading, {
   actions: {
 
   }
-
 });
