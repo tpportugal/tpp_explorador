@@ -13,8 +13,8 @@ export default Ember.Mixin.create({
     iconAnchor: [10, 24],
   }),
   leafletBbox: null,
-  leafletBounds: [[36.94111143010769, -13.24951171875],[42.25291778330197, -3.087158203125]],
-  mapCenter: [39.64799732373418, -8.158996514976025],
+  leafletBounds: [[41.12, -8.66],[41.16, -8.58]],
+  mapCenter: [41.14, -8.62],
   pin: null,
   pinLocation: Ember.computed('pin', function(){
     if (typeof(this.get('pin'))==="string"){

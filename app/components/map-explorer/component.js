@@ -3,9 +3,9 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  lat: 39.64,
-  lng: -8.15,
-  zoom: 7,
+  lat: 41.14,
+  lng: -8.61,
+  zoom: 12,
   bbox: null,
   resetButton: false,
   testLocation: [38.73, -9.15],

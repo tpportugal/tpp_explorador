@@ -2,10 +2,10 @@ import:
     # basemap style
     - https://www.nextzen.org/carto/refill-style/11/refill-style.zip
     # recolor basemap style with a theme color
-    - https://www.nextzen.org/carto/refill-style/11/themes/color-gray.zip 
+    - https://www.nextzen.org/carto/refill-style/11/themes/color-gray.zip
 
 global:
-    sdk_api_key: 5Ky4E8AKT6mqrtiW6U8Dbw
+    sdk_api_key: cE6EfRrDQD2kJuy16ZijHg
     sdk_building_extrude: true
     sdk_transit_overlay: false
 
