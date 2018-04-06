@@ -2,7 +2,7 @@
 
 Mobility Explorer helps you understand transportation networks around the world. Search for a place or browse the map, and use the buttons to view transit routes, stops, and operators.
 
-Use Mobility Explorer to query and visualize transit data from [Transitland](https://transit.land), a community-edited, open transit data aggregation project, and to analyze access using an instance of the [Valhalla routing engine](https://github.com/valhalla/valhalla-docs).
+Use Mobility Explorer to query and visualize transit data from [TPP](https://tpp.pt), a community-edited, open transit data aggregation project for Portugal, and to analyze access using an instance of the [Valhalla routing engine](https://github.com/tpportugal/tpp_valhalla_api_docs).
 
 ## User Documentation
 
@@ -10,7 +10,6 @@ Use Mobility Explorer to query and visualize transit data from [Transitland](htt
 - [Tutorial](docs/tutorial.md)
 - [Explore Transit](docs/explore-transit.md)
 - [Isochrones](docs/isochrones.md)
-- [Map Matching](docs/map-matching.md)
 
 ## Prerequisites
 
@@ -23,8 +22,8 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* change into the new directory
+* `git clone https://github.com/tpportugal/tpp_explorador`
+* `cd tpp_explorador`
 * `npm install`
 * `bower install`
 
