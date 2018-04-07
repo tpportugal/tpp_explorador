@@ -1,7 +1,7 @@
-import TppSerializer from "../serializer";
+import TppSerializer from '../serializer';
 
 export default TppSerializer.extend({
   modelNameFromPayloadKey: function(payloadKey){
-    return "data/tpp/route";
+    return 'data/tpp/route';
   }
 });

@@ -16,7 +16,7 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
   hoverStop: null,
   routeSelectContent: Ember.computed(function(){
     if (this.media.isMobile){
-      return "Clique numa linha de rota para mais informações"
+      return "Clique numa linha de rota para mais informações";
     } else {
       return "Paire numa linha de rota para informações";
     }
@@ -24,25 +24,25 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
   placeholderMessageRoutes: Ember.computed('bbox', function(){
     var total = this.model.routes.get('meta.total');
     if (total > 1){
-      return  total + " rotas";
+      return  total + ' rotas';
     } else if (total === 1) {
-      return total + " rota";
+      return total + ' rota';
     }
   }),
   placeholderMessageOperators: Ember.computed('leafletBbox', function(){
     var total = this.get('routeOperators').length;
     if (total > 1){
-      return  total + " operadores";
+      return  total + ' operadores';
     } else if (total === 1) {
-      return total + " operador";
+      return total + ' operador';
     }
   }),
   placeholderMessageModes: Ember.computed('leafletBbox', function(){
     var total = this.get('routeModes').length;
     if (total > 1){
-      return  total + " modos";
+      return  total + ' modos';
     } else if (total === 1) {
-      return total + " modo";
+      return total + ' modo';
     }
   }),
   routeOperators: Ember.computed('leafletBbox', function(){
@@ -57,9 +57,9 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
       if (checkList.indexOf(operatorName) === -1){
         checkList.push(operatorName);
         var uniqueOperator = {};
-        uniqueOperator["name"] = operatorName;
-        uniqueOperator["onestopId"] = operatorOnestopid;
-        uniqueOperator["style"] = "color:" + operatorColor;
+        uniqueOperator['name'] = operatorName;
+        uniqueOperator['onestopId'] = operatorOnestopid;
+        uniqueOperator['style'] = 'color:' + operatorColor;
         uniqueOperators.push(uniqueOperator);
       }
     }
@@ -71,12 +71,12 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
     var checkList = [];
     var uniqueModes = [];
     var modeColors = {
-      "bus": "#8dd3c7",
-      "rail": "#b3de69",
-      "metro": "#bebada",
-      "tram": "#fdb462",
-      "ferry": "#fb8072",
-      "cablecar": "#80b1d3"
+      'bus': '#8dd3c7',
+      'rail': '#b3de69',
+      'metro': '#bebada',
+      'tram': '#fdb462',
+      'ferry': '#fb8072',
+      'cablecar': '#80b1d3'
     };
     for (var i = 0; i < routesLength; i++){
       let modeName = allRoutes[i].get('vehicle_type');
@@ -84,13 +84,13 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
       if (modeName in modeColors){
         modeColor = modeColors[modeName];
       } else {
-        modeColor = "grey";
+        modeColor = 'grey';
       }
       if (checkList.indexOf(modeName) === -1){
         checkList.push(modeName);
         var uniqueMode = {};
-        uniqueMode["name"] = modeName;
-        uniqueMode["style"] = "color:" + modeColor;
+        uniqueMode['name'] = modeName;
+        uniqueMode['style'] = 'color:' + modeColor;
         uniqueModes.push(uniqueMode);
       }
     }
@@ -120,7 +120,7 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
     }
   }),
   hoverRoute: null,
-  unstyledColor: "#6ea0a4",
+  unstyledColor: '#6ea0a4',
   bounds: Ember.computed('bbox', function(){
     if (this.get('bbox') === null){
       var defaultBoundsArray = [];
@@ -211,13 +211,13 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
     selectRoute(e){
       e.target.bringToFront();
       e.target.getLayers()[1].setStyle({
-        "color": "white",
-        "opacity": 1,
+        'color': 'white',
+        'opacity': 1,
       });
       e.target.getLayers()[0].setStyle({
-        "color": "#666666",
-        "opacity": 1,
-        "weight": 5,
+        'color': '#666666',
+        'opacity': 1,
+        'weight': 5,
       });
       this.set('hoverRoute', (e.target.getLayers()[0].feature.onestop_id));
     },
@@ -235,7 +235,7 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
       layer.originalStyle = feature.properties;
 
       if (this.get('onestop_id')){
-        layer.eachLayer(function(layer){layer.setStyle({"opacity":1});});
+        layer.eachLayer(function(layer){layer.setStyle({'opacity':1});});
       }
     },
     unselectRoute(e){

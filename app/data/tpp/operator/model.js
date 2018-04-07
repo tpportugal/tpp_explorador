@@ -49,11 +49,11 @@ var Operator = DS.Model.extend({
     hex += '000000';
     var colorCode = hex.substring(0, 6);
     colorCode.toString();
-    colorCode = "#" + colorCode;
+    colorCode = '#' + colorCode;
     return colorCode;
   }).property('onestop_id'),
   style: (function(){
-    return "color:" + this.get('operator_color');
+    return 'color:' + this.get('operator_color');
   }).property('operator_color')
 
 });

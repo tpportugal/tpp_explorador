@@ -1,53 +1,53 @@
 # Explore transit routes, stops, and travel times
 
-[Mobility Explorer](https://mobility-explorer.netlify.com) highlights the connections between transportation datasets, including among different transportation modes and operators. In this tutorial, you will use Mobility Explorer to ask questions about routes and stops, filter the kinds of transit data displayed on a map, and view travel times from a place. You can use these queries to build a custom transit map.
+[Mobility Explorer](https://tpp.pt/explorador/) highlights the connections between transportation datasets, including among different transportation modes and operators. In this tutorial, you will use Mobility Explorer to ask questions about routes and stops, filter the kinds of transit data displayed on a map, and view travel times from a place. You can use these queries to build a custom transit map.
 
-You will use Mobility Explorer to query and visualize transit data from [Transitland](https://transit.land), a community-edited, open transit data aggregation project that Mapzen sponsors, and analyze access using other Valhalla services, including [Valhalla Isochrone](https://github.com/valhalla/valhalla-docs/blob/master/isochrone/api-reference.md).
+You will use Mobility Explorer to query and visualize transit data from [TPP](https://tpp.pt), a community-edited, open transit data aggregation project that Mapzen sponsors, and analyze access using other Valhalla services, including [Valhalla Isochrone](https://github.com/tpportugal/tpp_valhalla_api_docs/blob/master/isochrone/api-reference.md).
 
 You can follow along with the location example used in the tutorial, or choose your own address or place to view transit in that area.
 
 To complete the tutorial, all you need is a browser and an internet connection while you are working. No special knowledge of coding or transit data is needed. The tutorial should take about an hour to complete.
 
-## Get to know Transitland data
+## Get to know TPP data
 
-[Transitland](https://transit.land) is an open-source database of transit information, and brings together many sources of transit data to build a directory of operators and feeds that can be edited by transit enthusiasts and developers. Transitland is the source of transit data you see and query in Mobility Explorer, as well as the multimodal routing for [Valhalla Turn-by-Turn](https://github.com/valhalla/valhalla-docs/blob/master/turn-by-turn/overview.md).
+[TPP](https://tpp.pt) is an open-source database of Portuguese transit information, and brings together many sources of transit data to build a directory of operators and feeds that can be edited by transit enthusiasts and developers. TPP is the source of transit data you see and query in Mobility Explorer, as well as the multimodal routing for [Valhalla Turn-by-Turn](https://github.com/tpportugal/tpp_valhalla_api_docs/blob/master/turn-by-turn/overview.md).
 
-Transitland aggregates publicly available transit datasets that use the [General Transit Feed Specification](https://developers.google.com/transit/gtfs/), which is a common way of organizing transit schedules, routes, and associated content. A GTFS feed consists of a .zip file that contains a series of specific text files with this information. Transitland has several components to it, including Feed Registry and Datastore.
+TPP aggregates publicly available transit datasets that use the [General Transit Feed Specification](https://developers.google.com/transit/gtfs/), which is a common way of organizing transit schedules, routes, and associated content. A GTFS feed consists of a .zip file that contains a series of specific text files with this information. Transitland has several components to it, including Feed Registry and Datastore.
 
-- [Feed Registry](https://transit.land/feed-registry/) is a directory of transit operators and GTFS data feeds. Through the Feed Registry, you can browse operators, feeds, and usage and license information, as well as contribute additional feeds or browse the data on a map or in Mobility Explorer. You can search for certain operators or locations to filter the results.
+- [TPP Feed Registry](https://tpp.pt/registo-de-feeds/) is a directory of transit operators and GTFS data feeds covering the Portuguese territory. Through the Feed Registry, you can browse operators, feeds, and usage and license information, as well as contribute additional feeds or browse the data on a map or in Mobility Explorer. You can search for certain operators or locations to filter the results.
   ![Feed Registry showing Bay Area feeds](feed-registry-bay-area.png)
 
-- [Datastore](https://transit.land/documentation/datastore/) is the web service API that powers the Feed Registry and other views into Transitland data. Datastore imports the contents of GTFS feeds, merges new records with existing records, allows edits and fixes, and provides an API for further querying and editing.
+- [Datastore](https://tpp.pt/documentação/banco-de-dados/) is the web service API that powers the Feed Registry and other views into TPP data. Datastore imports the contents of GTFS feeds, merges new records with existing records, allows edits and fixes, and provides an API for further querying and editing.
   ![Datastore API documentation](datastore-api.png)
 
 Mobility Explorer is actually a view into Datastore, allowing you to query the data using a user interface and see the results on a map.
 
 ## View public transit networks
 
-Now that you have seen the source data in Transitland, you can better understand the origins of the data you see in Mobility Explorer. You will first see which transit operators, or agencies, provide service in Oakland, California, and explore transit routes and stops in a later exercise.
+Now that you have seen the source data in TPP, you can better understand the origins of the data you see in Mobility Explorer. You will first see which transit operators, or agencies, provide service in Almada, Setúbal, and explore transit routes and stops in a later exercise.
 
 Each query or map update is maintained as a separate URL, which means that you can return to your previous map by clicking the back button in your browser window. You can also share this URL with others and they will see the same results that you see.
 
 1. In your browser, go to https://mobility-explorer.netlify.com/. Mobility Explorer opens to a default location, with a map on the right and a sidebar on the left where you can visualize and analyze transit data.
-2. In the search box on the map, type `Oakland, CA`. The search box uses [geocode.earth](https://geocode.earth), Mapzen's open-source geocoder, and the text automatically completes as you type. When you press Enter, the map extent updates and adds a pin in Oakland.
+2. In the search box on the map, type `Almada, Setúbal`. The search box uses [TPP Geocoding](https://search.tpp.pt), TPP's open-source geocoder, and the text automatically completes as you type. When you press Enter, the map extent updates and adds a pin in Almada.
 3. On the left, under `Visualize public transit networks`, click `Show Operators`. This shows polygons representing the area served by each operator. Essentially, each polygon is created to surround all of the stop locations served by a given operator.
-  ![Transit operators near Oakland, California](mobility-explorer-operator-polygons.png)
+  ![Transit operators near Almada, Setúbal](mobility-explorer-operator-polygons.png)
 4. Hover over the polygons on the map to see the operator name.
   Sometimes, it can be hard to get information about a polygon because it is overlapped by other polygons. You can use the drop-down list of operators choose a particular one.
-5. Click the drop-down list of operators and click `Bay Area Rapid Transit (BART)`, which is a metro network, to see where this operator serves.
-  ![Transit operators near Oakland, California](mobility-explorer-operator-details-bart.png)
+5. Click the drop-down list of operators and click `Metro Transportes do Sul (MTS)`, which is a metro network, to see where this operator serves.
+  ![Transit operators near Almada, Setúbal](mobility-explorer-operator-details-bart.png)
   The sidebar shows details about the operator, including its name and website, and something called a Onestop ID. Under the operator details, there are also links to view the routes and stops for this operator.
-  A [Onestop ID](https://transit.land/documentation/onestop-id-scheme/) is a unique identifier from Transitland that helps label and connect data about public transit that are coming from many agencies. BART's Onestop ID is `o-9q9-bart`, with the first letter `o` indicating it is identifying an `operator`.
-6. Zoom out so you can see the entire BART polygon by using the buttons on the map or your mouse wheel.
-7. Click `View routes operated by Bay Area Rapid Transit` on the sidebar. Behind the scenes, this is querying the Datastore API for the transit route lines. In addition, when you do this, Mobility Explorer expands the `Show routes` section.
+  A [Onestop ID](https://tpp.pt/documentação/esquema-onestop-id/) is a unique identifier from TPP that helps label and connect data about public transit that are coming from many agencies. MTS's Onestop ID is `f-eyc7z-metrotransportesdosul`, with the first letter `o` indicating it is identifying an `operator`.
+6. Zoom out so you can see the entire MTS polygon by using the buttons on the map or your mouse wheel.
+7. Click `View routes operated by Metro Transportes do Sul` on the sidebar. Behind the scenes, this is querying the Datastore API for the transit route lines. In addition, when you do this, Mobility Explorer expands the `Show routes` section.
 8. Explore BART's routes by hovering over a line on the map. The colors of the lines are listed in the source GTFS data, and are used to display the lines in Mobility Explorer. _Note: Right now, the route lines overlap each other, yet they should be offset so you can see all of them at once._
   ![Hover over a route for basic information](mobility-explorer-bart-route-hover.png)
 9. Look in the `Show routes` section for the name of the route. If you click a route on the map or in the drop-down list, you can get even more information about the route.
   ![Choose a route to get details about it](mobility-explorer-bart-route-details.png)
 
-On the sidebar, at the end of the section, there are links to view the Transitland API request and get the result as GeoJSON, which is a geographic data format commonly used with web mapping. For example, the API query for routes operated by BART is https://transit.land/api/v1/routes?&operated_by=o-9q9-bart.
+On the sidebar, at the end of the section, there are links to view the TPP API request and get the result as GeoJSON, which is a geographic data format commonly used with web mapping. For example, the API query for routes operated by MTS is `https://tpp.pt/api/v1/routes?&operated_by=f-eyc7z-metrotransportesdosul`.
 
-The request for GeoJSON is similar, but includes `geojson` in it: https://transit.land/api/v1/routes.geojson?&operated_by=o-9q9-bart. Later in the tutorial, you will use the GeoJSON URL to draw a custom transit map with Mapzen's Tangram Play map editor.
+The request for GeoJSON is similar, but includes `geojson` in it: `https://tpp.pt/api/v1/routes.geojson?&operated_by=f-eyc7z-metrotransportesdosul`. Later in the tutorial, you will use the GeoJSON URL to draw a custom transit map with Tangram's Play map editor.
 
 If you want to interact with these APIs programmatically, looking at the query can help you understand the components and create a properly formatted query that you can save and reuse in other projects that integrate these APIs.
 
