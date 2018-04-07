@@ -9,7 +9,7 @@ import polylineEncoded from 'npm:polyline-encoded';
 
 export default Ember.Controller.extend(mapBboxController, setTextboxClosed, sharedActions, {
   queryParams: ['bbox','pin','trace', 'costing'],
-  zoom: 14,
+  zoom: 12,
   trace: null,
   costing: null,
   traceBounds: Ember.computed('zoomedDiscontinuity', 'model', function(){

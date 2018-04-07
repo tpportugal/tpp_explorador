@@ -16,33 +16,33 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
   hoverStop: null,
   routeSelectContent: Ember.computed(function(){
     if (this.media.isMobile){
-      return ""
+      return "Clique numa linha de rota para mais informações"
     } else {
-      return "Hover over a route line for information";
+      return "Paire numa linha de rota para informações";
     }
   }),
   placeholderMessageRoutes: Ember.computed('bbox', function(){
     var total = this.model.routes.get('meta.total');
     if (total > 1){
-      return  total + " routes";
+      return  total + " rotas";
     } else if (total === 1) {
-      return total + " route";
+      return total + " rota";
     }
   }),
   placeholderMessageOperators: Ember.computed('leafletBbox', function(){
     var total = this.get('routeOperators').length;
     if (total > 1){
-      return  total + " operators";
+      return  total + " operadores";
     } else if (total === 1) {
-      return total + " operator";
+      return total + " operador";
     }
   }),
   placeholderMessageModes: Ember.computed('leafletBbox', function(){
     var total = this.get('routeModes').length;
     if (total > 1){
-      return  total + " modes";
+      return  total + " modos";
     } else if (total === 1) {
-      return total + " mode";
+      return total + " modo";
     }
   }),
   routeOperators: Ember.computed('leafletBbox', function(){

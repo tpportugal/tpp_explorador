@@ -1,9 +1,9 @@
 @import 'ember-power-select';
 
-$mapzen-red: #ff4947;
-$mapzen-blue: #6ea0a4;
-$mapzen-dark-red: #cc3a38;
-$mapzen-dark-blue: #385d5c;
+$mapzen-red: #cc5420;
+$mapzen-blue: #74a9ad;
+$mapzen-dark-red: #d13e00;
+$mapzen-dark-blue: #258784;
 $explorer-bluegreen: #9dbfc1;
 $white: #fff;
 $pink: #edb3af;
@@ -12,7 +12,7 @@ $lightest-grey-hover-detail: #d6d6d6;
 $light-grey: #c4c4c4;
 $medium-grey: #9c9c9c;
 $dark-grey: #898989;
-$mz-darkpurples: #1E0E33, #2C1E3F, #635378, #AD9CC2, #EEE7F8;
+$mz-darkpurples: #1999fc, #005ca3, #0391ff, #007cdb, #014e89;
 
 body {
   margin: 0;
@@ -29,11 +29,12 @@ html, body, #map, #map-loading {
 h1 {
   font-size: 22px;
   font-weight: 600;
+  vertical-align: bottom;
   color: nth($mz-darkpurples, 3);
-  margin: 15px 0 10px 0;
+  margin: 0 0 10px 0;
   padding-left: 0;
   &:hover {
-    color: nth($mz-darkpurples, 4);
+    color: nth($mz-darkpurples, 3);
   }
 }
 
@@ -101,6 +102,7 @@ button {
   padding: 15px;
   z-index: 3;
   text-align: left;
+  margin-top: 60px;
 
   @media (min-width: 992px) {
     position: absolute;
@@ -428,7 +430,7 @@ input, button, select, textarea {
 
   @media screen and (orientation:portrait){
     /*margin-left: 15px;*/
-    width: 60%;
+    width: 60% !important;
   }
 }
 
@@ -445,7 +447,7 @@ input, button, select, textarea {
 .loading-spinner-03 {
   -webkit-animation: spin 2s linear infinite;
   animation: spin 1s linear infinite;
-  border: 10px solid $mapzen-red;
+  border: 10px solid $mapzen-blue;
   border-radius: 50%;
   border-top: 10px solid $white;
   height: 70px;
@@ -478,7 +480,7 @@ input, button, select, textarea {
 }
 
 .btn-mapzen {
-  background-color: #635378;
+  background-color: nth($mz-darkpurples, 3);
   border-radius: 0;
   &:hover {
     background-color: nth($mz-darkpurples, 2);
@@ -499,10 +501,10 @@ input, button, select, textarea {
 
 .btn-mapzen-alt-style {
   color: $white;
-  outline-color: $mapzen-red;
+  outline-color: nth($mz-darkpurples, 3);
   outline-style: solid;
   outline-width: 2px;
-  background-color: $mapzen-red;
+  background-color: nth($mz-darkpurples, 3);
 }
 
 .btn-transparent-alt {
@@ -518,9 +520,9 @@ input, button, select, textarea {
 }
 
 .btn-transparent-alt-style {
-  color: $mapzen-red;
+  color: nth($mz-darkpurples, 3);
   background-color: $white;
-  outline-color: $mapzen-red;
+  outline-color: nth($mz-darkpurples, 3);
   outline-style: solid;
   outline-width: 2px;
   margin-bottom: 10px;
@@ -579,21 +581,25 @@ input, button, select, textarea {
   z-index: 10000;
 }
 
+.bootstrap-datetimepicker-widget .btn {
+  color: nth($mz-darkpurples, 3);
+}
+
 td.day.active.today {
   background-color: nth($mz-darkpurples, 3);
   border-radius: 0;
 }
 
 td.day.active.today:hover {
-  background-color: $mapzen-red;
+  background-color: nth($mz-darkpurples, 4);
 }
 
 .timepicker-hour {
-  color:$mapzen-red;
+  color: nth($mz-darkpurples, 4);
 }
 
 .timepicker-minute {
-  color:$mapzen-red;
+  color:nth($mz-darkpurples, 4);
 }
 
 .bootstrap-datetimepicker-widget {
@@ -604,7 +610,7 @@ td.day.active.today:hover {
 
   .btn-primary {
     color: $white;
-    background-color: $mapzen-red;
+    background-color: nth($mz-darkpurples, 3);
   }
 }
 
@@ -663,7 +669,7 @@ td.day.active.today:hover {
 #upload{
   background-color: $white;
   padding: 10px;
-  border: 2px solid nth($mz-darkpurples, 3);;
+  border: 2px solid nth($mz-darkpurples, 3);
 }
 
 .gpx-upload{
@@ -719,7 +725,7 @@ td.day.active.today:hover {
   background-color: white;
 
   th {
-    color: #465371;
+    color: #1b3b87;
     padding-left: 10px;
     font-size: 14px;
     line-height: 50px;
