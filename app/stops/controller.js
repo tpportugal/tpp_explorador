@@ -23,9 +23,9 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
   mousedOver: false,
   stopSelectContent: Ember.computed(function(){
     if (this.media.isMobile){
-      return "Click a stop for more information"
+      return "Clique numa paragem para mais informações"
     } else {
-      return "Hover over a stop for information";
+      return "Paire numa paragem para mais informações";
     }
   }),
 
