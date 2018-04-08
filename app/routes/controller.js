@@ -16,9 +16,9 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
   hoverStop: null,
   routeSelectContent: Ember.computed(function(){
     if (this.media.isMobile){
-      return "Clique numa linha de rota para mais informações";
+      return 'Clique numa linha de rota para mais informações';
     } else {
-      return "Paire numa linha de rota para informações";
+      return 'Paire numa linha de rota para ver informações';
     }
   }),
   placeholderMessageRoutes: Ember.computed('bbox', function(){

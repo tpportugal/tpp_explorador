@@ -93,11 +93,11 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
     },
     change(date){
       var dateString = date.toString();
-      var dateArray = dateString.split(" ");
+      var dateArray = dateString.split(' ');
       var monthString = dateArray[1];
       var day = dateArray[2];
       var year = dateArray[3];
-      var timeArray = dateArray[4].split(":");
+      var timeArray = dateArray[4].split(':');
       var hour = timeArray[0];
       var minute = timeArray[1];
       var month = {
@@ -114,7 +114,7 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
         'Nov' : '11',
         'Dez' : '12'
       };
-      var newDepartureTime = year + "-" + month[monthString] + "-" + day + "T" + hour + ":" + minute;
+      var newDepartureTime = year + '-' + month[monthString] + '-' + day + 'T' + hour + ':' + minute;
 
       // This is the local date and time at the location.
       // value:

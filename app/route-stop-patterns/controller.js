@@ -72,7 +72,7 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
       this.set('serves', null);
       this.set('operated_by', null);
     },
-    displayStops: function(){
+    displayStops(){
       this.toggleProperty('displayStops');
     },
     selectStop(stop){
@@ -89,7 +89,7 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
       this.set('displayStops', false);
       this.transitionToRoute('stops', {queryParams: {bbox: this.get('bbox'), onestop_id: this.get('onestop_id')}});
     },
-    setRsp: function(rsp){
+    setRsp(rsp){
       var stops, stopsLength, stopId, i;
       if (this.get('selectedRsp')!== null){
         stops = this.get('selectedRsp').get('stop_pattern');

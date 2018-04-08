@@ -1,7 +1,7 @@
 {{#if activeIndexRoute}}
-  <h2>Mobility Explorer</h2>
+  <h2><img alt="Logótipo TPP" src="assets/images/TPP-logo-blue-explorador.png" />Explorador TPP</h2>
 {{else}}
-  {{#link-to 'index'}}<h2>Mobility Explorer</h2>{{/link-to}}
+  {{#link-to 'index'}}<h2><img alt="Logótipo TPP" src="assets/images/TPP-logo-blue-explorador.png" />Explorador TPP</h2>{{/link-to}}
 {{/if}}
 
 <div class="toc" role="directory">
@@ -14,23 +14,23 @@
               <form>
                 <div class="form-group">
                   <input type="radio" id="radio-1" name="options">
-                  <label for="radio-1">Mode</label>
+                  <label for="radio-1">Meio de transporte</label>
                 </div>
                 <div class="form-group">
                    <input type="radio" id="radio-2" name="options">
-                  <label for="radio-2">Operator</label>
+                  <label for="radio-2">Operador</label>
                 </div>
                 <div class="form-group">
                   <input type="radio" id="radio-3" name="options">
-                  <label for="radio-3">Bike</label>
+                  <label for="radio-3">Bicicleta</label>
                 </div>
                 <div class="form-group">
                   <input type="radio" id="radio-4" name="options">
-                  <label for="radio-4">Wheelchair</label>
+                  <label for="radio-4">Cadeira de rodas</label>
                 </div>
                 <div class="form-group">
                   <input type="radio" id="radio-5" name="options">
-                  <label for="radio-5">Frequency</label>
+                  <label for="radio-5">Frequência</label>
                 </div>
               </form>
             </a></li>
@@ -38,27 +38,27 @@
         </li>
       {{else}}
         <li class="toc-top-level">
-          {{#link-to 'routes' (query-params bBox=bBox)}}<span>Routes</span>{{/link-to}}
+          {{#link-to 'routes' (query-params bBox=bBox)}}<span>Rotas</span>{{/link-to}}
         </li>
       {{/if}}
 
       {{#if activeStopsRoute}}
         <li class="toc-top-level toc-current">
-          <a href="#" class="toc-subnav-toggle">Stops</a>
+          <a href="#" class="toc-subnav-toggle">Paragens</a>
           <ul class="toc-subnav toc-expand">
             <li><a href="#">
               <form>
                 <div class="form-group">
                   <input type="radio" id="radio-1" name="options">
-                  <label for="radio-1">Frequency</label>
+                  <label for="radio-1">Frequência</label>
                 </div>
                 <div class="form-group">
                   <input type="radio" id="radio-2" name="options">
-                  <label for="radio-2">Walkshed</label>
+                  <label for="radio-2">Abrigo pedestre</label>
                 </div>
                 <div class="form-group">
                   <input type="radio" id="radio-3" name="options">
-                  <label for="radio-3">Transitshed</label>
+                  <label for="radio-3">Abrigo de transportes</label>
                 </div>
               </form>
             </a></li>
@@ -66,23 +66,23 @@
         </li>
       {{else}}
         <li class="toc-top-level">
-          {{#link-to 'stops' (query-params bBox=bBox)}}<span>Stops</span>{{/link-to}}
+          {{#link-to 'stops' (query-params bBox=bBox)}}<span>Paragens</span>{{/link-to}}
         </li>
       {{/if}}
 
       {{#if activeOperatorsRoute}}
         <li class="toc-top-level toc-current">
-          <a href="#" class="toc-subnav-toggle">Operators</a>
+          <a href="#" class="toc-subnav-toggle">Operadores</a>
           <ul class="toc-subnav toc-expand">
             <li><a href="#">
               <form>
                 <div class="form-group">
                   <input type="radio" id="radio-1" name="options">
-                  <label for="radio-1">View service areas</label>
+                  <label for="radio-1">Ver áreas de serviço</label>
                 </div>
                 <div class="form-group">
                   <input type="radio" id="radio-2" name="options">
-                  <label for="radio-2">View routes</label>
+                  <label for="radio-2">Ver rotas</label>
                 </div>
               </form>
             </a></li>
@@ -90,7 +90,7 @@
         </li>
       {{else}}
         <li class="toc-top-level">
-          {{#link-to 'operators' (query-params bBox=bBox)}}<span>Operators</span>{{/link-to}}
+          {{#link-to 'operators' (query-params bBox=bBox)}}<span>Operadores</span>{{/link-to}}
         </li>
       {{/if}}
 

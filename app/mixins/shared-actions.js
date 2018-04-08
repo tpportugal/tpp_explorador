@@ -34,9 +34,9 @@ export default Ember.Mixin.create({
   }),
   searchbarContent: Ember.computed(function(){
     if (this.media.isMobile){
-      return 'Find a place';
+      return 'Pesquise um local';
     } else {
-      return 'Find a place using TPP geocode';
+      return 'Pesquise um local';
     }
   }),
   valhallaServicesEnabled: Ember.computed.alias(ENV.valhallaServicesEnabled),

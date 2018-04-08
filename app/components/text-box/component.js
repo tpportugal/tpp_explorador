@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   closeTextbox: Ember.inject.service(),
   textOptions: {
       // 'index' : 'Learn about multimodal transportation around the world. Search for a place or browse the map, and use the buttons to view transit routes, stops, and operators.',
-      'index' : 'There are so many ways to get from A to B! Use Mobility Explorer to understand transportation networks in Portugal. Find a place using the search box or browse the map. Use the buttons below to start exploring.',
+      'index' : 'Existem tantas maneiras de ir do ponto A ao ponto B! Utilize o Explorador de Mobilidade TPP para entender as redes de transportes em Portugal. Encontre um local utilizando a caixa de pesquise ou navegando pelo mapa. Utilize os botões abaixo para começar a explorar.',
       'routes' : '',
       'route-stop-patterns' : '',
       'stops' : '',

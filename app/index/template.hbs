@@ -9,15 +9,15 @@
   {{/if}}
   {{sidebar-title-tpp}}
   <div class="btn-group-vertical" role="group" >
-    {{#link-to 'routes' (query-params bbox=bbox onestop_id=null operated_by=null pin=pin style_routes_by=null pin=pin serves=null)}}<button class="btn btn-transparent-alt">Show Routes</button>{{/link-to}}
-    {{#link-to 'stops' (query-params bbox=bbox onestop_id=null isochrone_mode=null pin=pin)}}<button class="btn btn-transparent-alt">Show Stops</button>{{/link-to}}
-    {{#link-to 'operators' (query-params bbox=bbox pin=pin onestop_id=null)}}<button class="btn btn-transparent-alt">Show Operators</button>{{/link-to}}
+    {{#link-to 'routes' (query-params bbox=bbox onestop_id=null operated_by=null pin=pin style_routes_by=null pin=pin serves=null)}}<button class="btn btn-transparent-alt">Mostrar Rotas</button>{{/link-to}}
+    {{#link-to 'stops' (query-params bbox=bbox onestop_id=null isochrone_mode=null pin=pin)}}<button class="btn btn-transparent-alt">Mostrar Paragens</button>{{/link-to}}
+    {{#link-to 'operators' (query-params bbox=bbox pin=pin onestop_id=null)}}<button class="btn btn-transparent-alt">Mostrar Operadores</button>{{/link-to}}
   </div>
   <hr class="sidebar-hr">
   {{sidebar-title-mobility}}
   <div class="btn-group-vertical" role="group" >
     {{#link-to 'isochrones' (query-params bbox=bbox pin=pin onestop_id=null isochrone_mode=null)}}
-      <button class="btn btn-transparent-alt">Generate Isochrones</button>
+      <button class="btn btn-transparent-alt">Gerar Isócronas</button>
     {{/link-to}}
     <!--
     {{#link-to 'map-matching' (query-params bbox=leafletBbox onestop_id=null served_by=null isochrone_mode=null operated_by=null pin=pin serves=null vehicle_type=null isochrone_mode=null trace=null)}}

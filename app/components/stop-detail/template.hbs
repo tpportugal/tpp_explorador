@@ -1,13 +1,13 @@
 Stop details:<br>
 {{#if stop}}
-  {{#if stop.name}}<strong>Name:</strong> {{stop.name}}<br>{{/if}}
-  {{#if stop.onestop_id}}<div><strong>Onestop ID:</strong> {{stop.onestop_id}}&nbsp;<div class="fa fa-question-circle"></div><br>{{#popover-on-element class="tooltip-on-sidebar" event="click"}}<a href="https://tppgeo.cf/documentation/onestop-id-scheme/">Onestop IDs </a>are globally unique identifiers for transit feeds, operators, routes, and stops. Use them to query the TPP API or use them in your own apps and analyses.{{/popover-on-element}}</div>{{/if}}
-  {{#if stop.tags.zone_id}}<strong>Zone ID:</strong> {{stop.tags.zone_id}}<br>{{/if}}
+  {{#if stop.name}}<strong>Nome:</strong> {{stop.name}}<br>{{/if}}
+  {{#if stop.onestop_id}}<div><strong>ID Onestop:</strong> {{stop.onestop_id}}&nbsp;<div class="fa fa-question-circle"></div><br>{{#popover-on-element class="tooltip-on-sidebar" event="click"}}<a href="https://tpp.pt/documentação/esquema-onestop-id/">IDs Onestop</a> são identificadores globais únicos para  feeds, operadores, rotas, e paragens de transportes públicos. Utilize-os para consultar a API do Banco de Dados TPP ou nas suas próprias análises de redes de transportes.{{/popover-on-element}}</div>{{/if}}
+  {{#if stop.tags.zone_id}}<strong>ID da Zona:</strong> {{stop.tags.zone_id}}<br>{{/if}}
   {{#if stop.tags.stop_url}}<strong>URL:&nbsp;</strong> {{stop.tags.stop_url}}<br>{{/if}}
-  {{#if stop.tags.stop_desc}}<strong>Stop description:</strong> {{stop.tags.stop_desc}}<br>{{/if}}
-  {{#if stop.tags.osm_way_id}}<strong>Nearest street in OpenStreetMap:</strong> <a href="https://www.openstreetmap.org/way/{{stop.tags.osm_way_id}}" target="_blank">Way #{{stop.tags.osm_way_id}} <i class="fa fa-external-link" aria-hidden="true"></i></a><br>{{/if}}
-  {{#if stop.tags.wheelchair_boarding}}<strong>Wheelchair boarding:</strong> {{stop.tags.wheelchair_boarding}}<br>{{/if}}
-  {{#if stop.routes_serving_stop}}<strong>Served by:</strong>
+  {{#if stop.tags.stop_desc}}<strong>Descrição da Paragem:</strong> {{stop.tags.stop_desc}}<br>{{/if}}
+  {{#if stop.tags.osm_way_id}}<strong>Via mais próxima no OpenStreetMap:</strong> <a href="https://www.openstreetmap.org/way/{{stop.tags.osm_way_id}}" target="_blank">Way #{{stop.tags.osm_way_id}} <i class="fa fa-external-link" aria-hidden="true"></i></a><br>{{/if}}
+  {{#if stop.tags.wheelchair_boarding}}<strong>Acessível a cadeiras de rodas:</strong> {{stop.tags.wheelchair_boarding}}<br>{{/if}}
+  {{#if stop.routes_serving_stop}}<strong>Servida por:</strong>
     <ul>
       {{#each stop.routes_serving_stop as |routes_serving_stop|}}
           <li><strong>{{#link-to 'routes' (query-params bbox=bbox onestop_id=routes_serving_stop.route_onestop_id) }}{{routes_serving_stop.route_name}}{{/link-to}}</strong> ({{#link-to 'operators' (query-params bbox=bbox onestop_id=routes_serving_stop.operator_onestop_id) }}{{routes_serving_stop.operator_name}}{{/link-to}})</li>
@@ -16,13 +16,13 @@ Stop details:<br>
   {{/if}}
 {{else}}
   {{#each stops as |stop|}}
-    {{#if stop.name}}<strong>Name:</strong> {{stop.name}}<br>{{/if}}
-    {{#if stop.onestop_id}}<div><strong>Onestop ID:</strong> {{stop.onestop_id}}&nbsp;<div class="fa fa-question-circle"></div><br>{{#popover-on-element class="tooltip-on-sidebar" event="click"}}<a href="https://tppgeo.cf/documentation/onestop-id-scheme/">Onestop IDs </a>are globally unique identifiers for transit feeds, operators, routes, and stops. Use them to query the TPP API or use them in your own apps and analyses.{{/popover-on-element}}</div>{{/if}}
-    {{#if stop.tags.zone_id}}<strong>Zone ID:</strong> {{stop.tags.zone_id}}<br>{{/if}}
+    {{#if stop.name}}<strong>Nome:</strong> {{stop.name}}<br>{{/if}}
+    {{#if stop.onestop_id}}<div><strong>ID Onestop:</strong> {{stop.onestop_id}}&nbsp;<div class="fa fa-question-circle"></div><br>{{#popover-on-element class="tooltip-on-sidebar" event="click"}}<a href="https://tpp.pt/documentação/esquema-onestop-id/">IDs Onestop</a> são identificadores globais únicos para  feeds, operadores, rotas, e paragens de transportes públicos. Utilize-os para consultar a API do Banco de Dados TPP ou nas suas próprias análises de redes de transportes.{{/popover-on-element}}</div>{{/if}}
+    {{#if stop.tags.zone_id}}<strong>ID da Zona:</strong> {{stop.tags.zone_id}}<br>{{/if}}
     {{#if stop.tags.stop_url}}<strong>URL:&nbsp;</strong> {{stop.tags.stop_url}}<br>{{/if}}
-    {{#if stop.tags.stop_desc}}<strong>Stop description:</strong> {{stop.tags.stop_desc}}<br>{{/if}}
+    {{#if stop.tags.stop_desc}}<strong>Descrição da Paragem:</strong> {{stop.tags.stop_desc}}<br>{{/if}}
     {{#if stop.tags.osm_way_id}}<strong>Nearest street in OpenStreetMap:</strong> <a href="https://www.openstreetmap.org/way/{{stop.tags.osm_way_id}}" target="_blank">Way #{{stop.tags.osm_way_id}} <i class="fa fa-external-link" aria-hidden="true"></i></a><br>{{/if}}
-    {{#if stop.tags.wheelchair_boarding}}<strong>Wheelchair boarding:</strong> {{stop.tags.wheelchair_boarding}}<br>{{/if}}
+    {{#if stop.tags.wheelchair_boarding}}<strong>Acessível a cadeiras de rodas:</strong> {{stop.tags.wheelchair_boarding}}<br>{{/if}}
     {{#if stop.routes_serving_stop}}<strong>Served by:</strong>
       <ul>
         {{#each stop.routes_serving_stop as |routes_serving_stop|}}

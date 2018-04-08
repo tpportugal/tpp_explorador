@@ -16,9 +16,9 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
   placeholderMessage: Ember.computed('leafletBbox', function(){
     var total = this.model.get('meta.total');
     if (total > 1){
-      return  total + " operators";
+      return  total + ' operadores';
     } else if (total === 1) {
-      return total + " operator";
+      return total + ' operador';
     }
   }),
   onlyOperator: Ember.computed('onestop_id', function(){
@@ -44,9 +44,9 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
   mousedOver: false,
   operatorSelectContent: Ember.computed(function(){
     if (this.media.isMobile){
-      return "Select an operator for information";
+      return 'Selecione um operador para ver informação';
     } else {
-      return "Hover over an operator for information";
+      return 'Paire sobre um operador para ver informação';
     }
   }),
 

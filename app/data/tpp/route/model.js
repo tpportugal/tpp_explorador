@@ -61,7 +61,7 @@ var Route = DS.Model.extend({
   }).property('geometry'),
   operator_focus_as_geojson_with_outline: (function(){
     return {
-      type: "FeatureCollection",
+      type: 'FeatureCollection',
       features: [
         {
           type: 'Feature',

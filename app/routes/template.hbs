@@ -10,7 +10,7 @@
   {{sidebar-title-tpp}}
   <div class="btn-group-vertical" role="group" >
 
-    {{#link-to 'routes' (query-params bbox=leafletBbox onestop_id=null served_by=null operated_by=null pin=pin serves=null vehicle_type=null style_routes_by=null)}}<button class="btn btn-mapzen-alt">Show Routes</button>{{/link-to}}
+    {{#link-to 'routes' (query-params bbox=leafletBbox onestop_id=null served_by=null operated_by=null pin=pin serves=null vehicle_type=null style_routes_by=null)}}<button class="btn btn-mapzen-alt">Mostrar Rotas</button>{{/link-to}}
 
     <div class="expanded-selection">
       {{#if onestop_id}}
@@ -27,11 +27,11 @@
             {{else}}
               <input type="checkbox" id="check-1" name="option-one" {{action "setDisplayStops"}}>
             {{/if}}
-            <label for="check-1">Show stops served by route</label>
+            <label for="check-1">Mostrar paragens servidas pela rota</label>
           </span>
           <div class="headroom footroom">
             <row class="subheading-row">
-              <div class="form-group-header sidebar-header col-md-10">{{#link-to 'route-stop-patterns' (query-params bbox=bbox traversed_by=onestop_id onestop_id=null operated_by=null serves=null served_by=onestop_id vehicle_type=null pin=pin isochrone_mode=null)}}Show route stop patterns{{/link-to}}&nbsp;<div class="fa fa-question-circle"></div>{{#popover-on-element class="tooltip-on-sidebar" event="click"}}View the unique combinations of shape lines for trips and stops along this route.{{/popover-on-element}}</div>
+              <div class="form-group-header sidebar-header col-md-10">{{#link-to 'route-stop-patterns' (query-params bbox=bbox traversed_by=onestop_id onestop_id=null operated_by=null serves=null served_by=onestop_id vehicle_type=null pin=pin isochrone_mode=null)}}Mostrar padrões rota paragem{{/link-to}}&nbsp;<div class="fa fa-question-circle"></div>{{#popover-on-element class="tooltip-on-sidebar" event="click"}}Visualize as combinações únicas de linhas para viagens e paragens ao longo desta linha.{{/popover-on-element}}</div>
             </row>
           </div>
         </div>
@@ -41,7 +41,7 @@
           options=routes
           selected=route
           placeholder=placeholderMessageRoutes
-          searchPlaceholder="Type to filter..."
+          searchPlaceholder="Escreva para filtrar..."
           onchange=(action "setOnestopId")
           onclose=(action "clearRoute")
           as |route|
@@ -53,11 +53,11 @@
           <div class="routes-form">
           <form>
             <row class="subheading-row">
-              <div class="form-group-header">Style routes by:
+              <div class="form-group-header">Estilizar rotas por:
               &nbsp;
                 <div class="fa fa-question-circle" id="fa-question-circle-detail"></div>
               </div>
-              {{#popover-on-element class="tooltip-on-sidebar" event="click"}}View route lines and display them by the route's transit mode or operator. Click a route on the map or in the list for its details.{{/popover-on-element}}
+              {{#popover-on-element class="tooltip-on-sidebar" event="click"}}Visualize as linhas de rota com cores diferentes por meio de transporte ou operador. Clique numa rota no mapa ou na lista para ver os seus detalhes.{{/popover-on-element}}
             </row>
             <div class="form-group">
               {{#if (eq style_routes_by "mode")}}
@@ -65,7 +65,7 @@
               {{else}}
                 <input type="radio" id="radio-1" name="option-one" {{action "setRouteStyle" "mode"}}>
               {{/if}}
-              <label for="radio-1">Mode</label>
+              <label for="radio-1">Meio de Transporte</label>
               <div class="sidebar-dropdown">
                 {{#if (eq style_routes_by "mode")}}
                   {{#unless vehicle_type}}
@@ -73,7 +73,7 @@
                       options=routeModes
                       selected=mode
                       placeholder=placeholderMessageModes
-                      searchPlaceholder="Type to filter..."
+                      searchPlaceholder="Escreva para filtrar..."
                       onchange=(action "setMode")
                       onclose=(action "clearMode")
                       as |mode|
@@ -90,14 +90,14 @@
               {{else}}
                 <input type="radio" id="radio-2" name="option-two" {{action "setRouteStyle" "operator"}}>
               {{/if}}
-              <label for="radio-2">Operator</label>
+              <label for="radio-2">Operador</label>
               {{#if (eq style_routes_by "operator")}}
                 <div class="sidebar-dropdown">
                   {{#power-select
                     options=routeOperators
                     selected=operator
                     placeholder=placeholderMessageOperators
-                    searchPlaceholder="Type to filter..."
+                    searchPlaceholder="Escreva para filtrar..."
                     onchange=(action "setOperator")
                     onclose=(action "clearOperator")
                     as |operator|
@@ -113,9 +113,9 @@
       {{#each model.routes as |route|}}
         {{#if (eq hoverRoute route.onestop_id)}}
           <div class="hover-detail">
-            Route name: {{route.name}}<br>
-            Operated by: {{route.operated_by_name}}<br>
-            <p class="caption">Click the route line for more details</p>
+            Nome da rota: {{route.name}}<br>
+            Operada por: {{route.operated_by_name}}<br>
+            <p class="caption">Clique na rota para mais detalhes</p>
           </div>
         {{/if}}
       {{/each}}
@@ -124,7 +124,7 @@
         options=routes
         selected=route
         placeholder=placeholderMessageRoutes
-        searchPlaceholder="Type to filter..."
+        searchPlaceholder="Escreva para filtrar..."
         onchange=(action "setOnestopId")
         onclose=(action "clearRoute")
         as |route|
@@ -135,11 +135,11 @@
         <p class="caption">{{routeSelectContent}}</p>
         <form>
           <row class="subheading-row">
-            <div class="form-group-header">Style routes by:
+            <div class="form-group-header">Estilizar rotas por:
             &nbsp;
               <div class="fa fa-question-circle" id="fa-question-circle-detail"></div>
             </div>
-            {{#popover-on-element class="tooltip-on-sidebar" event="click"}}View route lines and display them by the route's transit mode or operator. Click a route on the map or in the list for its details.{{/popover-on-element}}
+            {{#popover-on-element class="tooltip-on-sidebar" event="click"}}Visualize as linhas de rota com cores diferentes por meio de transporte ou operador. Clique numa rota no mapa ou na lista para ver os seus detalhes.{{/popover-on-element}}
           </row>
           <div class="form-group">
             {{#if (eq style_routes_by "mode")}}
@@ -147,7 +147,7 @@
             {{else}}
               <input type="radio" id="radio-1" name="option-one" {{action "setRouteStyle" "mode"}}>
             {{/if}}
-            <label for="radio-1">Mode</label>
+            <label for="radio-1">Meio de transporte</label>
             <div class="sidebar-dropdown">
               {{#if (eq style_routes_by "mode")}}
                 {{#unless vehicle_type}}
@@ -155,7 +155,7 @@
                     options=routeModes
                     selected=mode
                     placeholder=placeholderMessageModes
-                    searchPlaceholder="Type to filter..."
+                    searchPlaceholder="Escreva para filtrar..."
                     onchange=(action "setMode")
                     onclose=(action "clearMode")
                     as |mode|
@@ -169,14 +169,14 @@
           <div class="form-group" >
             {{#if (eq style_routes_by "operator")}}<input type="radio" id="radio-2" name="option-two" checked {{action "setRouteStyle" "operator"}}>
             {{else}}<input type="radio" id="radio-2" name="option-two" {{action "setRouteStyle" "operator"}}>{{/if}}
-            <label for="radio-2">Operator</label>
+            <label for="radio-2">Operador</label>
               {{#if (eq style_routes_by "operator")}}
                 <div class="sidebar-dropdown">
                   {{#power-select
                     options=routeOperators
                     selected=operator
                     placeholder=placeholderMessageOperators
-                    searchPlaceholder="Type to filter..."
+                    searchPlaceholder="Escreva para filtrar..."
                     onchange=(action "setOperator")
                     onclose=(action "clearOperator")
                     as |operator|
@@ -193,7 +193,7 @@
             <div class="hover-detail">
               Route name: {{route.name}}<br>
               Operated by: {{route.operated_by_name}}<br>
-              <p class="caption">Click the route line for more details</p>
+              <p class="caption">Clique na linha da rota para mais detalhes</p>
             </div>
           {{/if}}
         {{/each}}
@@ -206,26 +206,26 @@
           {{else}}
             {{hoverStop.name}}
           {{/if}}
-          <p class="caption">Click the stop for more details</p>
+          <p class="caption">Clique na paragem para mais detalhes</p>
         </div>
       </row>
       {{/if}}
 
       {{#unless onestop_id}}
         {{#if mapMoved}}
-          <button class="btn btn-mapzen" {{action "updatebbox"}}>Redo search in map area</button>
+          <button class="btn btn-mapzen" {{action "updatebbox"}}>Refazer pesquisa na área do mapa</button>
         {{/if}}
       {{/unless}}
     <br>
     </div>
-    {{#link-to 'stops' (query-params bbox=leafletBbox onestop_id=null served_by=null operated_by=null pin=pin serves=null vehicle_type=null isochrone_mode=null)}}<button class="btn btn-transparent-alt">Show Stops</button>{{/link-to}}
-    {{#link-to 'operators' (query-params bbox=leafletBbox onestop_id=null served_by=null operated_by=null pin=pin serves=null vehicle_type=null)}}<button class="btn btn-transparent-alt">Show Operators</button>{{/link-to}}
+    {{#link-to 'stops' (query-params bbox=leafletBbox onestop_id=null served_by=null operated_by=null pin=pin serves=null vehicle_type=null isochrone_mode=null)}}<button class="btn btn-transparent-alt">Mostrar Paragens</button>{{/link-to}}
+    {{#link-to 'operators' (query-params bbox=leafletBbox onestop_id=null served_by=null operated_by=null pin=pin serves=null vehicle_type=null)}}<button class="btn btn-transparent-alt">Mostrar Operadores</button>{{/link-to}}
     {{url-builder entity="routes" server="TPP" query="results" queryParams=queryParams bbox=bbox onestop_id=onestop_id serves=serves operated_by=operated_by vehicle_type=vehicle_type}}
   </div>
   <hr class="sidebar-hr">
   {{sidebar-title-mobility}}
   <div class="btn-group-vertical" role="group" >
-    {{#link-to 'isochrones' (query-params bbox=leafletBbox onestop_id=null served_by=null isochrone_mode=null operated_by=null pin=pin serves=null vehicle_type=null isochrone_mode=null)}}<button class="btn btn-transparent-alt">Generate Isochrones</button>{{/link-to}}
+    {{#link-to 'isochrones' (query-params bbox=leafletBbox onestop_id=null served_by=null isochrone_mode=null operated_by=null pin=pin serves=null vehicle_type=null isochrone_mode=null)}}<button class="btn btn-transparent-alt">Gerar Isócronas</button>{{/link-to}}
     <!--
     {{#link-to 'map-matching' (query-params bbox=leafletBbox onestop_id=null served_by=null isochrone_mode=null operated_by=null pin=pin serves=null vehicle_type=null isochrone_mode=null trace=null)}}<button class="btn btn-transparent-alt">Try Map Matching</button>{{/link-to}}
     -->

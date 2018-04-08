@@ -12,7 +12,7 @@ export default Ember.Component.extend({
       id = '01';
     }
 
-    id = "maneuver-" + id;
+    id = 'maneuver-' + id;
 
     return id;
   }),

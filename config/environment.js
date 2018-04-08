@@ -43,7 +43,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.baseURL = '/playground';
+    ENV.baseURL = '/explorador';
     ENV.valhallaServicesEnabled = true;
   }
 

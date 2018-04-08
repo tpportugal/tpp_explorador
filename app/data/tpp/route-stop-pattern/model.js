@@ -18,7 +18,7 @@ var Route_stop_pattern = DS.Model.extend({
   updated_at: DS.attr('date'),
   trips: DS.attr(),
   tags: DS.attr(),
-  default_color: "white",
+  default_color: 'white',
   default_opacity: 0,
   is_selected: false,
   location: (function(){
@@ -41,13 +41,13 @@ var Route_stop_pattern = DS.Model.extend({
   }).property('geometry'),
   rsp_as_geojson_with_outline: (function(){
     return {
-      type: "FeatureCollection",
+      type: 'FeatureCollection',
       features: [
         {
-          type: "Feature",
+          type: 'Feature',
           geometry: this.get('geometry'),
           properties: {
-            color: "#444444",
+            color: '#444444',
             weight: 6,
             opacity: this.get('default_opacity')
           },
@@ -55,7 +55,7 @@ var Route_stop_pattern = DS.Model.extend({
           onestop_id: this.get('onestop_id'),
         },
         {
-          type: "Feature",
+          type: 'Feature',
           geometry: this.get('geometry'),
           properties: {
             color: this.get('default_color'),

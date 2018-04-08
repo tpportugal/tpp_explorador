@@ -1,6 +1,6 @@
 <form>
   <div class="hover-detail">
-    <div class="form-group-header">View distance you can travel from this stop via:</div>
+    <div class="form-group-header">Veja a distância que pode viajar a partir desta paragem indo:</div>
     <p class="caption">adjust departure time</p>
     <div class="form-group">
       {{#if pedestrianIsochrone}}
@@ -8,13 +8,13 @@
       {{else}}
         <input type="radio" id="radio-1" name="options" {{action "setIsochroneMode" "pedestrian"}}>
       {{/if}}
-      <label for="radio-1">walking</label><br>
+      <label for="radio-1">a pé</label><br>
       {{#if pedestrianIsochrone}}
         <div class="isochrone-legend-box">
-          <div class="isochrone-legend" style="color:#50bf40;">15 min walk from stop</div>
-          <div class="isochrone-legend" style="color:#9fbf40;">30 min walk from stop</div>
-          <div class="isochrone-legend" style="color:#bf8f40;">45 min walk from stop</div>
-          <div class="isochrone-legend" style="color:#bf4040;">60 min walk from stop</div>
+          <div class="isochrone-legend" style="color:#50bf40;">15 min a caminhar da paragem</div>
+          <div class="isochrone-legend" style="color:#9fbf40;">30 min a caminhar da paragem</div>
+          <div class="isochrone-legend" style="color:#bf8f40;">45 min a caminhar da paragem</div>
+          <div class="isochrone-legend" style="color:#bf4040;">60 min a caminhar da paragem</div>
         </div>
       {{/if}}
       {{#if bicycleIsochrone}}
@@ -22,13 +22,13 @@
       {{else}}
         <input type="radio" id="radio-2" name="options" {{action "setIsochroneMode" "bicycle"}}>
       {{/if}}
-      <label for="radio-2">biking</label><br>
+      <label for="radio-2">de bicicleta</label><br>
       {{#if bicycleIsochrone}}
         <div class="isochrone-legend-box">
-          <div class="isochrone-legend" style="color:#50bf40;">15 min ride from stop</div>
-          <div class="isochrone-legend" style="color:#9fbf40;">30 min ride from stop</div>
-          <div class="isochrone-legend" style="color:#bf8f40;">45 min ride from stop</div>
-          <div class="isochrone-legend" style="color:#bf4040;">60 min ride from stop</div>
+          <div class="isochrone-legend" style="color:#50bf40;">15 min a pedalar da paragem</div>
+          <div class="isochrone-legend" style="color:#9fbf40;">30 min a pedalar da paragem</div>
+          <div class="isochrone-legend" style="color:#bf8f40;">45 min a pedalar da paragem</div>
+          <div class="isochrone-legend" style="color:#bf4040;">60 min a pedalar da paragem</div>
         </div>
       {{/if}}
       {{#if multimodalIsochrone}}
@@ -36,13 +36,13 @@
       {{else}}
         <input type="radio" id="radio-4" name="options" {{action "setIsochroneMode" "multimodal"}}>
       {{/if}}
-      <label for="radio-4">transit</label><br>
+      <label for="radio-4">de transportes públicos</label><br>
       {{#if multimodalIsochrone}}
         <div class="isochrone-legend-box">
-          <div class="isochrone-legend" style="color:#50bf40;">15 min trip from stop</div>
-          <div class="isochrone-legend" style="color:#9fbf40;">30 min trip from stop</div>
-          <div class="isochrone-legend" style="color:#bf8f40;">45 min trip from stop</div>
-          <div class="isochrone-legend" style="color:#bf4040;">60 min trip from stop</div>
+          <div class="isochrone-legend" style="color:#50bf40;">15 min a viajar da paragem</div>
+          <div class="isochrone-legend" style="color:#9fbf40;">30 min a viajar da paragem</div>
+          <div class="isochrone-legend" style="color:#bf8f40;">45 min a viajar da paragem</div>
+          <div class="isochrone-legend" style="color:#bf4040;">60 min a viajar da paragem</div>
         </div>
       {{/if}}
       {{#if autoIsochrone}}
@@ -50,17 +50,17 @@
       {{else}}
         <input type="radio" id="radio-3" name="options" {{action "setIsochroneMode" "auto"}}>
       {{/if}}
-      <label for="radio-3">driving</label>
+      <label for="radio-3">de carro</label>
       {{#if autoIsochrone}}
         <div class="isochrone-legend-box">
-          <div class="isochrone-legend" style="color:#50bf40;">15 min drive from stop</div>
-          <div class="isochrone-legend" style="color:#9fbf40;">30 min drive from stop</div>
-          <div class="isochrone-legend" style="color:#bf8f40;">45 min drive from stop</div>
-          <div class="isochrone-legend" style="color:#bf4040;">60 min drive from stop</div>
+          <div class="isochrone-legend" style="color:#50bf40;">15 min a conduzir da paragem</div>
+          <div class="isochrone-legend" style="color:#9fbf40;">30 min a conduzir da paragem</div>
+          <div class="isochrone-legend" style="color:#bf8f40;">45 min a conduzir da paragem</div>
+          <div class="isochrone-legend" style="color:#bf4040;">60 min a conduzir da paragem</div>
         </div>
       {{/if}}
     </div>
-    <div class="form-group-header">Departing at:</div>
+    <div class="form-group-header">Partindo a:</div>
       {{bs-datetimepicker date=date}}
   </div>
 </form>

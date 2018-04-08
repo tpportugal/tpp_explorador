@@ -7,6 +7,6 @@ export default TppSerializer.extend({
   //  }
   // },
   modelNameFromPayloadKey: function(payloadKey){
-    return "data/tpp/stop";
+    return 'data/tpp/stop';
   }
 });
