@@ -31,7 +31,7 @@ h1 {
   font-weight: 600;
   vertical-align: bottom;
   color: nth($mz-darkpurples, 3);
-  margin: 0 0 10px 0;
+  margin: 0 0 0 0;
   padding-left: 0;
   &:hover {
     color: nth($mz-darkpurples, 3);
@@ -445,19 +445,18 @@ input, button, select, textarea {
 }
 
 .loading-spinner-03 {
-  content: 'Aguarde';
   -webkit-animation: spin 2s linear infinite;
   animation: spin 1s linear infinite;
   border: 10px solid $mapzen-blue;
   border-radius: 50%;
   border-top: 10px solid $white;
-  height: 90px;
+  height: 70px;
   left: 45%;
   margin: auto;
   opacity: 1;
   position: absolute;
   top: 50%;
-  width: 90px;
+  width: 70px;
   z-index: 5;
 }
 
