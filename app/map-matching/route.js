@@ -289,7 +289,7 @@ export default Ember.Route.extend(setLoading, {
           var begin = edges[i].begin_shape_index;
           var end =  edges[i].end_shape_index;
           var pointsSlice = points.slice(begin, end+1);
-          edgeCoordinates.push(pointsSlice)
+          edgeCoordinates.push(pointsSlice);
         }
 
         // // Build the trace_route request

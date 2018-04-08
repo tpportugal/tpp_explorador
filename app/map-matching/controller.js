@@ -302,26 +302,27 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
           }
 
         } else if (selectedAttribute === 'speed') {
-          if (attr >= 70)
+          if (attr >= 70) {
             var color = '#313695 ';
-          else if (attr >= 65)
+          } else if (attr >= 65) {
             var color = '#4575b4 ';
-          else if (attr >= 60)
+          } else if (attr >= 60) {
             var color = '#74add1 ';
-          else if (attr >= 55)
+          } else if (attr >= 55) {
             var color = '#abd9e9 ';
-          else if (attr >= 50)
+          } else if (attr >= 50) {
             var color = '#e0f3f8 ';
-          else if (attr >= 45)
+          } else if (attr >= 45) {
             var color = '#fee090 ';
-          else if (attr >= 40)
+          } else if (attr >= 40) {
             var color = '#fdae61 ';
-          else if (attr >= 35)
+          } else if (attr >= 35) {
             var color = '#f46d43 ';
-          else if (attr >= 30)
+          } else if (attr >= 30) {
             var color = '#d73027 ';
-          else if (attr < 30)
+          } else if (attr < 30) {
             var color = '#a50026 ';
+          }
        }
 
         // add segment info to edgeCoordinates array, to use to draw polyline layers on map
@@ -330,7 +331,7 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
           color: color,
           attribute: attribute,
           attributes: attributes
-        })
+        });
       }
       return edgeCoordinates;
     }
@@ -351,7 +352,7 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
       this.set('uploading', false);
       if (document.getElementById('gpxFileUpload')){
         document.getElementById('gpxFileUpload').value = "";
-      };
+      }
       this.set('selectedSegment', null);
       this.set('showTraceAttribute', false);
       this.set('showTraceRoute', false);

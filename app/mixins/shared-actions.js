@@ -17,7 +17,7 @@ export default Ember.Mixin.create({
   mapCenter: [41.14, -8.62],
   pin: null,
   pinLocation: Ember.computed('pin', function(){
-    if (typeof(this.get('pin'))==="string"){
+    if (typeof(this.get('pin'))==='string'){
       var pinArray = this.get('pin').split(',');
       return pinArray;
     } else {
@@ -26,7 +26,7 @@ export default Ember.Mixin.create({
   }),
   place: null,
   textboxIsClosed: Ember.computed('closeTextbox.textboxIsClosed', function(){
-    if (localStorage.getItem('mobility-explorer-hide-intro') === "true"){
+    if (localStorage.getItem('mobility-explorer-hide-intro') === 'true'){
         return true;
     } else {
       return this.get('closeTextbox').get('textboxIsClosed');
@@ -34,15 +34,15 @@ export default Ember.Mixin.create({
   }),
   searchbarContent: Ember.computed(function(){
     if (this.media.isMobile){
-      return "Find a place"
+      return 'Find a place';
     } else {
-      return "Find a place using TPP geocode";
+      return 'Find a place using TPP geocode';
     }
   }),
-  valhallaServicesEnabled: Ember.computed.alias('ENV.valhallaServicesEnabled'),
+  valhallaServicesEnabled: Ember.computed.alias(ENV.valhallaServicesEnabled),
   webGL: Ember.computed(function(){
     var canvas = document.createElement("canvas");
-    var gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+    var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
     if (gl && gl instanceof WebGLRenderingContext) {
       return true;
     } else {
@@ -62,7 +62,7 @@ export default Ember.Mixin.create({
       this.set('leafletBbox', this.get('bbox'));
     },
     removePin: function(){
-      var pinCoordinateArray = this.get('pin').split(",");
+      var pinCoordinateArray = this.get('pin').split(',');
       pinCoordinateArray[0] = parseFloat(pinCoordinateArray[0]);
       pinCoordinateArray[1] = parseFloat(pinCoordinateArray[1]);
       this.set('mapCenter', pinCoordinateArray);
