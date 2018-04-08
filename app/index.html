@@ -31,6 +31,30 @@
     <link rel="stylesheet" href="vendor/styleguide.css">
     <link rel="stylesheet" href="assets/mobility-explorer.css">
     {{content-for "head-footer"}}
+
+    <!-- Matomo -->
+    <script type="text/javascript">
+      var _paq = _paq || [];
+      _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+      _paq.push(["setCookieDomain", "*.tpp.pt"]);
+      _paq.push(["setDomains", ["*.tpp.pt"]]);
+      _paq.push(['trackPageView']);
+      _paq.push(['trackAllContentImpressions']);
+      _paq.push(['trackVisibleContentImpressions', true, 750]);
+      _paq.push(['enableLinkTracking']);
+      _paq.push(['enableHeartBeatTimer']);
+      _paq.push(['setRequestMethod', 'POST']);
+      (function() {
+        var u="//tpp.pt/stats/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <noscript><p><img src="//tpp.pt/stats/piwik.php?idsite=1&rec=1" style="border:0;" alt="" /></p></noscript>
+    <!-- End Matomo Code -->
+
   </head>
     {{content-for "body"}}
     <script src="https://www.nextzen.org/tangram/0.13.2/tangram.min.js"></script>
