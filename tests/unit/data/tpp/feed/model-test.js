@@ -1,6 +1,6 @@
 import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('data/transitland/rsp', 'Unit | Model | data/transitland/rsp', {
+moduleForModel('data/tpp/feed', 'Unit | Model | data/tpp/feed', {
   // Specify the other units that are required for this test.
   needs: []
 });

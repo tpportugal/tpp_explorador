@@ -20,4 +20,4 @@ The analysis comes from the [Valhalla Isochrone](https://github.com/valhalla/val
 
 ## Data credits
 
-The images are from Mobility Explorer, which includes data from [Transitland](https://transit.land) and [OpenStreetMap](http://www.openstreetmap.org/).
+The images are from Mobility Explorer, which includes data from [TPP](https://api.tpp.pt) and [OpenStreetMap](http://www.openstreetmap.org/).

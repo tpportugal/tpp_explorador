@@ -1,7 +1,7 @@
 /* global L */
 
 import Ember from 'ember';
-import ENV from '../config/environment';
+import ENV from 'mobility-explorer/config/environment';
 
 export default Ember.Mixin.create({
   bbox: null,
@@ -70,8 +70,7 @@ export default Ember.Mixin.create({
     },
     searchRepo: function(term) {
       if (Ember.isBlank(term)) { return []; }
-      // const url = `https://api.geocode.earth/v1/autocomplete?api_key=ge-594964b44b60bf3a&text=${term}`;
-      const url = `https://search.tpp.pt/search.php?format=json&q=${term}`;
+      const url = ENV.geocodeHost + `/search.php?format=json&q=${term}`;
       return Ember.$.ajax({ url }).then(json => json);
     },
     setPlace: function(selected){

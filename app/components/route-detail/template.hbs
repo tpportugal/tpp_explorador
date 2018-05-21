@@ -1,7 +1,7 @@
 {{#if route}}
   {{#if route.name}}<strong>Nome da Rota:</strong> {{route.name}}<br>{{/if}}
   {{#if route.short_name}}<strong>Nome curto:</strong> {{route.short_name}}<br>{{/if}}
-  {{#if route.onestop_id}}<div><strong>ID Onestop:</strong> {{route.onestop_id}}&nbsp;<div class="fa fa-question-circle"></div><br>{{#popover-on-element class="tooltip-on-sidebar" event="click"}}<a href="https://tpp.pt/documentação/esquema-onestop-id/">IDs Onestop</a> são identificadores globais únicos para  feeds, operadores, rotas, e paragens de transportes públicos. Utilize-os para consultar a API do Banco de Dados TPP ou nas suas próprias análises de redes de transportes.{{/popover-on-element}}</div>{{/if}}
+  {{#if route.onestop_id}}<div><strong>ID Onestop:</strong> {{route.onestop_id}}&nbsp;<div class="fa fa-question-circle"></div><br>{{#popover-on-element class="tooltip-on-sidebar" event="click"}}<a href="https://docs.tpp.pt/esquema-onestop-id/">IDs Onestop</a> são identificadores globais únicos para  feeds, operadores, rotas, e paragens de transportes públicos. Utilize-os para consultar a API do Banco de Dados TPP ou nas suas próprias análises de redes de transportes.{{/popover-on-element}}</div>{{/if}}
   {{#if route.vehicle_type}}<strong>Tipo de Veículo:</strong> {{route.vehicle_type}}<br>{{/if}}
   {{#if route.tags.route_url}}<strong>URL:&nbsp;</strong><a target="_blank" href="{{route.tags.route_url}}">{{route.tags.route_url}}</a><br>{{/if}}
   {{#if route.tags.route_desc}}<strong>Description da rota:</strong> {{route.tags.route_desc}}<br>{{/if}}

@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import setLoading from 'mobility-explorer/mixins/set-loading';
-
+import ENV from 'mobility-explorer/config/environment';
 
 export default Ember.Route.extend(setLoading, {
   queryParams: {
@@ -81,8 +81,8 @@ export default Ember.Route.extend(setLoading, {
       }
 
       var mode = params.isochrone_mode;
-      var url = 'https://routing.tpp.pt/isochrone?json=';
-      var linkUrl = 'https://routing.tpp.pt/isochrone?json=';
+      var url = ENV.valhallaHost + '/isochrone?json=';
+      var linkUrl = ENV.valhallaHost + '/isochrone?json=';
       var json = {
         locations: [{'lat':pinLocation[0], 'lon':pinLocation[1]}],
         costing: mode,

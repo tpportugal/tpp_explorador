@@ -1,9 +1,9 @@
-/* global L */
-
 import Ember from 'ember';
 import setLoading from 'mobility-explorer/mixins/set-loading';
 import xml2js from 'npm:xml2js';
 import polylineEncoded from 'npm:polyline-encoded';
+import ENV from 'mobility-explorer/config/environment';
+/* global L */
 
 export default Ember.Route.extend(setLoading, {
   queryParams: {
@@ -226,7 +226,7 @@ export default Ember.Route.extend(setLoading, {
         // trace_attributes request
         return Ember.$.ajax({
           type:"POST",
-          url:'https://routing.tpp.pt/trace_attributes?',
+          url: ENV.valhallaHost + '/trace_attributes?',
           data:JSON.stringify(attributesJson)
         });
       })
@@ -322,7 +322,7 @@ export default Ember.Route.extend(setLoading, {
 
         var traceRouteRequest = Ember.$.ajax({
           type: "POST",
-          url:'https://routing.tpp.pt/trace_route?',
+          url: ENV.valhallaHost + '/trace_route?',
           data: JSON.stringify(routeJson)
         });
 

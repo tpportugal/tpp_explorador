@@ -6,7 +6,9 @@ module.exports = function(environment) {
     environment: environment,
     baseURL: '/',
     location: '#',
-    tppDatastoreHost: 'https://tppgeo.cf',
+    tppDatastoreHost: 'https://api.tpp.pt',
+    valhallaHost: 'https://routing.tpp.pt',
+    geocodeHost: 'https://search.tpp.pt',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -42,8 +44,19 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
   }
 
+    if (environment === 'staging') {
+    ENV.tppDatastoreHost = 'https://tppgeo.cf';
+    ENV.valhallaHost= 'https://valhalla.tppgeo.cf';
+    ENV.geocodeHost: 'https://search.tpp.pt';
+    ENV.baseURL = '/explorador/';
+    ENV.valhallaServicesEnabled = true;
+  }
+
   if (environment === 'production') {
-    ENV.baseURL = '/explorador';
+    ENV.tppDatastoreHost = 'https://api.tpp.pt';
+    ENV.valhallaHost= 'https://routing.tpp.pt';
+    ENV.geocodeHost: 'https://search.tpp.pt';
+    ENV.baseURL = '/explorador/';
     ENV.valhallaServicesEnabled = true;
   }
 

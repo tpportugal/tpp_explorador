@@ -1,7 +1,7 @@
 Stop details:<br>
 {{#if stop}}
   {{#if stop.name}}<strong>Nome:</strong> {{stop.name}}<br>{{/if}}
-  {{#if stop.onestop_id}}<div><strong>ID Onestop:</strong> {{stop.onestop_id}}&nbsp;<div class="fa fa-question-circle"></div><br>{{#popover-on-element class="tooltip-on-sidebar" event="click"}}<a href="https://tpp.pt/documentação/esquema-onestop-id/">IDs Onestop</a> são identificadores globais únicos para  feeds, operadores, rotas, e paragens de transportes públicos. Utilize-os para consultar a API do Banco de Dados TPP ou nas suas próprias análises de redes de transportes.{{/popover-on-element}}</div>{{/if}}
+  {{#if stop.onestop_id}}<div><strong>ID Onestop:</strong> {{stop.onestop_id}}&nbsp;<div class="fa fa-question-circle"></div><br>{{#popover-on-element class="tooltip-on-sidebar" event="click"}}<a href="https://docs.tpp.pt/esquema-onestop-id/">IDs Onestop</a> são identificadores globais únicos para  feeds, operadores, rotas, e paragens de transportes públicos. Utilize-os para consultar a API do Banco de Dados TPP ou nas suas próprias análises de redes de transportes.{{/popover-on-element}}</div>{{/if}}
   {{#if stop.tags.zone_id}}<strong>ID da Zona:</strong> {{stop.tags.zone_id}}<br>{{/if}}
   {{#if stop.tags.stop_url}}<strong>URL:&nbsp;</strong> {{stop.tags.stop_url}}<br>{{/if}}
   {{#if stop.tags.stop_desc}}<strong>Descrição da Paragem:</strong> {{stop.tags.stop_desc}}<br>{{/if}}
@@ -17,7 +17,7 @@ Stop details:<br>
 {{else}}
   {{#each stops as |stop|}}
     {{#if stop.name}}<strong>Nome:</strong> {{stop.name}}<br>{{/if}}
-    {{#if stop.onestop_id}}<div><strong>ID Onestop:</strong> {{stop.onestop_id}}&nbsp;<div class="fa fa-question-circle"></div><br>{{#popover-on-element class="tooltip-on-sidebar" event="click"}}<a href="https://tpp.pt/documentação/esquema-onestop-id/">IDs Onestop</a> são identificadores globais únicos para  feeds, operadores, rotas, e paragens de transportes públicos. Utilize-os para consultar a API do Banco de Dados TPP ou nas suas próprias análises de redes de transportes.{{/popover-on-element}}</div>{{/if}}
+    {{#if stop.onestop_id}}<div><strong>ID Onestop:</strong> {{stop.onestop_id}}&nbsp;<div class="fa fa-question-circle"></div><br>{{#popover-on-element class="tooltip-on-sidebar" event="click"}}<a href="https://docs.tpp.pt/esquema-onestop-id/">IDs Onestop</a> são identificadores globais únicos para  feeds, operadores, rotas, e paragens de transportes públicos. Utilize-os para consultar a API do Banco de Dados TPP ou nas suas próprias análises de redes de transportes.{{/popover-on-element}}</div>{{/if}}
     {{#if stop.tags.zone_id}}<strong>ID da Zona:</strong> {{stop.tags.zone_id}}<br>{{/if}}
     {{#if stop.tags.stop_url}}<strong>URL:&nbsp;</strong> {{stop.tags.stop_url}}<br>{{/if}}
     {{#if stop.tags.stop_desc}}<strong>Descrição da Paragem:</strong> {{stop.tags.stop_desc}}<br>{{/if}}

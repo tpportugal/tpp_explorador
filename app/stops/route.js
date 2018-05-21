@@ -59,9 +59,8 @@ export default Ember.Route.extend(mapBboxRoute, setLoading, {
       if (stops.get('query.isochrone_mode')){
         onlyStop = stops.get('firstObject');
         stopLocation = onlyStop.get('geometry.coordinates');
-        //url = 'https://matrix.mapzen.com/isochrone?api_key=mapzen-jLrDBSP&json=';
-        url = 'https://routing.tpp.pt/isochrone?json=';
-        var linkUrl = 'https://routing.tpp.pt/isochrone?json=';
+        url = ENV.valhallaHost + '/isochrone?json=';
+        var linkUrl = ENV.valhallaHost + '/isochrone?json=';
 
         mode = stops.get('query.isochrone_mode');
         var json = {
@@ -100,7 +99,7 @@ export default Ember.Route.extend(mapBboxRoute, setLoading, {
         var servedBy = stops.get('query.served_by');
         if (servedBy!== null){
           if (servedBy.indexOf('r') === 0) {
-            url = 'https://tppgeo.cf/api/v1/routes.geojson?per_page=false&onestop_id=';
+            url = ENV.tppDatastoreHost + '/v1/routes.geojson?per_page=false&onestop_id=';
             url += servedBy;
             return Ember.RSVP.hash({
               stops: stops,

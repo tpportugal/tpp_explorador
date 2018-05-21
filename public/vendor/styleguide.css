@@ -5185,14 +5185,6 @@ body.no-footer footer {
     .footer-section {
       padding-left: 80px; } }
 
-.compass-logo {
-  width: 36px;
-  height: 36px;
-  background-image: url("https://mapzen.com/common/styleguide/images/logos/mapzen-logo-compass-white.png");
-  background-repeat: no-repeat;
-  background-size: 36px;
-  margin: 6px auto; }
-
 .form-group-header {
   font-weight: bold;
   margin-bottom: 15px; }

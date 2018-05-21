@@ -61,4 +61,4 @@ When the match results in an error, you can style the segments by attribute but 
 
 ## Data credits
 
-The images are from Mobility Explorer, which includes data from [Transitland](https://transit.land) and [OpenStreetMap](http://www.openstreetmap.org/).
+The images are from Mobility Explorer, which includes data from [TPP](https://api.tpp.pt) and [OpenStreetMap](http://www.openstreetmap.org/).

@@ -1,6 +1,6 @@
 import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('data/transitland/feed', 'Unit | Model | data/transitland/feed', {
+moduleForModel('data/tpp/route-stop-patterns', 'Unit | Model | data/tpp/route stop patterns', {
   // Specify the other units that are required for this test.
   needs: []
 });

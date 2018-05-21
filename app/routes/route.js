@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import mapBboxRoute from 'mobility-explorer/mixins/map-bbox-route';
 import setLoading from 'mobility-explorer/mixins/set-loading';
+import ENV from 'mobility-explorer/config/environment';
 
 export default Ember.Route.extend(mapBboxRoute, setLoading, {
   queryParams: {
@@ -57,7 +58,7 @@ export default Ember.Route.extend(mapBboxRoute, setLoading, {
     var stops;
 
     if (params.serves){
-      // var url = 'https://tppgep.cf/api/v1/stops.geojson?onestop_id=' + params.serves;
+      // var url = ENV.tppDatastoreHost + '/v1/stops.geojson?onestop_id=' + params.serves;
       // var stopServedByRoutes = Ember.$.ajax({ url });
       // return Ember.RSVP.hash({
       //   routes: routes,
@@ -70,7 +71,7 @@ export default Ember.Route.extend(mapBboxRoute, setLoading, {
       });
 
     } else if (params.onestop_id){
-      var url = 'https://tppgeo.cf/api/v1/stops.geojson?per_page=false&served_by=' + params.onestop_id;
+      var url = ENV.tppDatastoreHost + '/v1/stops.geojson?per_page=false&served_by=' + params.onestop_id;
       stops = Ember.$.ajax({ url });
       return Ember.RSVP.hash({
         routes: routes,

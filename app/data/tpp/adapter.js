@@ -1,10 +1,9 @@
 import DS from 'ember-data';
-
 import ENV from 'mobility-explorer/config/environment';
 
 export default DS.RESTAdapter.extend({
   host: ENV.tppDatastoreHost,
-  namespace: 'api/v1',
+  namespace: 'v1',
   coalesceFindRequests: true,
   ajaxOptions: function(url, type, options) {
     var hash = this._super(url, type, options);
