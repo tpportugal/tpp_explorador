@@ -16,7 +16,7 @@
   <hr class="sidebar-hr">
     {{sidebar-title-mobility}}
   <div class="btn-group-vertical" role="group" >
-  {{#link-to 'isochrones' (query-params bbox=leafletBbox onestop_id=null served_by=null operated_by=null serves=null isochrone_mode=isochrone_mode pin=pin departure_time=null)}}<button class="btn btn-mapzen-alt">Gerar Isócronas</button>{{/link-to}}
+  {{#link-to 'isochrones' (query-params bbox=leafletBbox onestop_id=null served_by=null operated_by=null serves=null isochrone_mode=isochrone_mode pin=pin departure_time=null)}}<button class="btn btn-tpp-alt">Gerar Isócronas</button>{{/link-to}}
   <div class="expanded-selection">
     <form>
       <div class="isochrone-detail">
@@ -248,6 +248,10 @@
               search=(action "searchRepo")
               selected=place
               placeholder=searchbarContent
+              noMatchesMessage="Sem resultados"
+              searchMessage="Escreva para pesquisar"
+              loadingMessage="Processando a pesquisa..."
+              searchPlaceholder="Escreva para filtrar"
               onchange=(action "setPlace")
               onclose=(action "clearPlace")
               as |repo|

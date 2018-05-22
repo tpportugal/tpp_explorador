@@ -2010,48 +2010,48 @@ fieldset[disabled] a.btn {
     color: #fff;
     background-color: #333; }
 
-.btn-primary, .btn-mapzen {
+.btn-primary, .btn-tpp {
   color: #fff;
   background-color: #1E0E33;
   border-color: #12091f; }
-  .btn-primary:focus, .btn-mapzen:focus, .btn-primary.focus, .focus.btn-mapzen {
+  .btn-primary:focus, .btn-tpp:focus, .btn-primary.focus, .focus.btn-tpp {
     color: #fff;
     background-color: #06030b;
     border-color: black; }
-  .btn-primary:hover, .btn-mapzen:hover {
+  .btn-primary:hover, .btn-tpp:hover {
     color: #fff;
     background-color: #06030b;
     border-color: black; }
-  .btn-primary:active, .btn-mapzen:active, .btn-primary.active, .active.btn-mapzen,
+  .btn-primary:active, .btn-tpp:active, .btn-primary.active, .active.btn-tpp,
   .open > .btn-primary.dropdown-toggle,
-  .open > .dropdown-toggle.btn-mapzen {
+  .open > .dropdown-toggle.btn-tpp {
     color: #fff;
     background-color: #06030b;
     border-color: black; }
-    .btn-primary:active:hover, .btn-mapzen:active:hover, .btn-primary:active:focus, .btn-mapzen:active:focus, .btn-primary:active.focus, .btn-mapzen:active.focus, .btn-primary.active:hover, .active.btn-mapzen:hover, .btn-primary.active:focus, .active.btn-mapzen:focus, .btn-primary.active.focus, .active.focus.btn-mapzen,
+    .btn-primary:active:hover, .btn-tpp:active:hover, .btn-primary:active:focus, .btn-tpp:active:focus, .btn-primary:active.focus, .btn-tpp:active.focus, .btn-primary.active:hover, .active.btn-tpp:hover, .btn-primary.active:focus, .active.btn-tpp:focus, .btn-primary.active.focus, .active.focus.btn-tpp,
     .open > .btn-primary.dropdown-toggle:hover,
-    .open > .dropdown-toggle.btn-mapzen:hover,
+    .open > .dropdown-toggle.btn-tpp:hover,
     .open > .btn-primary.dropdown-toggle:focus,
-    .open > .dropdown-toggle.btn-mapzen:focus,
+    .open > .dropdown-toggle.btn-tpp:focus,
     .open > .btn-primary.dropdown-toggle.focus,
-    .open > .dropdown-toggle.focus.btn-mapzen {
+    .open > .dropdown-toggle.focus.btn-tpp {
       color: #fff;
       background-color: black;
       border-color: black; }
-  .btn-primary:active, .btn-mapzen:active, .btn-primary.active, .active.btn-mapzen,
+  .btn-primary:active, .btn-tpp:active, .btn-primary.active, .active.btn-tpp,
   .open > .btn-primary.dropdown-toggle,
-  .open > .dropdown-toggle.btn-mapzen {
+  .open > .dropdown-toggle.btn-tpp {
     background-image: none; }
-  .btn-primary.disabled:hover, .disabled.btn-mapzen:hover, .btn-primary.disabled:focus, .disabled.btn-mapzen:focus, .btn-primary.disabled.focus, .disabled.focus.btn-mapzen, .btn-primary[disabled]:hover, [disabled].btn-mapzen:hover, .btn-primary[disabled]:focus, [disabled].btn-mapzen:focus, .btn-primary[disabled].focus, [disabled].focus.btn-mapzen,
+  .btn-primary.disabled:hover, .disabled.btn-tpp:hover, .btn-primary.disabled:focus, .disabled.btn-tpp:focus, .btn-primary.disabled.focus, .disabled.focus.btn-tpp, .btn-primary[disabled]:hover, [disabled].btn-tpp:hover, .btn-primary[disabled]:focus, [disabled].btn-tpp:focus, .btn-primary[disabled].focus, [disabled].focus.btn-tpp,
   fieldset[disabled] .btn-primary:hover,
-  fieldset[disabled] .btn-mapzen:hover,
+  fieldset[disabled] .btn-tpp:hover,
   fieldset[disabled] .btn-primary:focus,
-  fieldset[disabled] .btn-mapzen:focus,
+  fieldset[disabled] .btn-tpp:focus,
   fieldset[disabled] .btn-primary.focus,
-  fieldset[disabled] .focus.btn-mapzen {
+  fieldset[disabled] .focus.btn-tpp {
     background-color: #1E0E33;
     border-color: #12091f; }
-  .btn-primary .badge, .btn-mapzen .badge {
+  .btn-primary .badge, .btn-tpp .badge {
     color: #1E0E33;
     background-color: #fff; }
 
@@ -4399,9 +4399,9 @@ input[type="range"]:focus + .rangeslider .rangeslider__handle {
   .alert .btn {
     text-decoration: inherit;
     white-space: normal; }
-  .alert .btn-primary, .alert .btn-mapzen,
+  .alert .btn-primary, .alert .btn-tpp,
   .alert .btn-primary:hover,
-  .alert .btn-mapzen:hover {
+  .alert .btn-tpp:hover {
     color: white; }
 
 .alert-dismissible {
@@ -4509,7 +4509,7 @@ img.dashboard-profile-pic {
 input[type="search"] + .btn {
   padding: 0; }
 
-.btn-primary:hover, .btn-mapzen:hover, .btn-primary:focus, .btn-mapzen:focus {
+.btn-primary:hover, .btn-tpp:hover, .btn-primary:focus, .btn-tpp:focus {
   background-color: #2C1E3F; }
 
 .btn-inverse, .btn-white {
@@ -5467,22 +5467,7 @@ input[type="range"]::-ms-ticks-before {
   height: 250px;
   background-image: url("data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMjQwMCA1MDAiPjxzdHlsZT4uc3Qwe2ZpbGw6I2ZmZn0uc3Qxe2ZpbGw6bm9uZTtzdHJva2U6IzFlMGUzMztzdHJva2Utd2lkdGg6MS4zMztzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2UtbGluZWpvaW46cm91bmQ7c3Ryb2tlLW1pdGVybGltaXQ6MS40MTR9PC9zdHlsZT48cGF0aCBjbGFzcz0ic3QwIiBkPSJNMjQwMCAyMzhMMTIwMCA0OTAgMCAyMzh2MjYyaDI0MDBWMjM4eiIvPjxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0yNDAwIDI0NEwxMjAwIDQ5NiAwIDI0NCIvPjwvc3ZnPg==");
   background-position: center bottom;
-  background-repeat: no-repeat;
-  /*
-    How to create the data-URI SVG mask for the carousel and the footer
-
-    1. SVGs were recreated from vector files. I used Affinity Designer,
-       but any program that can create SVGs will be okay. The source files
-       for these should be located in the Mapzen Google Drive.
-    2. The exported SVGs from Affinity Designer are minified using
-       SVGOMG (https://jakearchibald.github.io/svgomg/), using its
-       default settings.
-    3. The minified SVGs are then data-URI encoded on this site:
-          http://dopiaza.org/tools/datauri/index.php
-       Un-check "Use base64 encoding" (so that it will work with IE, possibly Firefox)
-       Select "Explicitly specify mime type" and set it to 'image/svg+xml'
-       Paste the new data-URI into the background-image property above.
-  */ }
+  background-repeat: no-repeat; }
   @media (min-width: 768px) {
     .gallery::before {
       height: 500px; } }
@@ -5622,7 +5607,6 @@ hr {
   color: #6ea0a4; }
 
 .red-text {
-  /* This class should be deprecated after mapzen website v1.0 */
   color: #FF4947; }
 
 .gray-text {
@@ -5664,15 +5648,6 @@ span.icon, span.icon-sm, span.icon-lg {
 .icon-lg {
   width: 60px;
   height: 60px; }
-
-.icon-award-ribbon-circle {
-  background-image: url("https://mapzen.com/common/styleguide/images/icons/award-ribbon-circle.svg"); }
-
-.icon-dollar-sign-circle {
-  background-image: url("https://mapzen.com/common/styleguide/images/icons/dollar-sign-circle.svg"); }
-
-.icon-folding-map-circle {
-  background-image: url("https://mapzen.com/common/styleguide/images/icons/folding-map-circle.svg"); }
 
 .leaflet-control-attribution a {
   font-weight: normal; }
@@ -5872,26 +5847,6 @@ body {
       padding: 5px 30px 11px 15px; }
       .container-fluid .navbar-brand {
         padding-left: 15px; } }
-
-.mapzen-logo {
-  width: 130px;
-  height: 40px;
-  background-image: url("https://mapzen.com/common/styleguide/images/mapzen-logo-stacked.png");
-  background-repeat: no-repeat;
-  background-size: 130px;
-  background-position: 0 0; }
-  .mapzen-logo:hover {
-    background-position: 0 -40px; }
-  @media (max-width: 767px) {
-    .mapzen-logo {
-      height: 36px;
-      background-position: 0 0;
-      background-size: 117px; }
-      .mapzen-logo:hover {
-        background-position: 0 -36px; } }
-  @media only screen and (-webkit-min-device-pixel-ratio: 1.25), only screen and (min-resolution: 120dpi), only screen and (min-resolution: 1.25dppx) {
-    .mapzen-logo {
-      background-image: url("https://mapzen.com/common/styleguide/images/mapzen-logo-stacked@2x.png"); } }
 
 .navbar-nav > li > a#sign-in {
   min-width: 80px;

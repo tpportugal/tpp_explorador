@@ -10,7 +10,7 @@
   {{sidebar-title-tpp}}
   <div class="btn-group-vertical" role="group" >
     {{#link-to 'routes' (query-params bbox=leafletBbox onestop_id=null served_by=null operated_by=null serves=null style_routes_by=null pin=pin)}}<button class="btn btn-transparent-alt">Mostrar Rotas</button>{{/link-to}}
-    {{#link-to 'stops' (query-params bbox=leafletBbox onestop_id=null served_by=null operated_by=null serves=null isochrone_mode=null pin=pin)}}<button class="btn btn-mapzen-alt">Mostrar Paragens</button>{{/link-to}}
+    {{#link-to 'stops' (query-params bbox=leafletBbox onestop_id=null served_by=null operated_by=null serves=null isochrone_mode=null pin=pin)}}<button class="btn btn-tpp-alt">Mostrar Paragens</button>{{/link-to}}
       <div class="expanded-selection">
         {{#if onestop_id}}
           {{#stop-detail stop=selectedStop bbox=bbox onestop_id=onestop_id stops=model.stops}}{{/stop-detail}}
@@ -38,7 +38,7 @@
         {{else}}
           <p class="caption">Paire numa paragem ver o nome</p>
           {{#if mapMoved}}
-            <button class="btn btn-mapzen" {{action "updatebbox"}}>Refazer pesquisa na área do mapa</button>
+            <button class="btn btn-tpp" {{action "updatebbox"}}>Refazer pesquisa na área do mapa</button>
           {{/if}}
         {{/if}}
       </div>
@@ -74,6 +74,10 @@
             search=(action "searchRepo")
             selected=place
             placeholder=searchbarContent
+            noMatchesMessage="Sem resultados"
+            searchMessage="Escreva para pesquisar"
+            loadingMessage="Processando a pesquisa..."
+            searchPlaceholder="Escreva para filtrar"
             onchange=(action "setPlace")
             onclose=(action "clearPlace")
             as |repo|

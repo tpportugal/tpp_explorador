@@ -10,7 +10,7 @@
   {{sidebar-title-tpp}}
   <div class="btn-group-vertical" role="group" >
 
-    {{#link-to 'routes' (query-params bbox=leafletBbox onestop_id=null served_by=null operated_by=null pin=pin serves=null vehicle_type=null style_routes_by=null)}}<button class="btn btn-mapzen-alt">Mostrar Rotas</button>{{/link-to}}
+    {{#link-to 'routes' (query-params bbox=leafletBbox onestop_id=null served_by=null operated_by=null pin=pin serves=null vehicle_type=null style_routes_by=null)}}<button class="btn btn-tpp-alt">Mostrar Rotas</button>{{/link-to}}
 
     <div class="expanded-selection">
       {{#if onestop_id}}
@@ -41,7 +41,10 @@
           options=routes
           selected=route
           placeholder=placeholderMessageRoutes
-          searchPlaceholder="Escreva para filtrar..."
+          noMatchesMessage="Sem resultados"
+          searchMessage="Escreva para pesquisar"
+          loadingMessage="Processando a pesquisa..."
+          searchPlaceholder="Escreva para filtrar"
           onchange=(action "setOnestopId")
           onclose=(action "clearRoute")
           as |route|
@@ -73,7 +76,10 @@
                       options=routeModes
                       selected=mode
                       placeholder=placeholderMessageModes
-                      searchPlaceholder="Escreva para filtrar..."
+                      noMatchesMessage="Sem resultados"
+                      searchMessage="Escreva para pesquisar"
+                      loadingMessage="Processando a pesquisa..."
+                      searchPlaceholder="Escreva para filtrar"
                       onchange=(action "setMode")
                       onclose=(action "clearMode")
                       as |mode|
@@ -97,7 +103,10 @@
                     options=routeOperators
                     selected=operator
                     placeholder=placeholderMessageOperators
-                    searchPlaceholder="Escreva para filtrar..."
+                    noMatchesMessage="Sem resultados"
+                    searchMessage="Escreva para pesquisar"
+                    loadingMessage="Processando a pesquisa..."
+                    searchPlaceholder="Escreva para filtrar"
                     onchange=(action "setOperator")
                     onclose=(action "clearOperator")
                     as |operator|
@@ -124,7 +133,10 @@
         options=routes
         selected=route
         placeholder=placeholderMessageRoutes
-        searchPlaceholder="Escreva para filtrar..."
+        noMatchesMessage="Sem resultados"
+        searchMessage="Escreva para pesquisar"
+        loadingMessage="Processando a pesquisa..."
+        searchPlaceholder="Escreva para filtrar"
         onchange=(action "setOnestopId")
         onclose=(action "clearRoute")
         as |route|
@@ -155,7 +167,10 @@
                     options=routeModes
                     selected=mode
                     placeholder=placeholderMessageModes
-                    searchPlaceholder="Escreva para filtrar..."
+                    noMatchesMessage="Sem resultados"
+                    searchMessage="Escreva para pesquisar"
+                    loadingMessage="Processando a pesquisa..."
+                    searchPlaceholder="Escreva para filtrar"
                     onchange=(action "setMode")
                     onclose=(action "clearMode")
                     as |mode|
@@ -176,7 +191,10 @@
                     options=routeOperators
                     selected=operator
                     placeholder=placeholderMessageOperators
-                    searchPlaceholder="Escreva para filtrar..."
+                    noMatchesMessage="Sem resultados"
+                    searchMessage="Escreva para pesquisar"
+                    loadingMessage="Processando a pesquisa..."
+                    searchPlaceholder="Escreva para filtrar"
                     onchange=(action "setOperator")
                     onclose=(action "clearOperator")
                     as |operator|
@@ -213,7 +231,7 @@
 
       {{#unless onestop_id}}
         {{#if mapMoved}}
-          <button class="btn btn-mapzen" {{action "updatebbox"}}>Refazer pesquisa na área do mapa</button>
+          <button class="btn btn-tpp" {{action "updatebbox"}}>Refazer pesquisa na área do mapa</button>
         {{/if}}
       {{/unless}}
     <br>
@@ -251,6 +269,10 @@
             search=(action "searchRepo")
             selected=place
             placeholder=searchbarContent
+            noMatchesMessage="Sem resultados"
+            searchMessage="Escreva para pesquisar"
+            loadingMessage="Processando a pesquisa..."
+            searchPlaceholder="Escreva para filtrar"
             onchange=(action "setPlace")
             onclose=(action "clearPlace")
             as |repo|

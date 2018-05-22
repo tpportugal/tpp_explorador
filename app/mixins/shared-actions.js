@@ -41,7 +41,7 @@ export default Ember.Mixin.create({
   }),
   valhallaServicesEnabled: Ember.computed.alias(ENV.valhallaServicesEnabled),
   webGL: Ember.computed(function(){
-    var canvas = document.createElement("canvas");
+    var canvas = document.createElement('canvas');
     var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
     if (gl && gl instanceof WebGLRenderingContext) {
       return true;

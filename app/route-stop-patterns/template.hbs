@@ -9,7 +9,7 @@
   {{/if}}
   {{sidebar-title-tpp}}
   <div class="btn-group-vertical" role="group" >
-    {{#link-to 'routes' (query-params bbox=leafletBbox onestop_id=null served_by=null operated_by=null serves=null vehicle_type=null style_routes_by=null)}}<button class="btn btn-mapzen-alt">Mostrar Rotas</button>{{/link-to}}
+    {{#link-to 'routes' (query-params bbox=leafletBbox onestop_id=null served_by=null operated_by=null serves=null vehicle_type=null style_routes_by=null)}}<button class="btn btn-tpp-alt">Mostrar Rotas</button>{{/link-to}}
     <div class="expanded-selection">
       {{#each model.traversedByRoute as |route|}}
         {{#route-detail bbox=bbox onestop_id=route.onestop_id route=route}}{{/route-detail}}
@@ -99,6 +99,10 @@
           renderInPlace=true
           selected=place
           placeholder=searchbarContent
+          noMatchesMessage="Sem resultados"
+          searchMessage="Escreva para pesquisar"
+          loadingMessage="Processando a pesquisa..."
+          searchPlaceholder="Escreva para filtrar"
           onchange=(action "setPlace")
           as |repo|
         }}

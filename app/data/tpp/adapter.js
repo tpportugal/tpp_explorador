@@ -17,6 +17,8 @@ export default DS.RESTAdapter.extend({
         data = {};
       }
       data['per_page'] = false;
+      data['sort_key'] = 'onestop_id';
+      data['sort_order'] = 'desc';
       hash.data = data;
     }
     return hash;

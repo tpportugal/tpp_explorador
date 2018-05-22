@@ -17,7 +17,7 @@
     {{sidebar-title-mobility}}
     <div class="btn-group-vertical" role="group" >
     {{#link-to 'isochrones' (query-params bbox=bbox pin=pin onestop_id=null isochrone_mode=null trace=null)}}<button class="btn btn-transparent-alt">Generate Isochrones</button>{{/link-to}}
-      {{#link-to 'map-matching' (query-params bbox=bbox pin=pin trace=null)}}<button class="btn btn-mapzen-alt">Try Map Matching</button>{{/link-to}}
+      {{#link-to 'map-matching' (query-params bbox=bbox pin=pin trace=null)}}<button class="btn btn-tpp-alt">Try Map Matching</button>{{/link-to}}
     <div class="expanded-selection">
       {{#unless trace}}
         <div>Match GPS locations to a known route and see detailed attributes about the line.<br><br>Read more about <a href="https://github.com/tpportugal/tpp_explorador/blob/master/docs/map-matching.md" target="_blank">map matching</a>, or get started by choosing a sample GPX trace or using your own file.</div>
@@ -27,7 +27,10 @@
         options=model.gpxTraces
         placeholder=selectedTrace
         searchEnabled=false
-        searchPlaceholder="Type to filter..."
+        noMatchesMessage="Sem resultados"
+        searchMessage="Escreva para pesquisar"
+        loadingMessage="Processando a pesquisa..."
+        searchPlaceholder="Escreva para filtrar"
         onchange=(action "setTrace")
         as |trace|
       }}
@@ -294,6 +297,10 @@
           search=(action "searchRepo")
           selected=place
           placeholder=searchbarContent
+          noMatchesMessage="Sem resultados"
+          searchMessage="Escreva para pesquisar"
+          loadingMessage="Processando a pesquisa..."
+          searchPlaceholder="Escreva para filtrar"
           onchange=(action "setPlace")
           onclose=(action "clearPlace")
           as |repo|

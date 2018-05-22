@@ -48,6 +48,10 @@
             search=(action "searchRepo")
             selected=place
             placeholder=searchbarContent
+            noMatchesMessage="Sem resultados"
+            searchMessage="Escreva para pesquisar"
+            loadingMessage="Processando a pesquisa..."
+            searchPlaceholder="Escreva para filtrar"
             onchange=(action "setPlace")
             onclose=(action "clearPlace")
             as |repo|

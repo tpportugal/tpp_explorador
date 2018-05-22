@@ -44,20 +44,22 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
   }
 
-    if (environment === 'staging') {
-    ENV.tppDatastoreHost = 'https://tppgeo.cf';
-    ENV.valhallaHost= 'https://valhalla.tppgeo.cf';
-    ENV.geocodeHost: 'https://search.tpp.pt';
-    ENV.baseURL = '/explorador/';
-    ENV.valhallaServicesEnabled = true;
-  }
-
   if (environment === 'production') {
-    ENV.tppDatastoreHost = 'https://api.tpp.pt';
-    ENV.valhallaHost= 'https://routing.tpp.pt';
-    ENV.geocodeHost: 'https://search.tpp.pt';
-    ENV.baseURL = '/explorador/';
-    ENV.valhallaServicesEnabled = true;
+    if (process.env['BUILD'] === 'staging') {
+      // Production build for staging domain. Use BUILD=staging before ember build command
+      ENV.tppDatastoreHost = 'https://api.tppgeo.cf';
+      ENV.valhallaHost = 'https://routing.tppgeo.cf';
+      ENV.geocodeHost = 'https://search.tpp.pt';
+      ENV.baseURL = '/explorador/';
+      ENV.valhallaServicesEnabled = true;
+    } else {
+      // Production build for production domain.
+      ENV.tppDatastoreHost = 'https://api.tpp.pt';
+      ENV.valhallaHost = 'https://routing.tpp.pt';
+      ENV.geocodeHost = 'https://search.tpp.pt';
+      ENV.baseURL = '/explorador/';
+      ENV.valhallaServicesEnabled = true;
+    }
   }
 
   return ENV;
