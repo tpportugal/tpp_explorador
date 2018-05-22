@@ -1,5 +1,4 @@
 /* global moment */
-
 import Ember from 'ember';
 import mapBboxController from 'mobility-explorer/mixins/map-bbox-controller';
 import setTextboxClosed from 'mobility-explorer/mixins/set-textbox-closed';

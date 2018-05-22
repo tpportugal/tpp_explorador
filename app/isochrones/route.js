@@ -125,7 +125,6 @@ export default Ember.Route.extend(setLoading, {
           };
         }
 
-
         if (params.include_routes.length > 0) {
             json.costing_options.transit.filters['routes'] = {
               'ids': params.include_routes,
