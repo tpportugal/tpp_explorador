@@ -16,7 +16,7 @@ Use Mobility Explorer to query and visualize transit data from [TPP](https://tpp
 You will need the following things properly installed on your computer.
 
 * [Git](http://git-scm.com/)
-* [Node.js](http://nodejs.org/) (with NPM)
+* [Node.js](http://nodejs.org/) (with NPM and Yarn)
 * [Bower](http://bower.io/)
 * [Ember CLI](http://ember-cli.com/)
 
@@ -24,7 +24,7 @@ You will need the following things properly installed on your computer.
 
 * `git clone https://github.com/tpportugal/tpp_explorador`
 * `cd tpp_explorador`
-* `npm install`
+* `yarn install`
 * `bower install`
 
 ## Running / Development
