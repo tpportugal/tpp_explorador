@@ -1,8 +1,8 @@
 /* global L */
 
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   lat: 41.14,
   lng: -8.61,
   zoom: 12,
@@ -18,7 +18,7 @@ export default Ember.Component.extend({
     updatebbox(e) {
       var newbox = e.target.getBounds();
       this.set('bbox', newbox.toBBoxString());
-      this.get('getbbox')(newbox);
+      this.getbbox(newbox);
     }
   }
 });

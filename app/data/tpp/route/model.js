@@ -1,10 +1,10 @@
-import Ember from 'ember';
+import { alias } from '@ember/object/computed';
 import DS from 'ember-data';
 
 var Route = DS.Model.extend({
   identifiers: DS.attr(),
   imported_from_feed_onestop_ids: DS.attr('string'),
-  onestop_id: Ember.computed.alias('id'),
+  onestop_id: alias('id'),
   name: DS.attr('string'),
   vehicle_type: DS.attr('string'),
   short_name: DS.attr('string'),
@@ -38,20 +38,20 @@ var Route = DS.Model.extend({
       features: [
         {
           type: 'Feature',
-          geometry: this.get('geometry'),
+          geometry: this.geometry,
           properties: {
             color: '#444444',
             weight: 5,
             opacity: 0
           },
           id: this.onestop_id,
-          onestop_id: this.get('onestop_id'),
+          onestop_id: this.onestop_id,
         },
         {
           type: 'Feature',
-          geometry: this.get('geometry'),
+          geometry: this.geometry,
           properties: {
-            color: this.get('default_color'),
+            color: this.default_color,
             weight: 3,
             opacity: 1
           },
@@ -65,20 +65,20 @@ var Route = DS.Model.extend({
       features: [
         {
           type: 'Feature',
-          geometry: this.get('geometry'),
+          geometry: this.geometry,
           properties: {
             color: '#444444',
             weight: 5,
             opacity: 0
           },
           id: this.onestop_id,
-          onestop_id: this.get('onestop_id'),
+          onestop_id: this.onestop_id,
         },
         {
           type: 'Feature',
-          geometry: this.get('geometry'),
+          geometry: this.geometry,
           properties: {
-            color: this.get('operated_by_route_default_color'),
+            color: this.operated_by_route_default_color,
             weight: 2.5,
             opacity: 1
           },
@@ -88,7 +88,7 @@ var Route = DS.Model.extend({
   }).property('geometry'),
 
   mode_as_geojson_with_outline: (function(){
-    let lineColor = this.get('vehicle_type_color')[this.get('vehicle_type')];
+    let lineColor = this.vehicle_type_color[this.vehicle_type];
     let hexValue = lineColor.split('');
     hexValue.shift();
     var hexLetters = {
@@ -124,20 +124,20 @@ var Route = DS.Model.extend({
       features: [
         {
           type: 'Feature',
-          geometry: this.get('geometry'),
+          geometry: this.geometry,
           properties: {
             color: borderColor,
             weight: 5,
             opacity: 0
           },
           id: this.onestop_id,
-          onestop_id: this.get('onestop_id'),
+          onestop_id: this.onestop_id,
         },
         {
           type: 'Feature',
-          geometry: this.get('geometry'),
+          geometry: this.geometry,
           properties: {
-            color: this.get('vehicle_type_color')[this.get('vehicle_type')],
+            color: this.vehicle_type_color[this.vehicle_type],
             weight: 3,
             opacity: 1
           },
@@ -146,7 +146,7 @@ var Route = DS.Model.extend({
     };
   }).property('geometry'),
   operator_as_geojson_with_outline: (function(){
-    let lineColor = this.get('operator_color');
+    let lineColor = this.operator_color;
     let hexValue = lineColor.split('');
     hexValue.shift();
     var hexLetters = {
@@ -172,20 +172,20 @@ var Route = DS.Model.extend({
       features: [
         {
           type: 'Feature',
-          geometry: this.get('geometry'),
+          geometry: this.geometry,
           properties: {
             color: '#222222',
             weight: 5,
             opacity: 0
           },
           id: this.onestop_id,
-          onestop_id: this.get('onestop_id'),
+          onestop_id: this.onestop_id,
         },
         {
           type: 'Feature',
-          geometry: this.get('geometry'),
+          geometry: this.geometry,
           properties: {
-            color: this.get('operator_color'),
+            color: this.operator_color,
             weight: 3,
             opacity: 1
           },
@@ -199,20 +199,20 @@ var Route = DS.Model.extend({
       features: [
         {
           type: 'Feature',
-          geometry: this.get('geometry'),
+          geometry: this.geometry,
           properties: {
             color: '#444444',
             weight: 5,
             opacity: 1
           },
           id: this.onestop_id,
-          onestop_id: this.get('onestop_id'),
+          onestop_id: this.onestop_id,
         },
         {
           type: 'Feature',
-          geometry: this.get('geometry'),
+          geometry: this.geometry,
           properties: {
-            color: this.get('default_color'),
+            color: this.default_color,
             weight: 3,
             opacity: 1
           },
@@ -221,7 +221,7 @@ var Route = DS.Model.extend({
     };
   }).property('geometry'),
   operator_color: (function(){
-    var str = this.get('operated_by_onestop_id');
+    var str = this.operated_by_onestop_id;
     var hash = 0;
     for (var i = 0; i <str.length; i++) {
       hash = str.charCodeAt(i) + ((hash << 5) - hash);
@@ -235,8 +235,8 @@ var Route = DS.Model.extend({
   }).property('operated_by_onestop_id'),
 
   operated_by_route_default_color: (function(){
-    if (this.get('color') !== null && this.get('color') !== "ffffff"){
-      return '#' + this.get('color');
+    if (this.color !== null && this.color !== "ffffff"){
+      return '#' + this.color;
     } else {
       return '#6ea0a4';
     }

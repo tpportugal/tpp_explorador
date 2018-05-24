@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-  routes: Ember.computed('routes', function(){
-    var data = this.get('routes');
+export default Component.extend({
+  routes: computed('routes', function(){
+    var data = this.routes;
     var routes = [];
-    routes = routes.concat(data.map(function(route){return route.get('name');}));
+    routes = routes.concat(data.map(function(route){return route.name;}));
     return routes;
   })
 });

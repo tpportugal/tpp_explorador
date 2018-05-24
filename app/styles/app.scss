@@ -426,7 +426,7 @@ input, button, select, textarea {
   padding: 8px 2px 8px 15px;
   position: absolute;
   width: 450px;
-  z-index: 2;
+  z-index: 9999;
 
   @media screen and (orientation:portrait){
     /*margin-left: 15px;*/

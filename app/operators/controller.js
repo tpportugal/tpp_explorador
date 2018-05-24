@@ -1,19 +1,21 @@
 /* global L */
 
-import Ember from 'ember';
+import { computed } from '@ember/object';
+
+import Controller from '@ember/controller';
 import mapBboxController from 'mobility-explorer/mixins/map-bbox-controller';
 import setTextboxClosed from 'mobility-explorer/mixins/set-textbox-closed';
 import sharedActions from 'mobility-explorer/mixins/shared-actions';
 
 
-export default Ember.Controller.extend(mapBboxController, setTextboxClosed, sharedActions, {
+export default Controller.extend(mapBboxController, setTextboxClosed, sharedActions, {
   queryParams: ['bbox', 'onestop_id','pin'],
 
   queryIsInactive: false,
   onestop_id: null,
   selectedOperator: null,
   hoverOperator: null,
-  placeholderMessage: Ember.computed('leafletBbox', function(){
+  placeholderMessage: computed('leafletBbox', function(){
     var total = this.model.get('meta.total');
     if (total > 1){
       return  total + ' operadores';
@@ -21,20 +23,20 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
       return total + ' operador';
     }
   }),
-  onlyOperator: Ember.computed('onestop_id', function(){
-    var data = this.get('operators');
+  onlyOperator: computed('onestop_id', function(){
+    var data = this.operators;
     var onlyOperator = data.get('firstObject');
-    if (this.get('onestop_id') === null){
+    if (this.onestop_id === null){
       return null;
     } else {
       return onlyOperator;
     }
   }),
-  operators: Ember.computed('model', function(){
-    if (this.get('model') === null){
+  operators: computed('model', function(){
+    if (this.model === null){
       return;
     } else {
-      var data = this.get('model');
+      var data = this.model;
       var operators = [];
       operators = operators.concat(data.map(function(operator){return operator;}));
       return operators;
@@ -42,7 +44,7 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
   }),
   mapMoved: false,
   mousedOver: false,
-  operatorSelectContent: Ember.computed(function(){
+  operatorSelectContent: computed(function(){
     if (this.media.isMobile){
       return 'Selecione um operador para ver informação';
     } else {
@@ -61,12 +63,12 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
       this.set('leafletBbox', leafletBounds.toBBoxString());
     },
     updatebbox(e) {
-      var bounds = this.get('leafletBbox');
+      var bounds = this.leafletBbox;
       this.set('bbox', bounds);
       this.set('mapMoved', false);
     },
     updateMapMoved(){
-      if (this.get('mousedOver') === true){
+      if (this.mousedOver === true){
         this.set('mapMoved', true);
       }
     },

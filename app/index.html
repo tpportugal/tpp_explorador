@@ -27,16 +27,16 @@
     <meta name="description" content="Explorador de Mobilidade para a API do Banco de Dados TPP. Observe os transportes públicos em Portugal.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{content-for "head"}}
-    <link rel="stylesheet" href="assets/vendor.css">
-    <link rel="stylesheet" href="vendor/styleguide.css">
-    <link rel="stylesheet" href="assets/mobility-explorer.css">
+    <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+    <link rel="stylesheet" href="{{rootURL}}vendor/styleguide.css">
+    <link rel="stylesheet" href="{{rootURL}}assets/mobility-explorer.css">
     {{content-for "head-footer"}}
   </head>
     {{content-for "body"}}
     <script src="https://www.nextzen.org/tangram/0.14.2/tangram.min.js"></script>
-    <script src="assets/vendor.js"></script>
-    <script src="assets/mobility-explorer.js"></script>
-    <script src="vendor/styleguide.js"></script>
+    <script src="{{rootURL}}assets/vendor.js"></script>
+    <script src="{{rootURL}}assets/mobility-explorer.js"></script>
+    <script src="{{rootURL}}vendor/styleguide.js"></script>
     {{content-for "body-footer"}}
   </body>
 </html>

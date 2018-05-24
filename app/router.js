@@ -1,9 +1,11 @@
-import Ember from 'ember';
-import config from './config/environment';
-//import googlePageview from './mixins/google-pageview';
+import EmberRouter from '@ember/routing/router';
+import config from 'mobility-explorer/config/environment';
 
 
-const Router = Ember.Router.extend();
+const Router = EmberRouter.extend({
+  location: config.locationType,
+  rootURL: config.rootURL
+});
 
 Router.map(function() {
   this.route('routes', function(){

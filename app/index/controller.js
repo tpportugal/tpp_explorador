@@ -1,15 +1,16 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Controller from '@ember/controller';
 import mapBboxController from 'mobility-explorer/mixins/map-bbox-controller';
 import setTextboxClosed from 'mobility-explorer/mixins/set-textbox-closed';
 import sharedActions from 'mobility-explorer/mixins/shared-actions';
 
-export default Ember.Controller.extend(mapBboxController, setTextboxClosed, sharedActions, {
+export default Controller.extend(mapBboxController, setTextboxClosed, sharedActions, {
   queryParams: ['bbox','pin'],
-  center: Ember.computed('pin', function(){
-    if (this.get('pin')){
-      return this.get('pinLocation');
+  center: computed('pin', function(){
+    if (this.pin){
+      return this.pinLocation;
     } else {
-      return this.get('mapCenter');
+      return this.mapCenter;
     }
   }),
   zoom: 12,
@@ -20,7 +21,7 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
       this.set('bbox', newbox.toBBoxString());
     },
     setIsochroneMode: function(mode){
-      if (this.get('isochrone_mode') === mode){
+      if (this.isochrone_mode === mode){
         this.set('isochrone_mode', null);
       } else {
         this.set('isochrone_mode', mode);

@@ -1,11 +1,13 @@
 /* global moment */
-import Ember from 'ember';
+import { computed } from '@ember/object';
+
+import Controller from '@ember/controller';
 import mapBboxController from 'mobility-explorer/mixins/map-bbox-controller';
 import setTextboxClosed from 'mobility-explorer/mixins/set-textbox-closed';
 import sharedActions from 'mobility-explorer/mixins/shared-actions';
 
 
-export default Ember.Controller.extend(mapBboxController, setTextboxClosed, sharedActions, {
+export default Controller.extend(mapBboxController, setTextboxClosed, sharedActions, {
   queryParams: ['onestop_id', 'isochrone_mode', 'pin', 'departure_time', 'include_operators', 'exclude_operators', 'include_routes', 'exclude_routes', 'stop'],
 
   onestop_id: null,
@@ -21,31 +23,31 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
 
   // this iterates through the arrays for the included and excluded query params, and sets the included or excluded
   // model attributes for the entities with listed onestopIDs
-  markIncludedExcluded: Ember.computed('include_operators', function(){
-    if (this.get('exclude_operators').length > 0) {
-      for (var i = 0; i < this.get('exclude_operators').length; i++){
-        var excludeOperator = this.get('exclude_operators')[i];
+  markIncludedExcluded: computed('include_operators', function(){
+    if (this.exclude_operators.length > 0) {
+      for (var i = 0; i < this.exclude_operators.length; i++){
+        var excludeOperator = this.exclude_operators[i];
         this.store.peekRecord('data/tpp/operator', excludeOperator).set('exclude', true);
       }
     }
 
-    if (this.get('include_operators').length > 0) {
-      for (var j = 0; j < this.get('include_operators').length; j++){
-        var includeOperator = this.get('include_operators')[j];
+    if (this.include_operators.length > 0) {
+      for (var j = 0; j < this.include_operators.length; j++){
+        var includeOperator = this.include_operators[j];
         this.store.peekRecord('data/tpp/operator', includeOperator).set('include', true);
       }
     }
 
-    if (this.get('exclude_routes').length > 0) {
-      for (var k = 0; k < this.get('exclude_routes').length; k++){
-        var excludeRoute = this.get('exclude_routes')[k];
+    if (this.exclude_routes.length > 0) {
+      for (var k = 0; k < this.exclude_routes.length; k++){
+        var excludeRoute = this.exclude_routes[k];
         this.store.peekRecord('data/tpp/route', excludeRoute).set('exclude', true);
       }
     }
 
-    if (this.get('include_routes').length > 0) {
-      for (var l = 0; l < this.get('include_routes').length; l++){
-        var includeRoute = this.get('include_routes')[l];
+    if (this.include_routes.length > 0) {
+      for (var l = 0; l < this.include_routes.length; l++){
+        var includeRoute = this.include_routes[l];
         this.store.peekRecord('data/tpp/route', includeRoute).set('include', true);
       }
     }
@@ -58,7 +60,7 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
       this.set('leafletBbox', leafletBounds.toBBoxString());
     },
     updateMapMoved(e){
-      if (this.get('mousedOver') === true){
+      if (this.mousedOver === true){
         this.set('mapMoved', true);
       }
     },
@@ -75,7 +77,7 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
       coordinates.push(lat);
       coordinates.push(lng);
       this.set('pin', coordinates);
-      var bounds = this.get('leafletBbox');
+      var bounds = this.leafletBbox;
       this.set('bbox', bounds);
     },
     removePin: function(){
@@ -84,7 +86,7 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
     },
     setIsochroneMode: function(mode){
       this.set('departure_time', null);
-      if (this.get('isochrone_mode') === mode){
+      if (this.isochrone_mode === mode){
         this.set('isochrone_mode', null);
       } else {
         this.set('isochrone_mode', mode);
@@ -130,60 +132,60 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
       this.set('departure_time', null);
     },
     includeOperator: function(operator){
-      if (this.get('include_operators').includes(operator.id)){
-        this.get('include_operators').removeObject(operator.id);
+      if (this.include_operators.includes(operator.id)){
+        this.include_operators.removeObject(operator.id);
         this.store.peekRecord('data/tpp/operator', operator.id).set('include', false);
       } else {
-        this.get('include_operators').pushObject(operator.id);
+        this.include_operators.pushObject(operator.id);
         this.store.peekRecord('data/tpp/operator', operator.id).set('include', true);
-        if (this.get('exclude_operators').includes(operator.id)){
-          this.get('exclude_operators').removeObject(operator.id);
+        if (this.exclude_operators.includes(operator.id)){
+          this.exclude_operators.removeObject(operator.id);
           this.store.peekRecord('data/tpp/operator', operator.id).set('exclude', false);
         }
       }
-      this.get('exclude_operators').clear();
+      this.exclude_operators.clear();
     },
     excludeOperator: function(operator){
-      if (this.get('exclude_operators').includes(operator.id)){
+      if (this.exclude_operators.includes(operator.id)){
         this.store.peekRecord('data/tpp/operator', operator.id).set('exclude', false);
-        this.get('exclude_operators').removeObject(operator.id);
+        this.exclude_operators.removeObject(operator.id);
       } else {
         this.store.peekRecord('data/tpp/operator', operator.id).set('exclude', true);
-        this.get('exclude_operators').pushObject(operator.id);
-        if (this.get('include_operators').includes(operator.id)){
+        this.exclude_operators.pushObject(operator.id);
+        if (this.include_operators.includes(operator.id)){
           this.store.peekRecord('data/tpp/operator', operator.id).set('include', false);
-          this.get('include_operators').removeObject(operator.id);
+          this.include_operators.removeObject(operator.id);
         }
       }
-      this.get('include_operators').clear();
+      this.include_operators.clear();
     },
     includeRoute: function(route){
-      if (this.get('include_routes').includes(route.id)){
+      if (this.include_routes.includes(route.id)){
         this.store.peekRecord('data/tpp/route', route.id).set('include', false);
-        this.get('include_routes').removeObject(route.id);
+        this.include_routes.removeObject(route.id);
       } else {
         this.store.peekRecord('data/tpp/route', route.id).set('include', true);
-        this.get('include_routes').pushObject(route.id);
-        if (this.get('exclude_routes').includes(route.id)){
+        this.include_routes.pushObject(route.id);
+        if (this.exclude_routes.includes(route.id)){
           this.store.peekRecord('data/tpp/route', route.id).set('exclude', false);
-          this.get('exclude_routes').removeObject(route.id);
+          this.exclude_routes.removeObject(route.id);
         }
       }
-      this.get('exclude_routes').clear();
+      this.exclude_routes.clear();
     },
     excludeRoute: function(route){
-      if (this.get('exclude_routes').includes(route.id)){
-        this.get('exclude_routes').removeObject(route.id);
+      if (this.exclude_routes.includes(route.id)){
+        this.exclude_routes.removeObject(route.id);
         this.store.peekRecord('data/tpp/route', route.id).set('exclude', false);
       } else {
-        this.get('exclude_routes').pushObject(route.id);
+        this.exclude_routes.pushObject(route.id);
         this.store.peekRecord('data/tpp/route', route.id).set('exclude', true);
-        if (this.get('include_routes').includes(route.id)){
-          this.get('include_routes').removeObject(route.id);
+        if (this.include_routes.includes(route.id)){
+          this.include_routes.removeObject(route.id);
           this.store.peekRecord('data/tpp/route', route.id).set('include', false);
         }
       }
-      this.get('include_routes').clear();
+      this.include_routes.clear();
     }
   }
 });

@@ -1,12 +1,18 @@
 /* global L */
 
-import Ember from 'ember';
+import $ from 'jquery';
+
+import { isBlank } from '@ember/utils';
+import { alias } from '@ember/object/computed';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Mixin from '@ember/object/mixin';
 import ENV from 'mobility-explorer/config/environment';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   bbox: null,
-  closeTextbox: Ember.inject.service(),
-  currentlyLoading: Ember.inject.service(),
+  closeTextbox: service(),
+  currentlyLoading: service(),
   icon: L.icon({
     iconUrl: 'assets/images/marker1.png',
     iconSize: (20, 20),
@@ -16,31 +22,31 @@ export default Ember.Mixin.create({
   leafletBounds: [[41.12, -8.66],[41.16, -8.58]],
   mapCenter: [41.14, -8.62],
   pin: null,
-  pinLocation: Ember.computed('pin', function(){
-    if (typeof(this.get('pin'))==='string'){
-      var pinArray = this.get('pin').split(',');
+  pinLocation: computed('pin', function(){
+    if (typeof(this.pin)==='string'){
+      var pinArray = this.pin.split(',');
       return pinArray;
     } else {
-      return this.get('pin');
+      return this.pin;
     }
   }),
   place: null,
-  textboxIsClosed: Ember.computed('closeTextbox.textboxIsClosed', function(){
+  textboxIsClosed: computed('closeTextbox.textboxIsClosed', function(){
     if (localStorage.getItem('mobility-explorer-hide-intro') === 'true'){
         return true;
     } else {
-      return this.get('closeTextbox').get('textboxIsClosed');
+      return this.closeTextbox.get('textboxIsClosed');
     }
   }),
-  searchbarContent: Ember.computed(function(){
+  searchbarContent: computed(function(){
     if (this.media.isMobile){
       return 'Pesquise um local';
     } else {
       return 'Pesquise um local';
     }
   }),
-  valhallaServicesEnabled: Ember.computed.alias(ENV.valhallaServicesEnabled),
-  webGL: Ember.computed(function(){
+  valhallaServicesEnabled: alias(ENV.valhallaServicesEnabled),
+  webGL: computed(function(){
     var canvas = document.createElement('canvas');
     var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
     if (gl && gl instanceof WebGLRenderingContext) {
@@ -59,19 +65,19 @@ export default Ember.Mixin.create({
       coordinates.push(lng);
       this.set('pin', coordinates);
       this.set('mapCenter', coordinates);
-      this.set('leafletBbox', this.get('bbox'));
+      this.set('leafletBbox', this.bbox);
     },
     removePin: function(){
-      var pinCoordinateArray = this.get('pin').split(',');
+      var pinCoordinateArray = this.pin.split(',');
       pinCoordinateArray[0] = parseFloat(pinCoordinateArray[0]);
       pinCoordinateArray[1] = parseFloat(pinCoordinateArray[1]);
       this.set('mapCenter', pinCoordinateArray);
       this.set('pin', null);
     },
     searchRepo: function(term) {
-      if (Ember.isBlank(term)) { return []; }
+      if (isBlank(term)) { return []; }
       const url = ENV.geocodeHost + `/search.php?format=json&q=${term}`;
-      return Ember.$.ajax({ url }).then(json => json);
+      return $.ajax({ url }).then(json => json);
     },
     setPlace: function(selected){
       this.set('pin', null);
@@ -85,7 +91,7 @@ export default Ember.Mixin.create({
       this.set('place', selected);
       this.set('pin', coordinates);
       this.set('mapCenter', coordinates);
-      this.transitionToRoute('index', {queryParams: {pin: this.get('pin'), bbox: null}});
+      this.transitionToRoute('index', {queryParams: {pin: this.pin, bbox: null}});
     },
     clearPlace: function(){
       this.set('place', null);

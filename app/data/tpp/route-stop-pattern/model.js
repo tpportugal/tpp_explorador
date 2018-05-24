@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { alias } from '@ember/object/computed';
 import DS from 'ember-data';
 
 var Route_stop_pattern = DS.Model.extend({
@@ -6,7 +6,7 @@ var Route_stop_pattern = DS.Model.extend({
   imported_from_feed_onestop_ids: DS.attr(),
   imported_from_feed_version_sha1s: DS.attr(),
   created_or_updated_in_changeset_id: 2259,
-  onestop_id: Ember.computed.alias('id'),
+  onestop_id: alias('id'),
   route_onestop_id: DS.attr('string'),
   stop_pattern: DS.attr(),
   stop_distances: DS.attr(),
@@ -22,13 +22,13 @@ var Route_stop_pattern = DS.Model.extend({
   default_opacity: 0,
   is_selected: false,
   location: (function(){
-    var coordinates = this.get('geometry')['coordinates'];
+    var coordinates = this.geometry['coordinates'];
     var coordinatesLength = coordinates.length;
     var reversedCoordArray = [];
     for (var i = 0; i < coordinatesLength; i++){
         var tempCoord = null;
-        var lat = this.get('geometry')['coordinates'][i][0];
-        var lon = this.get('geometry')['coordinates'][i][1];
+        var lat = this.geometry['coordinates'][i][0];
+        var lon = this.geometry['coordinates'][i][1];
         tempCoord = lat;
         lat = lon;
         lon = tempCoord;
@@ -45,22 +45,22 @@ var Route_stop_pattern = DS.Model.extend({
       features: [
         {
           type: 'Feature',
-          geometry: this.get('geometry'),
+          geometry: this.geometry,
           properties: {
             color: '#444444',
             weight: 6,
-            opacity: this.get('default_opacity')
+            opacity: this.default_opacity
           },
           id: this.onestop_id,
-          onestop_id: this.get('onestop_id'),
+          onestop_id: this.onestop_id,
         },
         {
           type: 'Feature',
-          geometry: this.get('geometry'),
+          geometry: this.geometry,
           properties: {
-            color: this.get('default_color'),
+            color: this.default_color,
             weight: 3,
-            opacity: this.get('default_opacity')
+            opacity: this.default_opacity
           },
         },
       ]

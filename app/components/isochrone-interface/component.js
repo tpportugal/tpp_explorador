@@ -1,28 +1,29 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-  pedestrianIsochrone: Ember.computed('isochrone_mode', function(){
-    return (this.get('isochrone_mode') === 'pedestrian');
+export default Component.extend({
+  pedestrianIsochrone: computed('isochrone_mode', function(){
+    return this.isochrone_mode === 'pedestrian';
   }),
-  bicycleIsochrone: Ember.computed('isochrone_mode', function(){
-    return (this.get('isochrone_mode') === 'bicycle');
+  bicycleIsochrone: computed('isochrone_mode', function(){
+    return this.isochrone_mode === 'bicycle';
   }),
-  multimodalIsochrone: Ember.computed('isochrone_mode', function(){
-    return (this.get('isochrone_mode') === 'multimodal');
+  multimodalIsochrone: computed('isochrone_mode', function(){
+    return this.isochrone_mode === 'multimodal';
   }),
-  autoIsochrone: Ember.computed('isochrone_mode', function(){
-    return (this.get('isochrone_mode') === 'auto');
+  autoIsochrone: computed('isochrone_mode', function(){
+    return this.isochrone_mode === 'auto';
   }),
   actions:{
     setIsochroneMode(mode){
-      if (this.get('isochrone_mode') === mode){
+      if (this.isochrone_mode === mode){
         this.set('isochrone_mode', null);
       } else {
         this.set('isochrone_mode', mode);
       }
     },
     setIsochronesMode(){
-      if (this.get('isochrones_mode') === null){
+      if (this.isochrones_mode === null){
         this.set('isochrones_mode', true);
       } else {
         this.set('isochrones_mode', null);

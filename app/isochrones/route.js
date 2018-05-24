@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import { hash } from 'rsvp';
+import $ from 'jquery';
+import Route from '@ember/routing/route';
 import setLoading from 'mobility-explorer/mixins/set-loading';
 import ENV from 'mobility-explorer/config/environment';
 
-export default Ember.Route.extend(setLoading, {
+export default Route.extend(setLoading, {
   queryParams: {
     isochrone_mode: {
       replace: true,
@@ -39,9 +41,9 @@ export default Ember.Route.extend(setLoading, {
 
   },
   setupController: function (controller, model) {
-    if (controller.get('bbox') !== null){
+    if (controller.bbox !== null){
       var coordinateArray = [];
-      var bboxString = controller.get('bbox');
+      var bboxString = controller.bbox;
       var tempArray = [];
       var boundsArray = [];
 
@@ -62,7 +64,7 @@ export default Ember.Route.extend(setLoading, {
       controller.set('leafletBounds', boundsArray);
 
     }
-    controller.set('leafletBbox', controller.get('bbox'));
+    controller.set('leafletBbox', controller.bbox);
     this._super(controller, model);
 
   },
@@ -145,7 +147,7 @@ export default Ember.Route.extend(setLoading, {
       url = encodeURI(url + JSON.stringify(json));
       linkUrl = encodeURI(linkUrl + JSON.stringify(json));
 
-      var isochrones = Ember.$.ajax({ url });
+      var isochrones = $.ajax({ url });
       var operators = this.store.query('data/tpp/operator', {bbox: params.bbox});
       var routes;
 
@@ -164,7 +166,7 @@ export default Ember.Route.extend(setLoading, {
       }
 
 
-      return Ember.RSVP.hash({
+      return hash({
         operators: operators,
         routes: routes,
         isochrones: isochrones,

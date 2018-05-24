@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import mapBboxRoute from 'mobility-explorer/mixins/map-bbox-route';
 import setLoading from 'mobility-explorer/mixins/set-loading';
 
-export default Ember.Route.extend(mapBboxRoute, setLoading, {
+export default Route.extend(mapBboxRoute, setLoading, {
   queryParams: {
     onestop_id: {
       // replace: true,
@@ -17,9 +17,9 @@ export default Ember.Route.extend(mapBboxRoute, setLoading, {
     }
   },
   setupController: function (controller, model) {
-    if (controller.get('bbox') !== null){
+    if (controller.bbox !== null){
       var coordinateArray = [];
-      var bboxString = controller.get('bbox');
+      var bboxString = controller.bbox;
       var tempArray = [];
       var boundsArray = [];
       coordinateArray = bboxString.split(',');
@@ -36,7 +36,7 @@ export default Ember.Route.extend(mapBboxRoute, setLoading, {
       boundsArray.push(arrayTwo);
       controller.set('leafletBounds', boundsArray);
     }
-    controller.set('leafletBbox', controller.get('bbox'));
+    controller.set('leafletBbox', controller.bbox);
     this._super(controller, model);
   },
   model: function(params){

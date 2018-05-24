@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Controller from '@ember/controller';
 import setTextboxClosed from 'mobility-explorer/mixins/set-textbox-closed';
 import sharedActions from 'mobility-explorer/mixins/shared-actions';
 
-export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
+export default Controller.extend(setTextboxClosed, sharedActions, {
   queryParams: ['traversed_by', 'pin'],
 
   traversed_by: null,
@@ -12,15 +13,15 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
   hoverStop: null,
   displayRspStops: false,
   selectedRsp: null,
-  bounds: Ember.computed('bbox', function(){
-    if (this.get('bbox') === null){
+  bounds: computed('bbox', function(){
+    if (this.bbox === null){
       var defaultBoundsArray = [];
       defaultBoundsArray.push([36.94111143010769, -13.24951171875]);
       defaultBoundsArray.push([36.94111143010769, -13.24951171875]);
       return defaultBoundsArray;
     } else {
       var coordinateArray = [];
-      var bboxString = this.get('bbox');
+      var bboxString = this.bbox;
       var tempArray = [];
       var boundsArray = [];
 
@@ -50,12 +51,12 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
       this.set('leafletBbox', leafletBounds.toBBoxString());
     },
     updatebbox(e) {
-      var bounds = this.get('leafletBbox');
+      var bounds = this.leafletBbox;
       this.set('bbox', bounds);
       this.set('mapMoved', false);
     },
     updateMapMoved(){
-      if (this.get('mousedOver') === true){
+      if (this.mousedOver === true){
         this.set('mapMoved', true);
       }
     },
@@ -87,32 +88,32 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
       this.set('hoverStop', null);
       this.set('onestop_id', onestopId);
       this.set('displayStops', false);
-      this.transitionToRoute('stops', {queryParams: {bbox: this.get('bbox'), onestop_id: this.get('onestop_id')}});
+      this.transitionToRoute('stops', {queryParams: {bbox: this.bbox, onestop_id: this.onestop_id}});
     },
     setRsp(rsp){
       var stops, stopsLength, stopId, i;
-      if (this.get('selectedRsp')!== null){
-        stops = this.get('selectedRsp').get('stop_pattern');
+      if (this.selectedRsp!== null){
+        stops = this.selectedRsp.get('stop_pattern');
         stopsLength = stops.length;
         for (i = 0; i < stopsLength; i++){
           stopId = stops[i];
           this.store.peekRecord('data/tpp/stop',stopId).set('rsp_stop_pattern_number', null);
         }
       }
-      if (this.get('selectedRsp')!== null && this.get('selectedRsp').get('id') === rsp.get('id')){
+      if (this.selectedRsp!== null && this.selectedRsp.get('id') === rsp.get('id')){
         this.set('selectedRsp', null);
         rsp.set('is_selected', false);
         rsp.set('default_opacity', 0);
-      } else if (this.get('selectedRsp')!== null){
-        stops = this.get('selectedRsp').get('stop_pattern');
+      } else if (this.selectedRsp!== null){
+        stops = this.selectedRsp.get('stop_pattern');
         stopsLength = stops.length;
         for (i = 0; i < stopsLength; i++){
           stopId = stops[i];
           this.store.peekRecord('data/tpp/stop',stopId).set('rsp_stop_pattern_number', null);
         }
-        this.get('selectedRsp').set('default_opacity', 0);
+        this.selectedRsp.set('default_opacity', 0);
         rsp.set('default_opacity', 1);
-        this.get('selectedRsp').set('is_selected', false);
+        this.selectedRsp.set('is_selected', false);
         rsp.set('is_selected', true);
         this.set('selectedRsp', rsp);
         stops = this.selectedRsp.get('stop_pattern');

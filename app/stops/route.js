@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import { hash } from 'rsvp';
+import Route from '@ember/routing/route';
 import mapBboxRoute from 'mobility-explorer/mixins/map-bbox-route';
 import setLoading from 'mobility-explorer/mixins/set-loading';
 
-export default Ember.Route.extend(mapBboxRoute, setLoading, {
+export default Route.extend(mapBboxRoute, setLoading, {
   queryParams: {
     onestop_id: {
       refreshModel: true
@@ -27,9 +29,9 @@ export default Ember.Route.extend(mapBboxRoute, setLoading, {
     }
   },
   setupController: function (controller, model) {
-    if (controller.get('bbox') !== null){
+    if (controller.bbox !== null){
       var coordinateArray = [];
-      var bboxString = controller.get('bbox');
+      var bboxString = controller.bbox;
       var tempArray = [];
       var boundsArray = [];
       coordinateArray = bboxString.split(',');
@@ -46,7 +48,7 @@ export default Ember.Route.extend(mapBboxRoute, setLoading, {
       boundsArray.push(arrayTwo);
       controller.set('leafletBounds', boundsArray);
     }
-    controller.set('leafletBbox', controller.get('bbox'));
+    controller.set('leafletBbox', controller.bbox);
     this._super(controller, model);
   },
   model: function(params){
@@ -83,12 +85,12 @@ export default Ember.Route.extend(mapBboxRoute, setLoading, {
         }
         url = encodeURI(url + JSON.stringify(json));
         linkUrl = encodeURI(linkUrl + JSON.stringify(json));
-        return Ember.RSVP.hash({
+        return hash({
           stops: stops,
           onlyStop: onlyStop,
           url: url,
           linkUrl: linkUrl,
-          isochrones: Ember.$.ajax({ url }).then(function(response){
+          isochrones: $.ajax({ url }).then(function(response){
             return response;
           })
         });
@@ -101,19 +103,19 @@ export default Ember.Route.extend(mapBboxRoute, setLoading, {
           if (servedBy.indexOf('r') === 0) {
             url = ENV.tppDatastoreHost + '/v1/routes.geojson?per_page=false&onestop_id=';
             url += servedBy;
-            return Ember.RSVP.hash({
+            return hash({
               stops: stops,
               onlyStop: onlyStop,
-              servedByRoute: Ember.$.ajax({ url })
+              servedByRoute: $.ajax({ url })
             });
           } else {
-            return Ember.RSVP.hash({
+            return hash({
               stops: stops,
               onlyStop: onlyStop
             });
           }
         } else {
-          return Ember.RSVP.hash({
+          return hash({
             stops: stops,
             onlyStop: onlyStop
           });

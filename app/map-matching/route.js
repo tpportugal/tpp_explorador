@@ -1,11 +1,13 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import { defer, hashSettled, hash } from 'rsvp';
+import Route from '@ember/routing/route';
 import setLoading from 'mobility-explorer/mixins/set-loading';
 import xml2js from 'npm:xml2js';
 import polylineEncoded from 'npm:polyline-encoded';
 import ENV from 'mobility-explorer/config/environment';
 /* global L */
 
-export default Ember.Route.extend(setLoading, {
+export default Route.extend(setLoading, {
   queryParams: {
     trace: {
       replace: true,
@@ -18,9 +20,9 @@ export default Ember.Route.extend(setLoading, {
   },
 
   setupController: function (controller, model) {
-    if (controller.get('bbox') !== null){
+    if (controller.bbox !== null){
       var coordinateArray = [];
-      var bboxString = controller.get('bbox');
+      var bboxString = controller.bbox;
       var tempArray = [];
       var boundsArray = [];
 
@@ -41,7 +43,7 @@ export default Ember.Route.extend(setLoading, {
       controller.set('leafletBounds', boundsArray);
 
     }
-    controller.set('leafletBbox', controller.get('bbox'));
+    controller.set('leafletBbox', controller.bbox);
     this._super(controller, model);
   },
 
@@ -84,7 +86,7 @@ export default Ember.Route.extend(setLoading, {
 
   getLocalGPX: function(gpxTrace) {
     // might want to use RSVP.promise here instead of RSVP.defer
-    var deferred = Ember.RSVP.defer();
+    var deferred = defer();
     var element = document.getElementById('gpxFileUpload');
     var uploadedTrace = element.files[0];
     var reader = new FileReader();
@@ -99,7 +101,7 @@ export default Ember.Route.extend(setLoading, {
   },
 
   getRemoteGPX: function(gpxTrace) {
-    return Ember.$.ajax({
+    return $.ajax({
       type: "GET",
       contentType: "text/xml",
       url: 'assets/traces/' + gpxTrace.filename,
@@ -224,7 +226,7 @@ export default Ember.Route.extend(setLoading, {
         });
 
         // trace_attributes request
-        return Ember.$.ajax({
+        return $.ajax({
           type:"POST",
           url: ENV.valhallaHost + '/trace_attributes?',
           data:JSON.stringify(attributesJson)
@@ -320,13 +322,13 @@ export default Ember.Route.extend(setLoading, {
           };
         }
 
-        var traceRouteRequest = Ember.$.ajax({
+        var traceRouteRequest = $.ajax({
           type: "POST",
           url: ENV.valhallaHost + '/trace_route?',
           data: JSON.stringify(routeJson)
         });
 
-        return Ember.RSVP.hashSettled({
+        return hashSettled({
           decodedPolyline: decodedPolyline,
           encodedPolyline: encodedPolyline,
           attributesResponse: attributesResponse,
@@ -341,7 +343,7 @@ export default Ember.Route.extend(setLoading, {
     }
 
     // Issue promise with both gpxTrace model and trace_route request
-    return Ember.RSVP.hash({
+    return hash({
       gpxTraces: fixtures,
       gpxTrace: gpxTrace,
       mapMatchRequests: mapMatchRequests,

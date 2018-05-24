@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-  maneuverIcon: Ember.computed('trace', function(){
+export default Component.extend({
+  maneuverIcon: computed('trace', function(){
     // this icon logic comes from the Turn-by-Turn demo
     var id = this.maneuver.type;
 

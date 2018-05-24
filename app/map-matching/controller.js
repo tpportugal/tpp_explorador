@@ -1,18 +1,20 @@
 /* global L */
 
-import Ember from 'ember';
+import { computed } from '@ember/object';
+
+import Controller from '@ember/controller';
 import mapBboxController from 'mobility-explorer/mixins/map-bbox-controller';
 import setTextboxClosed from 'mobility-explorer/mixins/set-textbox-closed';
 import sharedActions from 'mobility-explorer/mixins/shared-actions';
 import xml2js from 'npm:xml2js';
 import polylineEncoded from 'npm:polyline-encoded';
 
-export default Ember.Controller.extend(mapBboxController, setTextboxClosed, sharedActions, {
+export default Controller.extend(mapBboxController, setTextboxClosed, sharedActions, {
   queryParams: ['bbox','pin','trace', 'costing'],
   zoom: 12,
   trace: null,
   costing: null,
-  traceBounds: Ember.computed('zoomedDiscontinuity', 'model', function(){
+  traceBounds: computed('zoomedDiscontinuity', 'model', function(){
     if (this.zoomedDiscontinuity){
       return this.zoomedDiscontinuity.edgeCoordinates;
     }
@@ -32,15 +34,15 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
   selectedAttribute: null,
   selectedDiscontinuity: null,
   zoomedDiscontinuity: null,
-  selectedTrace: Ember.computed('trace', function(){
-    if (!this.get('trace')) {
+  selectedTrace: computed('trace', function(){
+    if (!this.trace) {
       return "Select a sample or upload your own file";
-    } else if (this.get('trace') && this.get('gpxPlaceholder') === "Select a sample GPX trace..."){
+    } else if (this.trace && this.gpxPlaceholder === "Select a sample GPX trace..."){
       return this.model.gpxTrace.display_name;
-    } else if (this.get('trace') && this.get('trace').name === "user_upload"){
-      return this.get('gpxPlaceholder');
+    } else if (this.trace && this.trace.name === "user_upload"){
+      return this.gpxPlaceholder;
     } else {
-      return this.get('gpxPlaceholder');
+      return this.gpxPlaceholder;
     }
   }),
   gpxPlaceholder: "Select a sample GPX trace...",
@@ -149,9 +151,9 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
       "units": "%"
     }
   },
-  segmentPopupContent: Ember.computed('hoverSegment', function(){
-    var selectedAttribute = this.get('selectedAttribute');
-    var attributes = this.get('hoverSegment').attributes;
+  segmentPopupContent: computed('hoverSegment', function(){
+    var selectedAttribute = this.selectedAttribute;
+    var attributes = this.hoverSegment.attributes;
     var attributeValue = attributes[selectedAttribute];
     if (selectedAttribute === 'weighted_grade') {
       // if (attributes.max_upward_grade !== 0 && attributes.max_downward_grade !== 0) {
@@ -171,15 +173,15 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
       return "speed limit: " + attributes[selectedAttribute] + " mph";
     }
   }),
-  routeManeuvers: Ember.computed('showTraceRoute', function(){
+  routeManeuvers: computed('showTraceRoute', function(){
     var maneuvers = this.model.mapMatchRequests.traceRouteRequest.value.trip.legs[0].maneuvers;
     return maneuvers;
   }),
-  segmentAttributes: Ember.computed('selectedSegment', function(){
-    if (this.get('selectedSegment')){
-      var attributes = this.get('selectedSegment').attributes;
+  segmentAttributes: computed('selectedSegment', function(){
+    if (this.selectedSegment){
+      var attributes = this.selectedSegment.attributes;
       var attributeArray = [];
-      var attributeDisplay = this.get('attributeDisplay');
+      var attributeDisplay = this.attributeDisplay;
       for (var attribute in attributes){
         if (attributeDisplay[attribute]){
           var value = attributes[attribute].toString() + attributeDisplay[attribute].units;
@@ -210,11 +212,11 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
       return false;
     }
   }),
-  traceAttributeSegments: Ember.computed('selectedAttribute', function() {
-    if (this.get('trace')){
+  traceAttributeSegments: computed('selectedAttribute', function() {
+    if (this.trace){
       var points = this.model.mapMatchRequests.decodedPolyline.value;
       var edges = this.model.mapMatchRequests.attributesResponse.value.edges;
-      var selectedAttribute = this.get('selectedAttribute');
+      var selectedAttribute = this.selectedAttribute;
       var edgeCoordinates = [];
       var attributeArray = [];
       var attributeArraySum = 0;
@@ -372,7 +374,7 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
       if (this.model.mapMatchRequests.attributesResponse.state === "rejected"){
         this.set('errorMessage', this.model.mapMatchRequests.attributesResponse.reason.responseJSON.error);
         this.set('showErrorMessage', true);
-      } else if (this.get('showTraceAttribute')){
+      } else if (this.showTraceAttribute){
         this.set('selectedDiscontinuity', null);
         this.set('showTraceAttribute', false);
         this.set('showTraceRoute', false);
@@ -389,20 +391,20 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
         this.set('traceRouteErrorMessage', this.model.mapMatchRequests.traceRouteRequest.reason.responseJSON.error);
         this.set('showTraceRouteErrorMessage', true);
         this.set('showTraceRoute', true);
-      } else if (this.get('showTraceRoute')){
+      } else if (this.showTraceRoute){
         this.set('showTraceRoute', false);
       } else {
         this.set('showTraceRoute', true);
       }
     },
     styleByAttribute(attribute){
-      if (this.get('selectedAttribute') === attribute){
+      if (this.selectedAttribute === attribute){
         this.set('selectedAttribute', null);
         this.set('selectedSegment', null);
       } else {
         this.set('selectedAttribute', null);
         this.set('selectedSegment', null);
-        var attributesForSelection = this.get('attributesForSelection');
+        var attributesForSelection = this.attributesForSelection;
         for (var i = 0; i < attributesForSelection.length; i++){
           if (attributesForSelection[i].attribute === attribute){
             this.set('selectedAttribute', attributesForSelection[i].attribute);
@@ -422,7 +424,7 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
     setCosting(mode){
       this.set('noTraceUploaded', false);
       this.set('trace', null);
-      if (this.get('costing') === mode){
+      if (this.costing === mode){
         this.set('costing', null);
       } else {
         this.set('costing', mode);

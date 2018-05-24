@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { alias } from '@ember/object/computed';
 import DS from 'ember-data';
 
 var Operator = DS.Model.extend({
@@ -6,7 +6,7 @@ var Operator = DS.Model.extend({
   imported_from_feed_onestop_ids: DS.attr('string'),
   name: DS.attr('string'),
   short_name: DS.attr('string'),
-  onestop_id: Ember.computed.alias('id'),
+  onestop_id: alias('id'),
   tags: DS.attr(),
   website: DS.attr('string'),
   country: DS.attr('string'),
@@ -22,13 +22,13 @@ var Operator = DS.Model.extend({
   include: DS.attr('boolean'),
   exclude: DS.attr('boolean'),
   location: (function(){
-    var coordinates = this.get('geometry')['coordinates'][0];
+    var coordinates = this.geometry['coordinates'][0];
     var coordinatesLength = coordinates.length;
     var reversedCoordArray = [];
     for (var i = 0; i < coordinatesLength; i++){
       var tempCoord = null;
-      var lat = this.get('geometry')['coordinates'][0][i][0];
-      var lon = this.get('geometry')['coordinates'][0][i][1];
+      var lat = this.geometry['coordinates'][0][i][0];
+      var lon = this.geometry['coordinates'][0][i][1];
       tempCoord = lat;
       lat = lon;
       lon = tempCoord;
@@ -40,7 +40,7 @@ var Operator = DS.Model.extend({
     return reversedCoordArray;
   }).property('geometry'),
   operator_color: (function(){
-    var str = this.get('onestop_id');
+    var str = this.onestop_id;
     var hash = 0;
     for (var i = 0; i <str.length; i++) {
       hash = str.charCodeAt(i) + ((hash << 5) - hash);
@@ -53,7 +53,7 @@ var Operator = DS.Model.extend({
     return colorCode;
   }).property('onestop_id'),
   style: (function(){
-    return 'color:' + this.get('operator_color');
+    return 'color:' + this.operator_color;
   }).property('operator_color')
 
 });

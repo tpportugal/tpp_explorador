@@ -1,10 +1,12 @@
 /* global L */
 
-import Ember from 'ember';
+import { computed } from '@ember/object';
+
+import Controller from '@ember/controller';
 import setTextboxClosed from 'mobility-explorer/mixins/set-textbox-closed';
 import sharedActions from 'mobility-explorer/mixins/shared-actions';
 
-export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
+export default Controller.extend(setTextboxClosed, sharedActions, {
   queryParams: ['onestop_id', 'serves', 'operated_by', 'vehicle_type', 'style_routes_by', 'bbox', 'pin'],
   queryIsInactive: false,
   onestop_id: null,
@@ -14,14 +16,14 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
   style_routes_by: null,
   selectedRoute: null,
   hoverStop: null,
-  routeSelectContent: Ember.computed(function(){
+  routeSelectContent: computed(function(){
     if (this.media.isMobile){
       return 'Clique numa linha de rota para mais informações';
     } else {
       return 'Paire numa linha de rota para ver informações';
     }
   }),
-  placeholderMessageRoutes: Ember.computed('bbox', function(){
+  placeholderMessageRoutes: computed('bbox', function(){
     var total = this.model.routes.get('meta.total');
     if (total > 1){
       return  total + ' rotas';
@@ -29,25 +31,25 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
       return total + ' rota';
     }
   }),
-  placeholderMessageOperators: Ember.computed('leafletBbox', function(){
-    var total = this.get('routeOperators').length;
+  placeholderMessageOperators: computed('leafletBbox', function(){
+    var total = this.routeOperators.length;
     if (total > 1){
       return  total + ' operadores';
     } else if (total === 1) {
       return total + ' operador';
     }
   }),
-  placeholderMessageModes: Ember.computed('leafletBbox', function(){
-    var total = this.get('routeModes').length;
+  placeholderMessageModes: computed('leafletBbox', function(){
+    var total = this.routeModes.length;
     if (total > 1){
       return  total + ' modos';
     } else if (total === 1) {
       return total + ' modo';
     }
   }),
-  routeOperators: Ember.computed('leafletBbox', function(){
-    var routesLength = this.get('routes').length;
-    var allRoutes = this.get('routes');
+  routeOperators: computed('leafletBbox', function(){
+    var routesLength = this.routes.length;
+    var allRoutes = this.routes;
     var checkList = [];
     var uniqueOperators = [];
     for (var i = 0; i < routesLength; i++){
@@ -65,9 +67,9 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
     }
     return uniqueOperators;
   }),
-  routeModes: Ember.computed('leafletBbox', function(){
-    var routesLength = this.get('routes').length;
-    var allRoutes = this.get('routes');
+  routeModes: computed('leafletBbox', function(){
+    var routesLength = this.routes.length;
+    var allRoutes = this.routes;
     var checkList = [];
     var uniqueModes = [];
     var modeColors = {
@@ -98,7 +100,7 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
   }),
   route_stop_patterns_by_onestop_id: null,
   displayStops: false,
-  stopLocation: Ember.computed(function(){
+  stopLocation: computed(function(){
     var stops = this.model.stops.features;
     var coordinates = stops.get('geometry')['coordinates'];
     var tempCoord = null;
@@ -110,10 +112,10 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
     coordArray.push(lat);
     return coordArray;
   }),
-  onlyRoute: Ember.computed('onestop_id', function(){
-    var data = this.get('routes');
+  onlyRoute: computed('onestop_id', function(){
+    var data = this.routes;
     var onlyRoute = data.get('firstObject');
-    if (this.get('onestop_id') === null){
+    if (this.onestop_id === null){
       return null;
     } else {
       return onlyRoute;
@@ -121,15 +123,15 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
   }),
   hoverRoute: null,
   unstyledColor: '#6ea0a4',
-  bounds: Ember.computed('bbox', function(){
-    if (this.get('bbox') === null){
+  bounds: computed('bbox', function(){
+    if (this.bbox === null){
       var defaultBoundsArray = [];
       defaultBoundsArray.push([36.94111143010769, -13.24951171875]);
       defaultBoundsArray.push([42.25291778330197, -3.087158203125]);
       return defaultBoundsArray;
     } else {
       var coordinateArray = [];
-      var bboxString = this.get('bbox');
+      var bboxString = this.bbox;
       var tempArray = [];
       var boundsArray = [];
 
@@ -155,14 +157,14 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
     iconSize: (20, 20),
     iconAnchor: [10, 24]
   }),
-  routes: Ember.computed('model', function(){
+  routes: computed('model', function(){
     var data = this.get('model.routes');
     var routes = [];
     routes = routes.concat(data.map(function(route){return route;}));
     return routes;
   }),
-  route_stop_patterns_by_onestop_ids: Ember.computed ('model', function(){
-    return this.get('model').get('firstObject').get('route_stop_patterns_by_onestop_id');
+  route_stop_patterns_by_onestop_ids: computed ('model', function(){
+    return this.model.get('firstObject').get('route_stop_patterns_by_onestop_id');
   }),
   mapMoved: false,
   mousedOver: false,
@@ -173,12 +175,12 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
       this.set('leafletBbox', leafletBounds.toBBoxString());
     },
     updatebbox(e) {
-      var bounds = this.get('leafletBbox');
+      var bounds = this.leafletBbox;
       this.set('bbox', bounds);
       this.set('mapMoved', false);
     },
     updateMapMoved(){
-      if (this.get('mousedOver') === true){
+      if (this.mousedOver === true){
         this.set('mapMoved', true);
       }
     },
@@ -186,7 +188,7 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
       this.set('mousedOver', true);
     },
     setRouteStyle(style){
-      if (this.get('style_routes_by') === style){
+      if (this.style_routes_by === style){
         this.set('style_routes_by', null);
       } else {
         this.set('style_routes_by', style);
@@ -222,7 +224,7 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
       this.set('hoverRoute', (e.target.getLayers()[0].feature.onestop_id));
     },
     setOnestopId: function(route) {
-      var onestop_id = route.get('id');
+      var onestop_id = route.id;
       this.set('onestop_id', onestop_id);
       this.set('selectedRoute', route);
       this.set('serves', null);
@@ -234,7 +236,7 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
       layer.setStyle(feature.properties);
       layer.originalStyle = feature.properties;
 
-      if (this.get('onestop_id')){
+      if (this.onestop_id){
         layer.eachLayer(function(layer){layer.setStyle({'opacity':1});});
       }
     },
@@ -256,10 +258,10 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
       this.set('hoverStop', null);
       this.set('onestop_id', onestopId);
       this.set('displayStops', false);
-      this.transitionToRoute('stops', {queryParams: {bbox: this.get('bbox'), onestop_id: this.get('onestop_id')}});
+      this.transitionToRoute('stops', {queryParams: {bbox: this.bbox, onestop_id: this.onestop_id}});
     },
     setDisplayStops: function(){
-      if (this.get('displayStops') === false){
+      if (this.displayStops === false){
         if (this.model.stops.features.get('firstObject').icon){
           this.set('displayStops', true);
         } else {
@@ -304,7 +306,7 @@ export default Ember.Controller.extend(setTextboxClosed, sharedActions, {
     },
     setRouteStopPattern: function(selected){
       this.set('routeStopPattern', selected);
-      this.transitionToRoute('route-stop-pattern', {queryParams: {bbox: this.get('bbox'), traversed_by: this.get('onestop_id')}});
+      this.transitionToRoute('route-stop-pattern', {queryParams: {bbox: this.bbox, traversed_by: this.onestop_id}});
     },
     clearRouteStopPattern: function(){
       this.set('routeStopPattern', null);

@@ -1,12 +1,14 @@
 /* global L, moment */
 
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import mapBboxController from 'mobility-explorer/mixins/map-bbox-controller';
 import setTextboxClosed from 'mobility-explorer/mixins/set-textbox-closed';
 import sharedActions from 'mobility-explorer/mixins/shared-actions';
 
 
-export default Ember.Controller.extend(mapBboxController, setTextboxClosed, sharedActions, {
+export default Controller.extend(mapBboxController, setTextboxClosed, sharedActions, {
   queryParams: ['onestop_id', 'served_by', 'isochrone_mode', 'pin', 'bbox', 'departure_time'],
 
   departure_time: null,
@@ -16,12 +18,12 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
   served_by: null,
   isochrone_mode: null,
   isochrones_mode: null,
-  currentlyLoading: Ember.inject.service(),
+  currentlyLoading: service(),
   hoverStop: null,
   moment: moment(),
   mapMoved: false,
   mousedOver: false,
-  stopSelectContent: Ember.computed(function(){
+  stopSelectContent: computed(function(){
     if (this.media.isMobile){
       return 'Clique numa paragem para mais informações';
     } else {
@@ -29,7 +31,7 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
     }
   }),
 
-  stopCoordinates: Ember.computed('onestop_id', function(){
+  stopCoordinates: computed('onestop_id', function(){
     var stopLocation = this.model.onlyStop.get('geometry_centroid.coordinates');
     var lat = stopLocation[0];
     var lng = stopLocation[1];
@@ -45,12 +47,12 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
       this.set('leafletBbox', leafletBounds.toBBoxString());
     },
     updatebbox(e) {
-      var bounds = this.get('leafletBbox');
+      var bounds = this.leafletBbox;
       this.set('bbox', bounds);
       this.set('mapMoved', false);
     },
     updateMapMoved(){
-      if (this.get('mousedOver') === true){
+      if (this.mousedOver === true){
         this.set('mapMoved', true);
       }
     },
@@ -74,14 +76,14 @@ export default Ember.Controller.extend(mapBboxController, setTextboxClosed, shar
       this.set('isochrones_mode', null);
     },
     setIsochroneMode(mode){
-      if (this.get('isochrone_mode') === mode){
+      if (this.isochrone_mode === mode){
         this.set('isochrone_mode', null);
       } else {
         this.set('isochrone_mode', mode);
       }
     },
     setIsochronesMode(){
-      if (this.get('isochrones_mode') === null){
+      if (this.isochrones_mode === null){
         this.set('isochrones_mode', true);
       } else {
         this.set('isochrones_mode', null);

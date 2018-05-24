@@ -1,9 +1,11 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import { hash } from 'rsvp';
+import Route from '@ember/routing/route';
 import mapBboxRoute from 'mobility-explorer/mixins/map-bbox-route';
 import setLoading from 'mobility-explorer/mixins/set-loading';
 import ENV from 'mobility-explorer/config/environment';
 
-export default Ember.Route.extend(mapBboxRoute, setLoading, {
+export default Route.extend(mapBboxRoute, setLoading, {
   queryParams: {
     onestop_id: {
       refreshModel: true
@@ -24,9 +26,9 @@ export default Ember.Route.extend(mapBboxRoute, setLoading, {
     }
   },
   setupController: function (controller, model) {
-    if (controller.get('bbox') !== null){
+    if (controller.bbox !== null){
       var coordinateArray = [];
-      var bboxString = controller.get('bbox');
+      var bboxString = controller.bbox;
       var tempArray = [];
       var boundsArray = [];
       coordinateArray = bboxString.split(',');
@@ -43,7 +45,7 @@ export default Ember.Route.extend(mapBboxRoute, setLoading, {
       boundsArray.push(arrayTwo);
       controller.set('leafletBounds', boundsArray);
     }
-    controller.set('leafletBbox', controller.get('bbox'));
+    controller.set('leafletBbox', controller.bbox);
     this._super(controller, model);
   },
   model: function(params){
@@ -65,20 +67,20 @@ export default Ember.Route.extend(mapBboxRoute, setLoading, {
       //   stopServedByRoutes: stopServedByRoutes
       // });
       stops = this.store.query('data/tpp/stop', {onestop_id: params.serves});
-      return Ember.RSVP.hash({
+      return hash({
         routes: routes,
         stops: stops
       });
 
     } else if (params.onestop_id){
       var url = ENV.tppDatastoreHost + '/v1/stops.geojson?per_page=false&served_by=' + params.onestop_id;
-      stops = Ember.$.ajax({ url });
-      return Ember.RSVP.hash({
+      stops = $.ajax({ url });
+      return hash({
         routes: routes,
         stops: stops
       });
     } else {
-      return Ember.RSVP.hash({
+      return hash({
         routes: routes,
       });
     }

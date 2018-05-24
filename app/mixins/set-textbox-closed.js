@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   actions: {
     setTextBoxClosed(){
-      this.get('closeTextbox').set('textboxIsClosed', true);
+      this.closeTextbox.set('textboxIsClosed', true);
       localStorage.setItem('mobility-explorer-hide-intro', 'true');
     },
   }
