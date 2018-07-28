@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import mapBboxRoute from 'mobility-explorer/mixins/map-bbox-route';
 import setLoading from 'mobility-explorer/mixins/set-loading';
+import ENV from 'mobility-explorer/config/environment';
 
 export default Ember.Route.extend(mapBboxRoute, setLoading, {
   queryParams: {
